@@ -1,0 +1,30 @@
+@mixin ngx-layout() {
+  @include media-breakpoint-down(is) {
+    .row {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+  }
+}
+
+nb-layout-footer {
+  &.fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100%;
+
+    @at-root {
+      ::ng-deep {
+        .layout-container .content .columns {
+          nb-layout-column {
+            padding-bottom: 3.25rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+

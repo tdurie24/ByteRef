@@ -1,0 +1,189 @@
+// @nebular theming framework
+@import "~@nebular/theme/styles/theming";
+// @nebular out of the box themes
+@import "~@nebular/theme/styles/themes";
+
+$nb-themes: nb-register-theme(
+  (
+    layout-padding-top: 2.25rem,
+
+    menu-item-icon-margin: 0 0.5rem 0 0,
+
+    card-height-tiny: 13.5rem,
+    card-height-small: 21.1875rem,
+    card-height-medium: 28.875rem,
+    card-height-large: 36.5625rem,
+    card-height-giant: 44.25rem,
+    card-margin-bottom: 1.875rem,
+    card-header-with-select-padding-top: 0.5rem,
+    card-header-with-select-padding-bottom: 0.5rem,
+
+    select-min-width: 6rem,
+
+    slide-out-background: #f7f9fc,
+    slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+    slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+  ),
+  default,
+  default
+);
+
+$nb-themes: nb-register-theme(
+  (
+    layout-padding-top: 2.25rem,
+
+    menu-item-icon-margin: 0 0.5rem 0 0,
+
+    card-height-tiny: 13.5rem,
+    card-height-small: 21.1875rem,
+    card-height-medium: 28.875rem,
+    card-height-large: 36.5625rem,
+    card-height-giant: 44.25rem,
+    card-margin-bottom: 1.875rem,
+    card-header-with-select-padding-top: 0.5rem,
+    card-header-with-select-padding-bottom: 0.5rem,
+
+    select-min-width: 6rem,
+
+    slide-out-background: #252547,
+    slide-out-shadow-color: 2px 0 3px #29157a,
+    slide-out-shadow-color-rtl: -2px 0 3px #29157a,
+  ),
+  cosmic,
+  cosmic
+);
+
+$nb-themes: nb-register-theme(
+  (
+    layout-padding-top: 2.25rem,
+
+    menu-item-icon-margin: 0 0.5rem 0 0,
+
+    card-height-tiny: 13.5rem,
+    card-height-small: 21.1875rem,
+    card-height-medium: 28.875rem,
+    card-height-large: 36.5625rem,
+    card-height-giant: 44.25rem,
+    card-margin-bottom: 1.875rem,
+    card-header-with-select-padding-top: 0.5rem,
+    card-header-with-select-padding-bottom: 0.5rem,
+
+    select-min-width: 6rem,
+
+    slide-out-background: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%),
+    slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+    slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+  ),
+  corporate,
+  corporate
+);
+
+$nb-themes: nb-register-theme(
+  (
+    layout-padding-top: 2.25rem,
+
+    menu-item-icon-margin: 0 0.5rem 0 0,
+
+    card-height-tiny: 13.5rem,
+    card-height-small: 21.1875rem,
+    card-height-medium: 28.875rem,
+    card-height-large: 36.5625rem,
+    card-height-giant: 44.25rem,
+    card-margin-bottom: 1.875rem,
+    card-header-with-select-padding-top: 0.5rem,
+    card-header-with-select-padding-bottom: 0.5rem,
+
+    select-min-width: 6rem,
+
+    slide-out-background: linear-gradient(270deg, #222b45 0%, #151a30 100%),
+    slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+    slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+  ),
+  dark,
+  dark
+);
+
+//Custom Corporate colors
+$nb-themes: nb-register-theme(
+  (
+    color-primary-100: #04b3fe,
+    color-primary-200: #01a2e7,
+    color-primary-300: #0191ce,
+    color-primary-400: #017fb4,
+    color-primary-500: #016d9b,
+    color-primary-600: #015b82,
+    color-primary-700: #014968,
+    color-primary-800: #01384f,
+    color-primary-900: #012636,
+    color-primary-transparent-100: rgba(1, 160, 80, 0.08),
+    color-primary-transparent-200: rgba(1, 160, 80, 0.16),
+    color-primary-transparent-300: rgba(1, 160, 80, 0.24),
+    color-primary-transparent-400: rgba(1, 160, 80, 0.32),
+    color-primary-transparent-500: rgba(1, 160, 80, 0.4),
+    color-primary-transparent-600: rgba(1, 160, 80, 0.48),
+    color-success-100: #cbfbcf,
+    color-success-200: #98f8ab,
+    color-success-300: #63ea8b,
+    color-success-400: #3bd578,
+    color-success-500: #07ba60,
+    color-success-600: #059f61,
+    color-success-700: #03855e,
+    color-success-800: #026b56,
+    color-success-900: #015950,
+    color-success-transparent-100: rgba(7, 186, 96, 0.08),
+    color-success-transparent-200: rgba(7, 186, 96, 0.16),
+    color-success-transparent-300: rgba(7, 186, 96, 0.24),
+    color-success-transparent-400: rgba(7, 186, 96, 0.32),
+    color-success-transparent-500: rgba(7, 186, 96, 0.4),
+    color-success-transparent-600: rgba(7, 186, 96, 0.48),
+    color-info-100: #d5e6fe,
+    color-info-200: #abcbfd,
+    color-info-300: #81acfb,
+    // color-info-400: var(--blue-secondary),
+    color-info-400: #6192F7,
+    // color-info-500: var(--blue-prime),
+    color-info-500: #2E68F2,
+    color-info-600: #214fd0,
+    color-info-700: #173aae,
+    color-info-800: #0e288c,
+    color-info-900: #081b74,
+    color-info-transparent-100: rgba(46, 104, 242, 0.08),
+    color-info-transparent-200: rgba(46, 104, 242, 0.16),
+    color-info-transparent-300: rgba(46, 104, 242, 0.24),
+    color-info-transparent-400: rgba(46, 104, 242, 0.32),
+    color-info-transparent-500: rgba(46, 104, 242, 0.4),
+    color-info-transparent-600: rgba(46, 104, 242, 0.48),
+    color-warning-100: #f6cf96,
+    color-warning-200: #f5c684,
+    color-warning-300: #f2b560,
+    color-warning-400: #f2b560,
+    color-warning-500: #f0ad4e,
+    color-warning-600: #eea236,
+    color-warning-700: #eea53c,
+    color-warning-800: #ed9c2a,
+    color-warning-900: #eb9418,
+    color-warning-transparent-100: rgba(255, 222, 10, 0.08),
+    color-warning-transparent-200: rgba(255, 222, 10, 0.16),
+    color-warning-transparent-300: rgba(255, 222, 10, 0.24),
+    color-warning-transparent-400: rgba(255, 222, 10, 0.32),
+    color-warning-transparent-500: rgba(255, 222, 10, 0.4),
+    color-warning-transparent-600: rgba(255, 222, 10, 0.48),
+    color-danger-100: #fddcd3,
+    color-danger-200: #fcb2a9,
+    color-danger-300: #f67f7c,
+    color-danger-400: #ed5a65,
+    color-danger-500: #e22847,
+    color-danger-600: #c21d48,
+    color-danger-700: #a21446,
+    color-danger-800: #830c41,
+    color-danger-900: #6c073e,
+    color-danger-transparent-100: rgba(226, 40, 71, 0.08),
+    color-danger-transparent-200: rgba(226, 40, 71, 0.16),
+    color-danger-transparent-300: rgba(226, 40, 71, 0.24),
+    color-danger-transparent-400: rgba(226, 40, 71, 0.32),
+    color-danger-transparent-500: rgba(226, 40, 71, 0.4),
+    color-danger-transparent-600: rgba(226, 40, 71, 0.48),
+  ),
+  corporate,
+  corporate
+);

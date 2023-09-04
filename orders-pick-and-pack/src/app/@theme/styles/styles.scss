@@ -1,0 +1,167 @@
+@import "./syncfusion-bootstrap4.min.css";
+@import "../../../../node_modules/@syncfusion/ej2-angular-spreadsheet/styles/bootstrap4.css";
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap");
+
+// themes - our custom or/and out of the box themes
+@import "themes";
+
+// framework component themes (styles tied to theme variables)
+@import "~@nebular/theme/styles/globals";
+@import "~@nebular/auth/styles/all";
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/grid";
+
+// loading progress bar theme
+@import "./pace.theme";
+
+@import "./layout";
+@import "./overrides";
+
+// install the framework and custom global styles
+@include nb-install() {
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+}
+
+.breadcrumb {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-size: 12px;
+  line-height: 1.42857143;
+  color: #333;
+  font-family: "Noto Sans", sans-serif;
+  box-sizing: border-box;
+  outline: none !important;
+  padding: 5px 10px;
+  list-style: none;
+  border-radius: 4px;
+  float: right !important;
+  background-color: transparent;
+}
+
+.breadcrumb a {
+  color: #016d9b;
+  text-decoration: none;
+}
+
+.form-error {
+  border-color: #e22847 !important;
+}
+
+.form-default {
+  border-color: none !important;
+}
+
+.windowfull-screen {
+  min-width: 80% !important;
+
+  .cdk-visually-hidden {
+    width: 99% !important;
+    height: 99% !important;
+  }
+
+  nb-windows-container {
+    min-width: 90% !important;
+  }
+}
+
+.main {
+  margin-bottom: 8% !important;
+}
+
+.previouslyLinked {
+  background-color: rgba(1, 160, 80, 0.2);
+}
+
+.toastFull {
+  width: 95% !important;
+}
+
+table.table-hover.table-bordered {
+  font-size: 14px !important;
+}
+
+.full-tab {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.dashboardItemHeight {
+  min-height: 33vh !important;
+}
+
+.app-name {
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+
+/* ============ CARDS ============= */
+.cards-func {
+  background: url(../../../assets/images/cards-func.png) no-repeat center center;
+  background-size: cover;
+  min-height: 140px;
+  transition: 0.25s ease;
+  box-shadow: 0 15px 10px -10px #e4eafb;
+  -webkit-animation-fill-mode: backwards !important;
+  animation-fill-mode: backwards !important;
+}
+
+.cards-func span {
+  z-index: 1;
+}
+
+a.cards-func {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.text-primary {
+  color: #016d9b !important;
+}
+
+.cards-func:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(229, 240, 245, 0.3);
+  border-radius: 12px;
+  z-index: 0;
+}
+
+.cards-func:hover {
+  transition: 0.2s ease;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 25px 15px -13px #e4eafb;
+  -webkit-animation-fill-mode: backwards !important;
+  animation-fill-mode: backwards !important;
+}
+
+.arrow-card:before {
+  content: "\f061";
+  font-family: "Font Awesome 6 free";
+  position: absolute;
+  width: 1.7rem;
+  height: 1.7rem;
+  background-color: #fafafa;
+  color: #016d9b;
+
+  border-radius: 25px;
+  padding: 3px 6px;
+  font-size: 15px;
+  font-weight: 800;
+  bottom: 7px;
+  right: 7px;
+}
+
+/* ============ FIM CARDS ============= */

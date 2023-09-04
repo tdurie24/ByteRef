@@ -1,0 +1,74 @@
+:host {
+  --blue-prime: #458eca;
+  --blue-secondary: #d4ecff;
+}
+
+.activeFilter {
+  color: var(--blue-prime);
+  font-weight: 700;
+  border-bottom: solid 3px var(--blue-prime) !important;
+}
+
+.filter {
+  &:focus {
+    outline: none !important;
+  }
+
+  &:hover {
+    color: var(--blue-prime);
+    font-weight: 700;
+    // border-bottom: solid 3px var(--success) !important
+  }
+}
+
+.btn--close {
+  width: 45px;
+  border: none;
+  background: transparent;
+  &:focus {
+    border: none;
+    outline: none;
+  }
+  &:hover {
+    fill: var(--red);
+  }
+}
+
+#manage-actions {
+  background: var(--blue-secondary);
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  font-size: 0.8em;
+  width: 128px;
+  height: 33px;
+  border: 1px solid var(--blue-prime) !important;
+  border-radius: 4px !important;
+  color: var(--blue-prime) !important;
+}
+
+#manage-actions:hover {
+  color: var(--blue-prime) !important;
+}
+button#manage-actions .e-caret {
+  color: var(--blue-primary) !important;
+}
+
+// qr styles
+.bshadow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(5px 5px 5px #222222);
+  opacity: 0.5;
+}
+
+textarea {
+  margin-top: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  opacity: 0.5;
+}

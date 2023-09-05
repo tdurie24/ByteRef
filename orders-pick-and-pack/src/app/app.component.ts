@@ -19,9 +19,12 @@ loadCldr(
 
 @Component({
   selector: 'ngx-app',
-  template: '<router-outlet></router-outlet>',
+  templateUrl: "./app.component.html",
 })
 export class AppComponent implements OnInit {
+
+  //trigger this from an http interceptor set it to true then show a loading spinner
+  isLoading:boolean = false;
 
   constructor(private _authService: SenwesAuthorizationService) {
     setCurrencyCode('ZAR');

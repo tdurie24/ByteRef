@@ -11,6 +11,7 @@ import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbTo
 import { CanDeactivateGuard } from "app/@core/guards/can-deactivate.guard";
 import { VirtualizationService } from "@syncfusion/ej2-angular-lists";
 import { LogisticsModule } from "./pages/logistics/logistics.module";
+import { LoadingSpinnerComponent } from './components/components/loading-spinner/loading-spinner.component';
 
 export function tokenGetter(request) {
   if (request.url.includes("localhost") || request.url.includes("security")) {
@@ -26,7 +27,7 @@ export function tokenGetter(request) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoadingSpinnerComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

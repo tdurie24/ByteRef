@@ -37,6 +37,18 @@ export class OrderService {
         this.currentOrdersSource.next(this.makeOrders());
     }
 
+    updateOrder(order:Order){
+        this.httpClient.put(this.ordersBaseUrl,order)
+            .subscribe({next:response=>{
+                this.getOrders();
+                //this.ordersObservable.subscribe({next:orders})
+                }})
+    }
+
+    deleteOrder(orderId:any){
+
+    }
+
     private makeOrders(): Order[] {
         return [
             {

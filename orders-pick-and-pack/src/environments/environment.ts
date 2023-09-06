@@ -5,4 +5,6 @@ export const environment = {
   integration_service: "https://integration-qa.senwes.co.za/service/corporateservices/securedocuments/api",
   auth_service: "https://wsstaging.senwes.co.za/api/oneagri/security/api",
   events_service: "https://localhost:59874/api",
+
+  apiUrl:'https://integration-qa.senwes.co.za/service/retail/b2c_logistics/api/'
 };

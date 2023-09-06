@@ -1,4 +1,6 @@
-<div class="main">
+
+
+<div #container class="main">
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-between align-self-center">
@@ -36,6 +38,22 @@
     </div>
   </div> -->
 
+
+  <div *ngIf="editModalOpen">
+
+    <nb-card title="Order Details" >
+      <ejs-dialog id='dialog' #editOrderDialog isModal='true'
+                  (overlayClick)="onOverlayClick()"
+                  [target]='targetElement'
+                  width='60%'>
+        <logistics-detail></logistics-detail>
+      </ejs-dialog>
+    </nb-card>
+
+  </div>
+
+
+
   <nb-card>
     <nb-card-body>
 
@@ -64,7 +82,7 @@
         
               <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
                 <ng-template class="actions-container" #manageView let-data>
-                  <span *ngIf="expression"></span>
+<!--                  <span *ngIf="expression"></span>-->
                   <ng-container>
                     <button id="manage-actions" ejs-dropdownbutton
                       [items]="[
@@ -160,3 +178,4 @@
       </button>
     </div>
   </ng-template>
+</div>

@@ -12,8 +12,12 @@ import { CanDeactivateGuard } from "app/@core/guards/can-deactivate.guard";
 import { VirtualizationService } from "@syncfusion/ej2-angular-lists";
 import { LogisticsModule } from "./pages/logistics/logistics.module";
 import { LoadingSpinnerComponent } from './components/components/loading-spinner/loading-spinner.component';
+import { LoginComponent } from './pages/login/login.component';
+
+import { DialogModule } from '@syncfusion/ej2-angular-popups';
 
 export function tokenGetter(request) {
+
   if (request.url.includes("localhost") || request.url.includes("security")) {
     let token;
     // token = environment.user_token;
@@ -27,9 +31,10 @@ export function tokenGetter(request) {
 }
 
 @NgModule({
-  declarations: [AppComponent, LoadingSpinnerComponent],
+  declarations: [AppComponent, LoadingSpinnerComponent, LoginComponent],
   imports: [
     BrowserModule,
+    DialogModule,
     BrowserAnimationsModule,
     HttpClientModule,
     LogisticsModule,
@@ -46,7 +51,7 @@ export function tokenGetter(request) {
       config: {
         tokenGetter: tokenGetter,
         allowedDomains: [
-          "localhost:4200",
+          'localhost:4200',
           "localhost:44305",
           "localhost:44344",
           "localhost:56661",

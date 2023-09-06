@@ -1,234 +1,140 @@
 <form [formGroup]="logisticsDetailForm" novalidate>
+
+    <h3>Edit Order Details</h3>
+    <hr>
     <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Title</b></small>
-            <ejs-textbox formControlName="title" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('title','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('title','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('title').hasError('required')">
-                    Title is required
-                </small>
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Job Reference</b></small>
-            <ejs-textbox formControlName="jobReference" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('jobReference','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('jobReference','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('jobReference').hasError('required')">
-                    Job reference is required
-                </small>
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Work Level</b></small>
-            <ejs-dropdownlist formControlName="workLevel" id='ddWorkLevel' [dataSource]='null' floatLabelType="Always"
-            [cssClass]="componentIsInvalid('workLevel','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-dropdownlist>
-            <span *ngIf="componentIsInvalid('workLevel','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('workLevel').hasError('required')">
-                    Work level is required
-                </small>
-            </span>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Pay Grade</b></small>
-            <ejs-dropdownlist formControlName="payGrade" id='ddPayGrade' [dataSource]='null' floatLabelType="Always"
-            [cssClass]="componentIsInvalid('payGrade','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-dropdownlist>
-            <span *ngIf="componentIsInvalid('payGrade','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('payGrade').hasError('required')">
-                    Pay grade is required
-                </small>
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Salary Type</b></small>
-            <ejs-dropdownlist formControlName="salaryType" id='ddSalaryType' [dataSource]='null' floatLabelType="Always"
-            [cssClass]="componentIsInvalid('salaryType','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-dropdownlist>
-            <span *ngIf="componentIsInvalid('salaryType','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('salaryType').hasError('required')">
-                    Salary type is required
-                </small>
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Min Salary</b></small>
-            <ejs-textbox formControlName="minSalary" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('minSalary','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('minSalary','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('minSalary').hasError('required')">
-                    Minimum salary is required
-                </small>
-            </span>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Max Salary</b></small>
-            <ejs-textbox formControlName="maxSalary" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('maxSalary','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('maxSalary','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('maxSalary').hasError('required')">
-                    Maximum salary is required
-                </small>
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Position Type</b></small>
-            <ejs-dropdownlist formControlName="positionType" id='ddPositionType' [dataSource]='null' floatLabelType="Always"
-            [cssClass]="componentIsInvalid('positionType','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-dropdownlist>
-            <span *ngIf="componentIsInvalid('positionType','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('positionType').hasError('required')">
-                    Position type is required
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <small class="control-label required"><b>Order Number</b></small>
+            <ejs-textbox formControlName="OrderNumber" placeholder="" maxlength="30" floatLabelType="Always"
+                         [cssClass]="componentIsInvalid('OrderNumber','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+            <span *ngIf="componentIsInvalid('OrderNumber','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('OrderNumber').hasError('required')">
+                    Order Number is required
                 </small>
             </span>
         </div>
 
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Duraton</b></small>
-            <ejs-textbox formControlName="duraton" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('duraton','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('duraton','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('duraton').hasError('required')">
-                    Duration is required
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <small class="control-label required"><b>Logistics Status Number</b></small>
+            <ejs-textbox formControlName="LogisticsStatus" placeholder="" maxlength="30" floatLabelType="Always"
+                         [cssClass]="componentIsInvalid('LogisticsStatus','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+            <span *ngIf="componentIsInvalid('LogisticsStatus','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('LogisticsStatus').hasError('required')"> Logistics Status is required  </small>
+            </span>
+        </div>
+
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <small class="control-label required"><b>Assigned To</b></small>
+            <ejs-textbox formControlName="AssignedTo" placeholder="" maxlength="30" floatLabelType="Always"
+                         [cssClass]="componentIsInvalid('AssignedTo','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+            <span *ngIf="componentIsInvalid('AssignedTo','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('AssignedTo').hasError('required')">
+                   Assigned To is required
                 </small>
             </span>
         </div>
-    </div>
-   
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Available Positions</b></small>
-            <ejs-textbox formControlName="availablePositions" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('availablePositions','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('availablePositions','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('availablePositions').hasError('required')">
-                    Available positions is required
+
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <small class="control-label required"><b>Order Number</b></small>
+            <ejs-textbox formControlName="TotalItems" placeholder="" maxlength="30" floatLabelType="Always"
+                         [cssClass]="componentIsInvalid('TotalItems','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+            <span *ngIf="componentIsInvalid('TotalItems','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('TotalItems').hasError('required')">
+                    Order Number is required
                 </small>
             </span>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Category</b></small>
-            <ejs-dropdownlist formControlName="category" id='ddCategory' [dataSource]='null' floatLabelType="Always"
-            [cssClass]="componentIsInvalid('category','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-dropdownlist>
-            <span *ngIf="componentIsInvalid('category','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('category').hasError('required')">
-                    Category is required
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <small class="control-label required"><b>Logistics Status Number</b></small>
+            <ejs-textbox formControlName="DateUpdated" placeholder="" maxlength="30" floatLabelType="Always"
+                         [cssClass]="componentIsInvalid('DateUpdated','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+            <span *ngIf="componentIsInvalid('DateUpdated','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('DateUpdated').hasError('required')"> Logistics Status is required  </small>
+            </span>
+        </div>
+
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <small class="control-label required"><b>Assigned To</b></small>
+            <ejs-textbox formControlName="DateCreated" placeholder="" maxlength="30" floatLabelType="Always"
+                         [cssClass]="componentIsInvalid('DateCreated','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+            <span *ngIf="componentIsInvalid('DateCreated','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('DateCreated').hasError('required')">
+                   Assigned To is required
                 </small>
             </span>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Country</b></small>
-            <ejs-textbox formControlName="country" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('country','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('country','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('country').hasError('required')">
-                    Country is required
-                </small>
-            </span>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Province</b></small>
-            <ejs-textbox formControlName="province" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('province','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('province','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('province').hasError('required')">
-                    Province is required
-                </small>
-            </span>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>City</b></small>
-            <ejs-textbox formControlName="city" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('city','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('city','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('city').hasError('required')">
-                    City is required
-                </small>
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Department</b></small>
-            <ejs-dropdownlist formControlName="department" id='ddDepartment' [dataSource]='null' floatLabelType="Always"
-            [cssClass]="componentIsInvalid('department','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-dropdownlist>
-            <span *ngIf="componentIsInvalid('department','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('department').hasError('required')">
-                    Department is required
-                </small>
-            </span>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Cost Centre</b></small>
-            <ejs-textbox formControlName="costCentre" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('costCentre','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('costCentre','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('costCentre').hasError('required')">
-                    Cost Centre is required
-                </small>
-            </span>
-        </div>
+
     </div>
 
-    <div class="row">
-        <div class="col-12">
-            <small class="control-label required"><b>Description</b></small>
-            <ejs-textbox formControlName="description" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('description','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('description','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('description').hasError('required')">
-                    Description is required
-                </small>
-            </span>
-        </div>
+
+    <div  style="max-height: 310px!important; " class="mt-3 mb-3">
+        <h3>Items in order</h3>
+        <ejs-grid style="max-height: 300px!important;" #eventGrid id="Grid" [dataSource]="selectedOrder.Items" height="300" allowPaging="true"
+                  allowFiltering="true" allowSorting="false">
+            <e-columns>
+
+                <e-column field="itemId" headerText="Item Id" textAlign="Left"
+                          minWidth="100" width="180"
+                          maxWidth="360">
+                </e-column>
+
+                <e-column field="name" headerText="Item Name" textAlign="Left" format="yMd"
+                          minWidth="100" width="180"
+                          maxWidth="360">
+                </e-column>
+
+                <e-column field="partNumber" headerText="Part Number" textAlign="Left" format="yMd"
+                          minWidth="100" width="180"
+                          maxWidth="360">
+                </e-column>
+
+                <e-column field="sku" headerText="Item SKU" textAlign="Left" format="yMd"
+                          minWidth="100" width="180"
+                          maxWidth="360">
+                </e-column>
+
+                <e-column field="description" headerText="Item Description" textAlign="Left" format="yMd"
+                          minWidth="100" width="180"
+                          maxWidth="360">
+                </e-column>
+
+
+                <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
+                    <ng-template class="actions-container" #manageView let-data>
+                        <!-- <span *ngIf="expression"></span>-->
+                        <ng-container>
+                            <button id="manage-actions" ejs-dropdownbutton
+                                    [items]="[ listOfEventOptions.edit,  listOfEventOptions.add, listOfEventOptions.remove ]"
+                                    content="MANAGE / VIEW"
+                                    (select)="eventOptionsHandler($event, data)"></button>
+                        </ng-container>
+
+                    </ng-template>
+                </e-column>
+            </e-columns>
+        </ejs-grid>
+        <!--<nb-tab tabTitle="Form Example">
+          <logistics-detail></logistics-detail>
+        </nb-tab> -->
+
+
     </div>
-    <div class="row">
-        <div class="col-12">
-            <small class="control-label required"><b>Requirements</b></small>
-            <ejs-textbox formControlName="requirements" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('requirements','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('requirements','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('requirements').hasError('required')">
-                    Requirements is required
-                </small>
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Synopsis</b></small>
-            <ejs-textbox formControlName="synopsis" placeholder="" maxlength="30" floatLabelType="Always"
-                [cssClass]="componentIsInvalid('synopsis','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-            <span *ngIf="componentIsInvalid('synopsis','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('synopsis').hasError('required')">
-                    Synopsis is required
-                </small>
-            </span>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <small class="control-label required"><b>Anticipated Start Date</b></small>
-            <ejs-datepicker formControlName="anticipatedStartDate"  floatLabelType="Always"
-                [cssClass]="componentIsInvalid('anticipatedStartDate','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-datepicker>
-        </div>
-    </div>
-    <div class='row'>
+
+
+    <div class='row mt-2'>
         <div class="col-md-12">
             <hr>
             <div class="float-right">
+                <button style='margin-left: 10px !important' size="small" nbButton status='danger'>
+                    Delete Order
+                </button>
+
                 <button style='margin-left: 10px !important' size="small" nbButton status='success'>
-                    Submit Request
+                    Submit Changes
                 </button>
             </div>
         </div>

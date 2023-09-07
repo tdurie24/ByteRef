@@ -50,8 +50,7 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     event_action = this.eventActions.create;
 
     private attendeeActions = {add: "add", remove: "remove"};
-    attendee_action = this.attendeeActions.add;
-    attendee_event = '';
+
 
     filter_scope = {
         created: "created",
@@ -61,7 +60,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     };
 
     _scope = this.filter_scope.active;
-
 
     listOfEventOptions =
         {
@@ -97,9 +95,7 @@ export class LogisticsComponent implements OnInit, OnDestroy {
                 text: 'Delete',
                 id: 'Delete',
             }
-        }
-    ;
-
+        };
 
     sortOptions = {columns: [{field: 'dateFrom', direction: 'Descending'}]};
 
@@ -235,6 +231,10 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         if (args.item.id === "DeleteEvent") {
             this.openWindow(this.confirmationDialog, 'Delete Event', data);
         }
+    }
+
+    handleScanButton() {
+
     }
 
     ngOnDestroy(): void {

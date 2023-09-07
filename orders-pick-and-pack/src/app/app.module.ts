@@ -15,6 +15,9 @@ import { LoadingSpinnerComponent } from './components/components/loading-spinner
 import { LoginComponent } from './pages/login/login.component';
 
 import { DialogModule } from '@syncfusion/ej2-angular-popups';
+import {ScanItemComponent} from "./pages/logistics/scan.item/scan.item.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TextBoxModule} from "@syncfusion/ej2-angular-inputs";
 
 export function tokenGetter(request) {
 
@@ -31,7 +34,9 @@ export function tokenGetter(request) {
 }
 
 @NgModule({
-  declarations: [AppComponent, LoadingSpinnerComponent, LoginComponent],
+  declarations: [AppComponent,
+    ScanItemComponent,
+    LoadingSpinnerComponent, LoginComponent],
   imports: [
     BrowserModule,
     DialogModule,
@@ -66,8 +71,14 @@ export function tokenGetter(request) {
         disallowedRoutes: [],
       },
     }),
+    FormsModule,
+    ReactiveFormsModule,
+    TextBoxModule,
   ],
   providers: [CanDeactivateGuard, VirtualizationService],
   bootstrap: [AppComponent],
+  exports: [
+    ScanItemComponent
+  ]
 })
 export class AppModule { }

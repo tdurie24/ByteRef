@@ -1,7 +1,7 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OrderService} from "../../../@core/services/order.service";
-import {Order} from "../../../@core/models/order";
+import {OrderModel} from "../../../@core/models/order.model";
 import {ClickEventArgs} from "@syncfusion/ej2-navigations";
 import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 
@@ -12,7 +12,7 @@ import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 })
 export class LogisticsDetailComponent implements OnInit {
     // public logisticsDetailForm: FormGroup;
-    public selectedOrder: Order | undefined;
+    public selectedOrder: OrderModel | undefined;
     formValidators = [Validators.required];
     logisticsDetailForm: FormGroup = new FormGroup({});
 

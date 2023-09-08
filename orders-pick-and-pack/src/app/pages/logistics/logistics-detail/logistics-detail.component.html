@@ -1,16 +1,16 @@
 <div #container>
     <form [formGroup]="logisticsDetailForm" novalidate>
 
-        <h3>Edit Order Details</h3>
+        <h3>Edit OrderModel Details</h3>
         <hr>
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <small class="control-label required"><b>Order Number</b></small>
+                <small class="control-label required"><b>OrderModel Number</b></small>
                 <ejs-textbox formControlName="OrderNumber" placeholder="" maxlength="30" floatLabelType="Always"
                              [cssClass]="componentIsInvalid('OrderNumber','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
                 <span *ngIf="componentIsInvalid('OrderNumber','logisticsDetailForm')" class="e-error">
                 <small *ngIf="logisticsDetailForm?.get('OrderNumber').hasError('required')">
-                    Order Number is required
+                    OrderModel Number is required
                 </small>
             </span>
             </div>
@@ -38,12 +38,12 @@
 
 
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <small class="control-label required"><b>Order Number</b></small>
+                <small class="control-label required"><b>OrderModel Number</b></small>
                 <ejs-textbox formControlName="TotalItems" placeholder="" maxlength="30" floatLabelType="Always"
                              [cssClass]="componentIsInvalid('TotalItems','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
                 <span *ngIf="componentIsInvalid('TotalItems','logisticsDetailForm')" class="e-error">
                 <small *ngIf="logisticsDetailForm?.get('TotalItems').hasError('required')">
-                    Order Number is required
+                    OrderModel Number is required
                 </small>
             </span>
             </div>
@@ -139,7 +139,7 @@
                     </button>
 
                     <button style='margin-left: 10px !important' size="small" nbButton status='danger'>
-                        Delete Order
+                        Delete OrderModel
                     </button>
 
                     <button style='margin-left: 10px !important' size="small" nbButton status='success'>

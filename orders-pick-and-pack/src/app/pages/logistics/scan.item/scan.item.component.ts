@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {OrderService} from "../../../@core/services/order.service";
-import {Order} from "../../../@core/models/order";
+import {OrderModel} from "../../../@core/models/order.model";
 
 @Component({
   selector: 'scan-item-component',
@@ -11,7 +11,7 @@ import {Order} from "../../../@core/models/order";
 export class ScanItemComponent implements OnInit {
 
   itemForm: FormGroup = new FormGroup({});
-  @Input('selectedOrder') selectedOrder: Order;
+  @Input('selectedOrder') selectedOrder: OrderModel;
   scannedItemId:string|undefined;
 
   constructor(private orderService: OrderService) { }
@@ -37,6 +37,5 @@ export class ScanItemComponent implements OnInit {
       //do we really have to go to the service
       //maybe for the api call
     }
-
   }
 }

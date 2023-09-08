@@ -39,7 +39,7 @@
 
     <div *ngIf="editModalOpen">
 
-        <nb-card title="Order Details">
+        <nb-card title="OrderModel Details">
             <ejs-dialog id='dialog' #editOrderDialog isModal='true'
                         (overlayClick)="onOverlayClick()" [target]='targetElement' width='80%'  height="80%">
                 <logistics-detail></logistics-detail>
@@ -63,7 +63,7 @@
                               [allowPdfExport]="true"
                               [sortSettings]="sortOptions">
                         <e-columns>
-                            <e-column field="OrderNumber" headerText="Order Number" textAlign="Left" minWidth="80"
+                            <e-column field="OrderNumber" headerText="OrderModel Number" textAlign="Left" minWidth="80"
                                       width="160"
                                       maxWidth="250"></e-column>
                             <e-column field="LogisicsStatus" headerText="Status" textAlign="Left" minWidth="100"

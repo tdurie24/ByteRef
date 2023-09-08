@@ -10,7 +10,7 @@ import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {MenuEventArgs} from "@syncfusion/ej2-angular-splitbuttons";
 import {OrderService} from "../../@core/services/order.service";
-import {Order} from "../../@core/models/order";
+import {OrderModel} from "../../@core/models/order.model";
 import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 
 import {EmitType} from '@syncfusion/ej2-base';
@@ -34,7 +34,7 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     public targetElement?: HTMLElement;
     editModalOpen: boolean = false;
 
-    public data: Order[];
+    public data: OrderModel[];
 
     protected windowRef: NbWindowRef;
 

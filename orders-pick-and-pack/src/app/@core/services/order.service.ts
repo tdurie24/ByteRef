@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
-import {Order} from "../models/order";
+import {OrderModel} from "../models/order.model";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {ItemModel} from "../models/item.model";
+import {OrderItem} from "../models/order.item";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -11,16 +11,16 @@ import {map} from "rxjs/operators";
 })
 export class OrderService {
 
-    private currentOrdersSource: BehaviorSubject<Order[] | null> = new BehaviorSubject<Order[] | null>(null);
+    private currentOrdersSource: BehaviorSubject<OrderModel[] | null> = new BehaviorSubject<OrderModel[] | null>(null);
     ordersObservable = this.currentOrdersSource.asObservable();
 
-    private currentItemsSource: BehaviorSubject<ItemModel[] | null> = new BehaviorSubject<ItemModel[] | null>(null);
+    private currentItemsSource: BehaviorSubject<OrderItem[] | null> = new BehaviorSubject<OrderItem[] | null>(null);
     itemsObservable = this.currentItemsSource.asObservable();
 
-    private ordersFromApi: Order[] = [];
-    private itemsFromApi: ItemModel[] = [];
+    private ordersFromApi: OrderModel[] = [];
+    private itemsFromApi: OrderItem[] = [];
 
-    currentSelectedOrderSource: BehaviorSubject<Order | null> = new BehaviorSubject<Order | null>(null);
+    currentSelectedOrderSource: BehaviorSubject<OrderModel | null> = new BehaviorSubject<OrderModel | null>(null);
     currentSelectedOrderObservable = this.currentSelectedOrderSource.asObservable();
 
     ordersBaseUrl: string = environment.apiUrl + "orders/"
@@ -36,12 +36,12 @@ export class OrderService {
         this.currentItemsSource.next(this.itemsFromApi);
     }
 
-    setSelectedOrder(order: Order) {
+    setSelectedOrder(order: OrderModel) {
         this.currentSelectedOrderSource.next(order);
     }
 
     getOrders() {
-        this.httpClient.get<Order[]>(this.ordersBaseUrl).subscribe({
+        this.httpClient.get<OrderModel[]>(this.ordersBaseUrl).subscribe({
             next: response => {
                 this.currentOrdersSource.next(response);
             }, error: error => {
@@ -52,7 +52,7 @@ export class OrderService {
         this.currentOrdersSource.next(this.makeOrders());
     }
 
-    updateOrder(order: Order) {
+    updateOrder(order: OrderModel) {
         this.httpClient.put(this.ordersBaseUrl, order)
             .subscribe({
                 next: response => {
@@ -70,7 +70,7 @@ export class OrderService {
 
     }
 
-    private makeOrders(): Order[] {
+    private makeOrders(): OrderModel[] {
         return [
             {
                 OrderNumber: 10248,
@@ -109,10 +109,10 @@ export class OrderService {
     }
 
 
-    makeItems(): ItemModel[] {
+    makeItems(): OrderItem[] {
         return [{
-            itemId: '123132',
-            name: "Intel i7 CPU",
+            productTitle: '123132',
+            pr: "Intel i7 CPU",
             partNumber: 'afw053100',
             price: 230,
             sku: 'ii7cpu-wafw053s10',
@@ -125,8 +125,8 @@ export class OrderService {
             sku: 'ii7cpu-afw053410s',
             description: 'some random text comes here'
         }, {
-            itemId: '123133',
-            name: "Intel i3 CPU",
+            id: '123133',
+            productTitle: "Intel i3 CPU",
             partNumber: 'afw053100',
             price: 130,
             sku: 'ii7cpu-afw053410',
@@ -135,12 +135,12 @@ export class OrderService {
     }
 
     getItem(itemId: string) {
-        let item: ItemModel | undefined = this.makeItems().find(item => item.itemId === itemId);
+        let item: OrderItem | undefined = this.makeItems().find(item => item.id === itemId);
         return item;
     }
 
 
-    addScannedItem(order: any, item: ItemModel) {
+    addScannedItem(order: any, item: OrderItem) {
         //todo add the logic to add the scanned item into the items array of the selected order
     }
 }

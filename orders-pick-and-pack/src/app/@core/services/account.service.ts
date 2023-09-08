@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 
-import {environment} from "../../environments/environment";
+import {environment} from "../../../environments/environment";
 
 import {Router} from "@angular/router";
-import {LoginResponseModel} from "../_models/login.response.model";
+import {LoginResponseModel} from "../models/login.response.model";
 import {map} from "rxjs/operators";
 
 
@@ -13,7 +13,6 @@ import {map} from "rxjs/operators";
     providedIn: 'root'
 })
 export class AccountService {
-
 
     private currentLoginResponseModelSource = new BehaviorSubject<LoginResponseModel | null>(null);
     currentLoginResponseModel$ = this.currentLoginResponseModelSource.asObservable();

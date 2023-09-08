@@ -10,11 +10,7 @@ import { ToastService } from '../services/toast.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(
-    private _auth: AuthService,
-    private _router: Router,
-    private toastService: ToastService
-  ) { }
+  constructor(private _auth: AuthService, private _router: Router, private toastService: ToastService) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,

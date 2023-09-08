@@ -4,8 +4,8 @@ import {SenwesAuthorizationService} from '@senwes/senwes-authorization';
 import {environment} from 'environments/environment';
 import {from, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {CustomLoaderService} from "./_services/custom.loader.service";
-import {OrderService} from "./_services/order.service";
+import {CustomLoaderService} from "./@core/services/custom.loader.service";
+import {OrderService} from "./@core/services/order.service";
 
 declare var require: any;
 

@@ -8,7 +8,7 @@ import {
 import { Observable} from 'rxjs';
 
 import {delay, finalize} from "rxjs/operators";
-import {CustomLoaderService} from "../_services/custom.loader.service";
+import {CustomLoaderService} from "../services/custom.loader.service";
 
 @Injectable()
 export class LoadingIndicatorsInterceptor implements HttpInterceptor {

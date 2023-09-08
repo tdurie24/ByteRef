@@ -1,7 +1,7 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {OrderService} from "../../../_services/order.service";
-import {Order} from "../../../_models/order";
+import {OrderService} from "../../../@core/services/order.service";
+import {Order} from "../../../@core/models/order";
 import {ClickEventArgs} from "@syncfusion/ej2-navigations";
 import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 

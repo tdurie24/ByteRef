@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
-import {Order} from "../_models/order";
-import {environment} from "../../environments/environment";
+import {Order} from "../models/order";
+import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {ItemModel} from "../_models/item.model";
+import {ItemModel} from "../models/item.model";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -140,4 +140,7 @@ export class OrderService {
     }
 
 
+    addScannedItem(order: any, item: ItemModel) {
+        //todo add the logic to add the scanned item into the items array of the selected order
+    }
 }

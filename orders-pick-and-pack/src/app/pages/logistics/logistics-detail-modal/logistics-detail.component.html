@@ -1,0 +1,228 @@
+<div class="">
+
+    <div class="">
+        <div class="row">
+            <div class="col-11"><h3>View/Edit Logistic Details</h3></div>
+            <div class="col"><p (click)="closeDialog()">x</p></div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="logisticsDetailForm" id="logisticsDetailForm" novalidate>
+
+            <div class="row">
+
+                <div class="col-12">
+                    <h6>Logistic Details</h6>
+                    <hr style="margin-bottom: 20px">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Order Id</b></small>
+                    <ejs-textbox
+                            formControlName="DistributionId"
+                            placeholder=""
+                            maxlength="30"
+                            floatLabelType="Always"
+                            [cssClass]="componentIsInvalid('Id','logisticsDetailForm') ? 'e-error': 'e-input'">
+                    </ejs-textbox>
+                    <span *ngIf="componentIsInvalid('Id','logisticsDetailForm')" class="e-error">
+                    <small *ngIf="logisticsDetailForm?.get('Id').hasError('required')">OrderModel Number is required</small></span>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Distribution Id</b></small>
+                    <ejs-textbox
+                            formControlName="DistributionId"
+                            placeholder=""
+                            maxlength="30"
+                            floatLabelType="Always"
+                            [cssClass]="componentIsInvalid('DistributionId','logisticsDetailForm') ? 'e-error': 'e-input'">
+                    </ejs-textbox>
+                    <span *ngIf="componentIsInvalid('DistributionId','logisticsDetailForm')" class="e-error">
+                    <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">OrderModel Number is required</small></span>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Collection</b></small>
+                    <ejs-textbox formControlName="CollectionId"
+                                 placeholder=""
+                                 maxlength="30"
+                                 floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('CollectionId','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('CollectionId','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('CollectionId').hasError('required')"> Logistics Status is required</small></span>
+                </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Updated By</b></small>
+                    <ejs-textbox formControlName="UpdateBy"
+                                 placeholder=""
+                                 maxlength="30"
+                                 floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('UpdateBy','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('UpdateBy','logisticsDetailForm')" class="e-error">
+                       <small *ngIf="logisticsDetailForm?.get('UpdateBy').hasError('required')">Assigned To is required</small>  </span>
+                </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Logistics Status</b></small>
+                    <ejs-dropdownlist id='x'
+                                      [value]="'id'"
+                                      [dataSource]='logisticsStatuses'
+                                      placeholder='Select a status'
+                                      popupHeight='200px'
+                                      [fields]="dropDownFields"
+                                      [formControlName]="'LogisticsStatusId'"
+                                      popupWidth='250px'></ejs-dropdownlist>
+                    <span *ngIf="componentIsInvalid('UpdateDate','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('UpdateDate').hasError('required')">Logistics Status is required</small>
+            </span>
+                </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Date Created</b></small>
+                    <ejs-textbox formControlName="DateCreated" placeholder="" maxlength="30" floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('DateCreated','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('DateCreated','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('DateCreated').hasError('required')">
+                   Assigned To is required
+                </small>
+            </span>
+                </div>
+
+                <div class="col-12 mt-2">
+                    <h6>Order Details</h6>
+                    <hr style="margin-bottom: 20px">
+                </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Order Number</b></small>
+                    <ejs-textbox
+                            formControlName="DistributionId"
+                            placeholder="" maxlength="30"
+                            floatLabelType="Always"
+                            [cssClass]="componentIsInvalid('OrderNumber','logisticsDetailForm') ? 'e-error': 'e-input'">
+                    </ejs-textbox>
+                    <span *ngIf="componentIsInvalid('DistributionId','logisticsDetailForm')"
+                          class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">OrderModel Number is required </small></span>
+                </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Total Items</b></small>
+                    <ejs-textbox formControlName="TotalItems"
+                                 placeholder=""
+                                 maxlength="30"
+                                 floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('TotalItems','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('TotalItems','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('TotalItems').hasError('required')">
+                    Total Items required
+                </small> </span>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mt-2">
+                    <button routerLink="" class="btn col btn-dark">Full Details</button>
+                </div>
+
+            </div>
+
+
+            <div class="mt-3 mb-3">
+                <h3>Items in order</h3>
+
+                <ejs-grid
+                        style="position: unset!important; "
+                        #eventGrid id="Grid"
+                        [dataSource]="logisticsModel.Order.OrderItems"
+                        height="300"
+                        allowPaging="true"
+                        allowFiltering="true"
+                        allowSorting="true"
+                        allowTextWrap="true"
+                        (toolbarClick)="toolbarHandler($event)"
+                        [textWrapSettings]="wrapSettings"
+                        [toolbar]="toolbarOptions"
+                        [filterSettings]="filterSettings"
+                        [pageSettings]="pageSettings"
+                        [allowResizing]="true"
+                        [allowExcelExport]="true"
+                        [allowPdfExport]="true"
+                        [sortSettings]="sortOptions">
+
+
+                    <e-columns>
+
+                        <e-column field="lineItemId" headerText="Line Id"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+                        <e-column field="productTitle" headerText="Item Title"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+                        <e-column field="productPrice" headerText="Product Price"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+                        <e-column field="sku" headerText="Item SKU" textAlign="Left" format="yMd"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+                        <e-column field="quantity" headerText="Item Quantity"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+
+                        <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
+                            <ng-template class="actions-container" #manageView let-data>
+                                <ng-container>
+                                    <button id="manage-actions" ejs-dropdownbutton
+                                            [items]="[ listOfEventOptions.edit,  listOfEventOptions.add, listOfEventOptions.remove ]"
+                                            content="MANAGE / VIEW"
+                                            (select)="eventOptionsHandler($event, data)"></button>
+                                </ng-container>
+
+                            </ng-template>
+                        </e-column>
+                    </e-columns>
+                </ejs-grid>
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="card-footer">
+        <div class='row mt-2'>
+            <div class="col-md-12">
+                <hr>
+                <div class="float-right">
+                    <button style='margin-left: 10px !important' size="small" nbButton status='warning'>
+                        Scan
+                    </button>
+
+                    <button style='margin-left: 10px !important' size="small" nbButton status='danger'>
+                        Cancel
+                    </button>
+
+                    <button style='margin-left: 10px !important' size="small" nbButton status='success'>
+                        Submit Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

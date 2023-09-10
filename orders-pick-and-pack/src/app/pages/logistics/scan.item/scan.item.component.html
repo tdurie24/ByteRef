@@ -1,0 +1,21 @@
+<div class="card">
+    <h3>Scan an item</h3>
+    <div class="form-group">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <small class="control-label required"><b>OrderModel Number</b></small>
+            <ejs-textbox formControlName="OrderNumber" placeholder="" maxlength="30" floatLabelType="Always"
+                         [cssClass]="componentIsInvalid('OrderNumber','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+            <span *ngIf="componentIsInvalid('OrderNumber','logisticsDetailForm')" class="e-error">
+                <small *ngIf="itemForm?.get('OrderNumber').hasError('required')">
+                    OrderModel Number is required
+                </small>
+            </span>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-6"><button (click)="handleCancelButton()" class="btn btn-danger col">Cancel</button></div>
+        <div class="col-6"><button (click)="handleScanButton()" class="btn btn-success col">Go</button></div>
+    </div>
+</div>

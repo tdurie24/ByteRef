@@ -7,17 +7,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EventsRoutingModule } from './logistics-routing.module';
 import { DropDownButtonModule } from "@syncfusion/ej2-angular-splitbuttons";
 import { LogisticsDetailComponent } from './logistics-detail/logistics-detail.component';
+import {DialogAllModule} from "@syncfusion/ej2-angular-popups";
+import { ScanItemComponent } from './scan.item/scan.item.component';
+import {AppModule} from "../../app.module";
 
 
 @NgModule({
-  declarations: [LogisticsComponent, LogisticsDetailComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    EventsRoutingModule,
-    NebularSharedModule,
-    SyncfusionSharedModule,
-    DropDownButtonModule,
-  ]
+  declarations: [LogisticsComponent, LogisticsDetailComponent, ScanItemComponent],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        EventsRoutingModule,
+        NebularSharedModule,
+        SyncfusionSharedModule,
+        DropDownButtonModule,
+        DialogAllModule,
+        //AppModule,
+    ]
 })
 export class LogisticsModule { }

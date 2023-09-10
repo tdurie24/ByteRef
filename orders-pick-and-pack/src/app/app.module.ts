@@ -11,8 +11,17 @@ import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbTo
 import { CanDeactivateGuard } from "app/@core/guards/can-deactivate.guard";
 import { VirtualizationService } from "@syncfusion/ej2-angular-lists";
 import { LogisticsModule } from "./pages/logistics/logistics.module";
+import { LoadingSpinnerComponent } from './components/components/loading-spinner/loading-spinner.component';
+import { LoginComponent } from './pages/login/login.component';
+
+import { DialogModule } from '@syncfusion/ej2-angular-popups';
+import {ScanItemComponent} from "./pages/logistics/scan.item/scan.item.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TextBoxModule} from "@syncfusion/ej2-angular-inputs";
+import {MatDialogModule} from "@angular/material/dialog";
 
 export function tokenGetter(request) {
+
   if (request.url.includes("localhost") || request.url.includes("security")) {
     let token;
     // token = environment.user_token;
@@ -26,9 +35,11 @@ export function tokenGetter(request) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,
+    LoadingSpinnerComponent, LoginComponent],
   imports: [
     BrowserModule,
+    DialogModule,
     BrowserAnimationsModule,
     HttpClientModule,
     LogisticsModule,
@@ -41,11 +52,12 @@ export function tokenGetter(request) {
     NbToastrModule.forRoot(),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    MatDialogModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
         allowedDomains: [
-          "localhost:4200",
+          'localhost:4200',
           "localhost:44305",
           "localhost:44344",
           "localhost:56661",
@@ -60,8 +72,14 @@ export function tokenGetter(request) {
         disallowedRoutes: [],
       },
     }),
+    FormsModule,
+    ReactiveFormsModule,
+    TextBoxModule,
   ],
   providers: [CanDeactivateGuard, VirtualizationService],
   bootstrap: [AppComponent],
+  exports: [
+
+  ]
 })
 export class AppModule { }

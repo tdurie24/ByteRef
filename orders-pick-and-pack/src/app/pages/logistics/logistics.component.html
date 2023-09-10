@@ -1,4 +1,7 @@
 <div #container class="main">
+
+
+
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between align-self-center">
@@ -16,42 +19,8 @@
         </div>
     </div>
 
-    <!-- <div class="ph-item" *ngIf="isLoading">
-      <div class="ph-col-12">
-        <div class="ph-row">
-          <div class="ph-col-6 big"></div>
-          <div class="ph-col-6 big"></div>
-        </div>
-        <div class="ph-row">
-          <div class="ph-col-6 big"></div>
-          <div class="ph-col-6 big"></div>
-        </div>
-        <div class="ph-row">
-          <div class="ph-col-6 big"></div>
-          <div class="ph-col-6 big"></div>
-        </div>
-        <div class="ph-picture"></div>
-        <div class="ph-picture"></div>
-        <div class="ph-picture"></div>
-      </div>
-    </div> -->
-
-
-    <div *ngIf="editModalOpen">
-
-        <nb-card title="OrderModel Details">
-            <ejs-dialog id='dialog' #editOrderDialog isModal='true'
-                        (overlayClick)="onOverlayClick()" [target]='targetElement' width='80%'  height="80%">
-                <logistics-detail></logistics-detail>
-            </ejs-dialog>
-        </nb-card>
-
-    </div>
-
-
     <nb-card>
         <nb-card-body>
-
             <nb-tabset>
                 <nb-tab tabTitle="Logistics">
                     <ejs-grid #eventGrid id="Grid" [dataSource]="data" height="300" allowPaging="true"
@@ -63,32 +32,33 @@
                               [allowPdfExport]="true"
                               [sortSettings]="sortOptions">
                         <e-columns>
-                            <e-column field="OrderNumber" headerText="OrderModel Number" textAlign="Left" minWidth="80"
-                                      width="160"
-                                      maxWidth="250"></e-column>
-                            <e-column field="LogisicsStatus" headerText="Status" textAlign="Left" minWidth="100"
-                                      width="180"
-                                      maxWidth="300"></e-column>
-                            <e-column field="AssignedTo" headerText="Assigned To" textAlign="Left" minWidth="100"
-                                      width="180"
-                                      maxWidth="300"></e-column>
+                            <e-column field="Id" headerText="Logistic Id" textAlign="Left" minWidth="80"
+                                      width="160" maxWidth="250"></e-column>
+
+                            <e-column field="LogisticsStatusId" headerText="Status Id" textAlign="Left" minWidth="100"
+                                      width="180" maxWidth="300"></e-column>
+
+                            <e-column field="DistributionId" headerText="Distribution Id" textAlign="Left"
+                                      minWidth="100"
+                                      width="180" maxWidth="300"></e-column>
+
                             <e-column field="TotalItems" headerText="Total Items" textAlign="Left" minWidth="100"
-                                      width="180"
-                                      maxWidth="300"></e-column>
-                            <e-column field="DateUpdated" headerText="Date Updated" textAlign="Left" format="yMd"
-                                      minWidth="100" width="180"
-                                      maxWidth="360">
-                            </e-column>
-                            <e-column field="DateCreated" headerText="Date Created" textAlign="Left" format="yMd"
-                                      minWidth="100" width="180"
-                                      maxWidth="360">
-                            </e-column>
+                                      width="180" maxWidth="300"></e-column>
+
+                            <e-column field="CollectionId" headerText="Collection Id" textAlign="Left" minWidth="100"
+                                      width="180" maxWidth="300"></e-column>
+
+                            <e-column field="UpdateDate" headerText="Date Updated" textAlign="Left" format="yMd"
+                                      minWidth="100" width="180" maxWidth="360"></e-column>
+
+                            <e-column field="CreatedDate" headerText="Date Created" textAlign="Left" format="yMd"
+                                      minWidth="100" width="180" maxWidth="360"></e-column>
 
                             <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
                                 <ng-template class="actions-container" #manageView let-data>
                                     <!--                  <span *ngIf="expression"></span>-->
                                     <ng-container>
-                                        <button id="manage-actions" ejs-dropdownbutton
+                                        <button id="manage-actions-normal" ejs-dropdownbutton
                                                 [items]="[
                       listOfEventOptions.edit,
                       listOfEventOptions.view,
@@ -104,7 +74,7 @@
                                     <ng-container *ngIf="_scope === filter_scope.active; else inactive">
                                         <!-- buttons for inviteOnly events -->
                                         <ng-container *ngIf="data.isInviteOnlyEvent; else openToAll">
-                                            <button id="manage-actions"
+                                            <button id="manage-actions-active"
                                                     *ngIf="data.userCanCheckIn; else openCantCheckIn" ejs-dropdownbutton
                                                     [items]="[
                         listOfEventOptions.edit,
@@ -117,7 +87,7 @@
                       ]" content="MANAGE / VIEW" (select)="eventOptionsHandler($event, data)"></button>
 
                                             <ng-template #openCantCheckIn>
-                                                <button id="manage-actions" ejs-dropdownbutton [items]="[
+                                                <button id="manage-actions-cant-checkin" ejs-dropdownbutton [items]="[
                           listOfEventOptions.edit,
                           listOfEventOptions.view,
                           listOfEventOptions.scan,
@@ -132,7 +102,7 @@
                                         <ng-template #openToAll>
                                             <ng-container>
                                                 <ng-template #closedCantCheckIn>
-                                                    <button id="manage-actions" ejs-dropdownbutton [items]="[
+                                                    <button id="manage-actions-closed-checkin" ejs-dropdownbutton [items]="[
                             listOfEventOptions.edit,
                             listOfEventOptions.view,
                             listOfEventOptions.scan,

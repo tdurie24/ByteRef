@@ -8,12 +8,12 @@ import { EventsRoutingModule } from './logistics-routing.module';
 import { DropDownButtonModule } from "@syncfusion/ej2-angular-splitbuttons";
 import { LogisticsDetailComponent } from './logistics-detail/logistics-detail.component';
 import {DialogAllModule} from "@syncfusion/ej2-angular-popups";
-import { Scan } from './scan.item/scan.item.component';
+import { ScanItemComponent } from './scan.item/scan.item.component';
 import {AppModule} from "../../app.module";
 
 
 @NgModule({
-  declarations: [LogisticsComponent, LogisticsDetailComponent, Scan.ItemComponent],
+  declarations: [LogisticsComponent, LogisticsDetailComponent, ScanItemComponent],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -22,7 +22,7 @@ import {AppModule} from "../../app.module";
         SyncfusionSharedModule,
         DropDownButtonModule,
         DialogAllModule,
-        AppModule,
+        //AppModule,
     ]
 })
 export class LogisticsModule { }

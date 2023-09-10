@@ -18,6 +18,7 @@ import { DialogModule } from '@syncfusion/ej2-angular-popups';
 import {ScanItemComponent} from "./pages/logistics/scan.item/scan.item.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TextBoxModule} from "@syncfusion/ej2-angular-inputs";
+import {MatDialogModule} from "@angular/material/dialog";
 
 export function tokenGetter(request) {
 
@@ -35,7 +36,6 @@ export function tokenGetter(request) {
 
 @NgModule({
   declarations: [AppComponent,
-    ScanItemComponent,
     LoadingSpinnerComponent, LoginComponent],
   imports: [
     BrowserModule,
@@ -52,6 +52,7 @@ export function tokenGetter(request) {
     NbToastrModule.forRoot(),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    MatDialogModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -78,7 +79,7 @@ export function tokenGetter(request) {
   providers: [CanDeactivateGuard, VirtualizationService],
   bootstrap: [AppComponent],
   exports: [
-    ScanItemComponent
+
   ]
 })
 export class AppModule { }

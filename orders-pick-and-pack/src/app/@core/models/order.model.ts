@@ -1,5 +1,8 @@
-import {OrderItem} from "./order.item";
+
 import {DateTime} from "@syncfusion/ej2-angular-charts";
+import {OrderItem} from "./order.item";
+import { FulfillmentLocationDto } from './fulfillment.location.dto';
+import { DeliveryLocationDto } from './delivery.location.dto';
 
 export interface OrderModel {
     id:string,
@@ -19,12 +22,3 @@ export interface OrderModel {
 
 }
 
-export interface DeliveryLocationDto{
-
-}
-export interface FulfillmentLocationDto{
-
-}
-export interface OrderItem{
-
-}

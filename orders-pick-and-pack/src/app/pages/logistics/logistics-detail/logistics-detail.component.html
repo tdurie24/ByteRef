@@ -1,135 +1,154 @@
-<div #container>
-    <form [formGroup]="logisticsDetailForm" novalidate>
+<div style="margin: 0!important; padding: 0!important;" class="card">
 
-        <h3>Edit OrderModel Details</h3>
-        <hr>
+    <div class="card-header">
         <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <small class="control-label required"><b>OrderModel Number</b></small>
-                <ejs-textbox formControlName="OrderNumber" placeholder="" maxlength="30" floatLabelType="Always"
-                             [cssClass]="componentIsInvalid('OrderNumber','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-                <span *ngIf="componentIsInvalid('OrderNumber','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('OrderNumber').hasError('required')">
+            <div class="col-11"><h3>View/Edit Logistic Details</h3></div>
+            <div class="col"><p (click)="closeDialog()">x</p></div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="logisticsDetailForm" id="logisticsDetailForm" novalidate>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Order Number</b></small>
+                    <ejs-textbox formControlName="DistributionId" placeholder="" maxlength="30" floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('OrderNumber','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('DistributionId','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">
                     OrderModel Number is required
                 </small>
             </span>
-            </div>
+                </div>
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <small class="control-label required"><b>Logistics Status Number</b></small>
-                <ejs-textbox formControlName="LogisticsStatus" placeholder="" maxlength="30" floatLabelType="Always"
-                             [cssClass]="componentIsInvalid('LogisticsStatus','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-                <span *ngIf="componentIsInvalid('LogisticsStatus','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('LogisticsStatus').hasError('required')"> Logistics Status is required  </small>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Distribution Id</b></small>
+                    <ejs-textbox formControlName="DistributionId" placeholder="" maxlength="30" floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('DistributionId','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('DistributionId','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">
+                    OrderModel Number is required
+                </small>
             </span>
-            </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Collection Id</b></small>
+                    <ejs-textbox formControlName="CollectionId" placeholder="" maxlength="30" floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('CollectionId','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('CollectionId','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('CollectionId').hasError('required')"> Logistics Status is required  </small>
+            </span>
+                </div>
 
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <small class="control-label required"><b>Assigned To</b></small>
-                <ejs-textbox formControlName="AssignedTo" placeholder="" maxlength="30" floatLabelType="Always"
-                             [cssClass]="componentIsInvalid('AssignedTo','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-                <span *ngIf="componentIsInvalid('AssignedTo','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('AssignedTo').hasError('required')">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Update By</b></small>
+                    <ejs-textbox formControlName="UpdateBy" placeholder="" maxlength="30" floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('UpdateBy','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('UpdateBy','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('UpdateBy').hasError('required')">
                    Assigned To is required
                 </small>
             </span>
-            </div>
+                </div>
 
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <small class="control-label required"><b>OrderModel Number</b></small>
-                <ejs-textbox formControlName="TotalItems" placeholder="" maxlength="30" floatLabelType="Always"
-                             [cssClass]="componentIsInvalid('TotalItems','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-                <span *ngIf="componentIsInvalid('TotalItems','logisticsDetailForm')" class="e-error">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>OrderModel Number</b></small>
+                    <ejs-textbox formControlName="TotalItems" placeholder="" maxlength="30" floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('TotalItems','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('TotalItems','logisticsDetailForm')" class="e-error">
                 <small *ngIf="logisticsDetailForm?.get('TotalItems').hasError('required')">
                     OrderModel Number is required
                 </small>
             </span>
-            </div>
+                </div>
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <small class="control-label required"><b>Logistics Status Number</b></small>
-                <ejs-textbox formControlName="DateUpdated" placeholder="" maxlength="30" floatLabelType="Always"
-                             [cssClass]="componentIsInvalid('DateUpdated','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-                <span *ngIf="componentIsInvalid('DateUpdated','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('DateUpdated').hasError('required')"> Logistics Status is required  </small>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Logistics Status Number</b></small>
+                    <ejs-textbox formControlName="UpdateDate" placeholder="" maxlength="30" floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('UpdateDate','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('UpdateDate','logisticsDetailForm')" class="e-error">
+                <small *ngIf="logisticsDetailForm?.get('UpdateDate').hasError('required')"> Logistics Status is required  </small>
             </span>
-            </div>
+                </div>
 
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <small class="control-label required"><b>Assigned To</b></small>
-                <ejs-textbox formControlName="DateCreated" placeholder="" maxlength="30" floatLabelType="Always"
-                             [cssClass]="componentIsInvalid('DateCreated','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-                <span *ngIf="componentIsInvalid('DateCreated','logisticsDetailForm')" class="e-error">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Assigned To</b></small>
+                    <ejs-textbox formControlName="DateCreated" placeholder="" maxlength="30" floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('DateCreated','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('DateCreated','logisticsDetailForm')" class="e-error">
                 <small *ngIf="logisticsDetailForm?.get('DateCreated').hasError('required')">
                    Assigned To is required
                 </small>
             </span>
+                </div>
+
             </div>
 
-        </div>
+
+            <div  class="mt-3 mb-3">
+                <h3>Items in order</h3>
+                <ejs-grid
+                        style="position: unset!important; "
+                    #eventGrid id="Grid"
+                    [dataSource]="selectedOrder.Order.orderItems"
+
+                    allowPaging="true"
+                    allowFiltering="true"
+                    allowSorting="false">
+                    <e-columns>
+
+                        <e-column field="lineItemId" headerText="Line Id"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+                        <e-column field="productTitle" headerText="Item Title"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+                        <e-column field="productPrice" headerText="Product Price"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+                        <e-column field="sku" headerText="Item SKU" textAlign="Left" format="yMd"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+                        <e-column field="quantity" headerText="Item Quantity"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
 
 
-        <div style="max-height: 310px!important; " class="mt-3 mb-3">
-            <h3>Items in order</h3>
-            <ejs-grid style="max-height: 300px!important;"
-                      #eventGrid id="Grid"
-                      [dataSource]="selectedOrder.Items"
-                      height="300"
-                      allowPaging="true"
-                      allowFiltering="true"
-                      allowSorting="false">
-                <e-columns>
+                        <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
+                            <ng-template class="actions-container" #manageView let-data>
+                                <ng-container>
+                                    <button id="manage-actions" ejs-dropdownbutton
+                                            [items]="[ listOfEventOptions.edit,  listOfEventOptions.add, listOfEventOptions.remove ]"
+                                            content="Options"
+                                            (select)="eventOptionsHandler($event, data)"></button>
+                                </ng-container>
 
-                    <e-column field="itemId" headerText="Item Id" textAlign="Left"
-                              minWidth="100" width="180"
-                              maxWidth="360">
-                    </e-column>
-
-                    <e-column field="name" headerText="Item Name" textAlign="Left" format="yMd"
-                              minWidth="100" width="180"
-                              maxWidth="360">
-                    </e-column>
-
-                    <e-column field="partNumber" headerText="Part Number" textAlign="Left" format="yMd"
-                              minWidth="100" width="180"
-                              maxWidth="360">
-                    </e-column>
-
-                    <e-column field="sku" headerText="Item SKU" textAlign="Left" format="yMd"
-                              minWidth="100" width="180"
-                              maxWidth="360">
-                    </e-column>
-
-                    <e-column field="description" headerText="Item Description" textAlign="Left" format="yMd"
-                              minWidth="100" width="180"
-                              maxWidth="360">
-                    </e-column>
+                            </ng-template>
+                        </e-column>
+                    </e-columns>
+                </ejs-grid>
+            </div>
 
 
-                    <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
-                        <ng-template class="actions-container" #manageView let-data>
-                            <ng-container>
-                                <button id="manage-actions" ejs-dropdownbutton
-                                        [items]="[ listOfEventOptions.edit,  listOfEventOptions.add, listOfEventOptions.remove ]"
-                                        content="MANAGE / VIEW"
-                                        (select)="eventOptionsHandler($event, data)"></button>
-                            </ng-container>
 
-                        </ng-template>
-                    </e-column>
-                </e-columns>
-            </ejs-grid>
-            <!--<nb-tab tabTitle="Form Example">
-              <logistics-detail></logistics-detail>
-            </nb-tab> -->
+        </form>
+    </div>
 
-
-        </div>
-
-
+    <div class="card-footer">
         <div class='row mt-2'>
             <div class="col-md-12">
                 <hr>
@@ -139,7 +158,7 @@
                     </button>
 
                     <button style='margin-left: 10px !important' size="small" nbButton status='danger'>
-                        Delete OrderModel
+                        Cancel
                     </button>
 
                     <button style='margin-left: 10px !important' size="small" nbButton status='success'>
@@ -148,20 +167,8 @@
                 </div>
             </div>
         </div>
-    </form>
-
-    <div *ngIf="isScanModalOpen">
-        <nb-card title="Scan New Item">
-            <ejs-dialog id='dialog'
-                        #scanItemModal
-                        isModal='true'
-                        (overlayClick)="hideScanModal()"
-                        [target]='targetElement'
-                        width='80%'
-                        height="80%">
-                <scan-item-component></scan-item-component>
-            </ejs-dialog>
-        </nb-card>
-
     </div>
+
+
+
 </div>

@@ -14,6 +14,9 @@ import {OrderModel} from "../../@core/models/order.model";
 import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 
 import {EmitType} from '@syncfusion/ej2-base';
+import {LogisticsModel} from "../../@core/models/logistics.model";
+import {MatDialog} from "@angular/material/dialog";
+import {LogisticsDetailComponent} from "./logistics-detail/logistics-detail.component";
 
 @Component({
     selector: 'logistics',
@@ -29,12 +32,12 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     @ViewChild("eventGrid") eventGrid: GridComponent;
 
 
-    @ViewChild('editOrderDialog') editOrderDialog: DialogComponent | any;
-    @ViewChild('container', {read: ElementRef, static: true}) container: ElementRef | any;
-    public targetElement?: HTMLElement;
-    editModalOpen: boolean = false;
+    //@ViewChild('editOrderDialog') editOrderDialog: DialogComponent;
+    //@ViewChild('container', {read: ElementRef, static: true}) container: ElementRef | any;
+    // public targetElement?: HTMLElement;
+    //editModalOpen: boolean = false;
 
-    public data: OrderModel[];
+    public data: LogisticsModel[];
 
     protected windowRef: NbWindowRef;
 
@@ -50,8 +53,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     event_action = this.eventActions.create;
 
     private attendeeActions = {add: "add", remove: "remove"};
-
-
     filter_scope = {
         created: "created",
         active: "active",
@@ -103,39 +104,36 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         private toastService: ToastService,
         private windowService: NbWindowService,
         private route: ActivatedRoute,
-        private orderService: OrderService
+        private orderService: OrderService,
+        private dialog: MatDialog
     ) {
     }
 
     public ngOnInit(): void {
+
         this.toolbarOptions = [
             {text: "Search", tooltipTetxt: "Search", id: "filter"},
         ];
-        this.orderService.ordersObservable.subscribe({
-            next: orders => {
-                this.data = orders;
+        this.orderService.currentLogisticsObservable.subscribe({
+            next: logistics => {
+                this.data = logistics;
             }
-        })
+        });
         this.setScope();
         this.filterSettings = {type: "Menu"};
-
-        this.initilaizeTarget();
+        // this.editOrderDialog.hide();
+        // if(this.editOrderDialog){}
+        // this.initilaizeTarget();
 
     }
 
-    public onOverlayClick: EmitType<object> = () => {
-        this.editOrderDialog.hide();
-        this.editModalOpen = false;
-    }
 
-    public initilaizeTarget: EmitType<object> = () => {
-        this.targetElement = this.container.nativeElement.parentElement;
-    }
+    public onOpenEditLogisticDialog(order: any): void {
+        //this.orderService.setSelectedOrder(order);
+        console.log(order);
+        this.dialog.open(LogisticsDetailComponent, {width: '80%', data: order});
 
-    public onOpenDialog(order: any): void {
-        this.editModalOpen = true;
-        this.orderService.setSelectedOrder(order);
-        this.editOrderDialog.show();
+
     }
 
     setScope() {
@@ -162,11 +160,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         this.openWindow(this.editEvent, 'Update', object);
     }
 
-    // openAttendeeView(object: any, action: string) {
-    //  this.attendee_action = action;
-// this.openWindow(this.attendeeView, object.eventName, object);
-    // }
-
     openWindow(modalRef: TemplateRef<any>, viewTitle: string, data?) {
         const btnConfig = {
             minimize: false,
@@ -185,7 +178,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
             },
         );
     }
-
 
     toolbarHandler(args: ClickEventArgs): void {
         switch (args.item.id) {
@@ -217,7 +209,10 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     eventOptionsHandler(args: MenuEventArgs, data: any) {
 
         if (args.item.id === "Edit") {
-            this.onOpenDialog(data);
+
+            if (data) {
+                this.onOpenEditLogisticDialog(data);
+            }
         }
         if (args.item.id === "View") {
             this.openWindow(this.viewEvent, data.eventName, data);

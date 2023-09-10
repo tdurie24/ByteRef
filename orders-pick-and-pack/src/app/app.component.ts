@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
         const isAuthenticated = from(this._authService.authenticateToken(appId));
         this._authService.authenticateToken(appId);
 
-        this.orderService.getOrders();
+        this.orderService.updateTempData();
 
         this.customLoaderService.isLoading.subscribe({
             next: isLoading => {

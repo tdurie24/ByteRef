@@ -1,3 +1,5 @@
+import {OrderModel} from "./order.model";
+
 export interface LogisticsModel {
   Id: string,
   UpdateBy: string,
@@ -6,6 +8,6 @@ export interface LogisticsModel {
   LogisticsStatusId: string,
   DistributionId: string,
   CollectionId: string,
-  Order: OrderDto,
+  Order: OrderModel,
   TotalItems: number,
 }

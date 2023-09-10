@@ -5,11 +5,18 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {OrderItem} from "../models/order.item";
 import {map} from "rxjs/operators";
+import {DeliveryLocationDto} from "../models/delivery.location.dto";
+import {FulfillmentLocationDto} from "../models/fulfillment.location.dto";
+import {LogisticsModel} from "../models/logistics.model";
 
 @Injectable({
     providedIn: 'root',
 })
 export class OrderService {
+
+
+    private currentLogisticsSource: BehaviorSubject<LogisticsModel[] | null> = new BehaviorSubject<LogisticsModel[] | null>(null);
+    currentLogisticsObservable = this.currentLogisticsSource.asObservable();
 
     private currentOrdersSource: BehaviorSubject<OrderModel[] | null> = new BehaviorSubject<OrderModel[] | null>(null);
     ordersObservable = this.currentOrdersSource.asObservable();
@@ -19,25 +26,26 @@ export class OrderService {
 
     private ordersFromApi: OrderModel[] = [];
     private itemsFromApi: OrderItem[] = [];
+    private logisticsFromApi: LogisticsModel[] = [];
 
-    currentSelectedOrderSource: BehaviorSubject<OrderModel | null> = new BehaviorSubject<OrderModel | null>(null);
-    currentSelectedOrderObservable = this.currentSelectedOrderSource.asObservable();
+    currentSelectedLogisticModel: BehaviorSubject<LogisticsModel | null> = new BehaviorSubject<LogisticsModel | null>(null);
+    currentSelectedOrderObservable = this.currentSelectedLogisticModel.asObservable();
 
     ordersBaseUrl: string = environment.apiUrl + "orders/"
 
     constructor(private httpClient: HttpClient) {
         this.ordersFromApi = this.makeOrders();
         this.itemsFromApi = this.makeItems();
-
+        this.logisticsFromApi = this.makeLogistics();
     }
-
-    private updateOrdersAndItems(){
+     updateTempData() {
         this.currentOrdersSource.next(this.ordersFromApi);
         this.currentItemsSource.next(this.itemsFromApi);
+        this.currentLogisticsSource.next(this.logisticsFromApi);
     }
 
-    setSelectedOrder(order: OrderModel) {
-        this.currentSelectedOrderSource.next(order);
+    setSelectedOrder(logisticModel: LogisticsModel) {
+        this.currentSelectedLogisticModel.next(logisticModel);
     }
 
     getOrders() {
@@ -70,68 +78,130 @@ export class OrderService {
 
     }
 
+    private makeLogistics(): LogisticsModel[] {
+        return [
+            {
+                Id: "order101",
+                UpdateBy: "dmpofu123",
+                CreatedDate: new Date(),
+                UpdateDate: new Date(),
+                LogisticsStatusId: "Picked",
+                DistributionId: "114536SamoraRoad",
+                CollectionId: "string",
+                Order: this.ordersFromApi[0],
+                TotalItems: 233,
+            }, {
+                Id: "order102",
+                UpdateBy: "tedd123",
+                CreatedDate: new Date(),
+                UpdateDate: new Date(),
+                LogisticsStatusId: "Await Shipping",
+                DistributionId: "114536SamoraRoad",
+                CollectionId: "string",
+                Order: this.ordersFromApi[1],
+                TotalItems: 23,
+            },
+        ];
+    }
+
     private makeOrders(): OrderModel[] {
         return [
             {
-                OrderNumber: 10248,
-                LogisticsStatus: 'Received',
-                AssignedTo: 'Teddy',
-                TotalItems: 3,
-                DateUpdated: new Date(),
-                DateCreated: new Date(),
-                Items: this.makeItems(),
+                id: "testorder1",
+                orderNumber: 1,
+                total: 2,
+                LogisticsStatus: "string",
+                AssignedTo: "string",
+                DeliveryLocationId: 'string',
+                FulfillmentLocationId: 'string',
+                DeliveryLocationDto: {},
+                FulfillmentLocationDto: {},
+                orderItems: this.makeItems(),
+                totalItems: 129,
+                dateModified: new Date(),
+                orderDate: new Date(),
+                dateCreated: new Date(),
             }, {
-                OrderNumber: 10249,
-                LogisticsStatus: 'Received',
-                AssignedTo: 'Daniel',
-                TotalItems: 3,
-                DateUpdated: new Date(),
-                DateCreated: new Date(),
-                Items: this.makeItems(),
+                id: "testorder1",
+                orderNumber: 1,
+                total: 2,
+                LogisticsStatus: "string",
+                AssignedTo: "string",
+                DeliveryLocationId: 'string',
+                FulfillmentLocationId: 'string',
+                DeliveryLocationDto: {},
+                FulfillmentLocationDto: {},
+                orderItems: this.makeItems(),
+                totalItems: 129,
+                dateModified: new Date(),
+                orderDate: new Date(),
+                dateCreated: new Date(),
             }, {
-                OrderNumber: 10250,
-                LogisticsStatus: 'Received',
-                AssignedTo: 'Liam',
-                TotalItems: 3,
-                DateUpdated: new Date(),
-                DateCreated: new Date(),
-                Items: this.makeItems(),
-            }, {
-                OrderNumber: 10251,
-                LogisticsStatus: 'Received',
-                AssignedTo: 'Jack',
-                TotalItems: 3,
-                DateUpdated: new Date(),
-                DateCreated: new Date(),
-                Items: this.makeItems(),
+                id: "testorder1",
+                orderNumber: 1,
+                total: 2,
+                LogisticsStatus: "string",
+                AssignedTo: "string",
+                DeliveryLocationId: 'string',
+                FulfillmentLocationId: 'string',
+                DeliveryLocationDto: {},
+                FulfillmentLocationDto: {},
+                orderItems: this.makeItems(),
+                totalItems: 129,
+                dateModified: new Date(),
+                orderDate: new Date(),
+                dateCreated: new Date(),
             }
         ];
     }
 
 
     makeItems(): OrderItem[] {
-        return [{
-            productTitle: '123132',
-            pr: "Intel i7 CPU",
-            partNumber: 'afw053100',
-            price: 230,
-            sku: 'ii7cpu-wafw053s10',
-            description: 'some random text comes here'
-        }, {
-            itemId: '123133',
-            name: "Intel i5 CPU",
-            partNumber: 'afw053100',
-            price: 130,
-            sku: 'ii7cpu-afw053410s',
-            description: 'some random text comes here'
-        }, {
-            id: '123133',
-            productTitle: "Intel i3 CPU",
-            partNumber: 'afw053100',
-            price: 130,
-            sku: 'ii7cpu-afw053410',
-            description: 'some random text comes here'
-        }]
+        return [
+
+            {
+                lineItemId: 'string',
+                fulfillableQuantity: 234,
+                fulfillableService: 'string',
+                fulfillableStatus: 'string',
+                grams: 'string',
+                productTitle: 'test product name',
+                productPrice: 245,
+                quantity: 12,
+                requiresShipping: false,
+                sku: 'string1',
+                orderId: 'string1',
+                id: 'string1',
+            },
+            {
+                lineItemId: 'string',
+                fulfillableQuantity: 234,
+                fulfillableService: 'string',
+                fulfillableStatus: 'string',
+                grams: 'string',
+                productTitle: 'test product name',
+                productPrice: 245,
+                quantity: 12,
+                requiresShipping: false,
+                sku: 'stri11ng',
+                orderId: 'strin11g',
+                id: 'string11',
+            },
+            {
+                lineItemId: 'string',
+                fulfillableQuantity: 234,
+                fulfillableService: 'string',
+                fulfillableStatus: 'string',
+                grams: 'string',
+                productTitle: 'test product name',
+                productPrice: 245,
+                quantity: 12,
+                requiresShipping: false,
+                sku: 'strin11g',
+                orderId: 'st1111ring',
+                id: 'stri1111ng',
+            }
+        ]
     }
 
     getItem(itemId: string) {

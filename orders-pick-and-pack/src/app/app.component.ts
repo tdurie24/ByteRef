@@ -6,6 +6,7 @@ import {from, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {CustomLoaderService} from "./@core/services/custom.loader.service";
 import {OrderService} from "./@core/services/order.service";
+import {LogisticsStatusService} from "./@core/services/logistics.status.service";
 
 declare var require: any;
 
@@ -28,12 +29,11 @@ export class AppComponent implements OnInit {
     isLoading: boolean = false;
 
     constructor(private _authService: SenwesAuthorizationService,
-                private orderService:OrderService,
-               private customLoaderService: CustomLoaderService) {
+                private orderService: OrderService,
+                private logisticStatusService: LogisticsStatusService,
+                private customLoaderService: CustomLoaderService) {
         setCurrencyCode('ZAR');
         setCulture('en-ZA');
-
-
     }
 
     ngOnInit(): void {
@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
         this._authService.authenticateToken(appId);
 
         this.orderService.updateTempData();
+        this.logisticStatusService.getLogisticStatuses()
 
         this.customLoaderService.isLoading.subscribe({
             next: isLoading => {

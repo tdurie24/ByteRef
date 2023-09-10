@@ -16,7 +16,7 @@ import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 import {EmitType} from '@syncfusion/ej2-base';
 import {LogisticsModel} from "../../@core/models/logistics.model";
 import {MatDialog} from "@angular/material/dialog";
-import {LogisticsDetailComponent} from "./logistics-detail/logistics-detail.component";
+import {LogisticsDetailComponent} from "./logistics-detail-modal/logistics-detail.component";
 
 @Component({
     selector: 'logistics',
@@ -29,13 +29,7 @@ export class LogisticsComponent implements OnInit, OnDestroy {
 
     // @ViewChild("attendeeView") attendeeView: TemplateRef<any>;
     @ViewChild("confirmationDialog") confirmationDialog: TemplateRef<any>;
-    @ViewChild("eventGrid") eventGrid: GridComponent;
-
-
-    //@ViewChild('editOrderDialog') editOrderDialog: DialogComponent;
-    //@ViewChild('container', {read: ElementRef, static: true}) container: ElementRef | any;
-    // public targetElement?: HTMLElement;
-    //editModalOpen: boolean = false;
+    @ViewChild("eventGrid") logisticsTable: GridComponent;
 
     public data: LogisticsModel[];
 
@@ -189,7 +183,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     }
 
     eventActionHandler(eventUpdate: any) {
-
         let endpoint = "";
         let errMsg = '';
         let successMsg = '';

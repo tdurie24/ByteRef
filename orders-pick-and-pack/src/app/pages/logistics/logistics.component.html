@@ -23,12 +23,19 @@
         <nb-card-body>
             <nb-tabset>
                 <nb-tab tabTitle="Logistics">
-                    <ejs-grid #eventGrid id="Grid" [dataSource]="data" height="300" allowPaging="true"
-                              allowFiltering="true" allowSorting="true"
-                              allowTextWrap="true" (toolbarClick)="toolbarHandler($event)"
+                    <ejs-grid #eventGrid id="Grid" [dataSource]="data"
+                              height="300"
+                              allowPaging="true"
+                              allowFiltering="true"
+                              allowSorting="true"
+                              allowTextWrap="true"
+                              (toolbarClick)="toolbarHandler($event)"
                               [textWrapSettings]="wrapSettings"
-                              [toolbar]="toolbarOptions" [filterSettings]="filterSettings"
-                              [pageSettings]="pageSettings" [allowResizing]="true" [allowExcelExport]="true"
+                              [toolbar]="toolbarOptions"
+                              [filterSettings]="filterSettings"
+                              [pageSettings]="pageSettings"
+                              [allowResizing]="true"
+                              [allowExcelExport]="true"
                               [allowPdfExport]="true"
                               [sortSettings]="sortOptions">
                         <e-columns>
@@ -127,7 +134,7 @@
                     </ejs-grid>
                 </nb-tab>
                 <!--<nb-tab tabTitle="Form Example">
-                  <logistics-detail></logistics-detail>
+                  <logistics-detail-modal></logistics-detail-modal>
                 </nb-tab> -->
             </nb-tabset>
 

@@ -9,3 +9,6 @@ export interface DeliveryLocationDto {
     id: string,
     name: string,
 }
+
+
+

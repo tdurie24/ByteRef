@@ -14,7 +14,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'logistics',
-                loadChildren: () => import('./logistics/logistics.module').then(m => m.LogisticsModule)
+                loadChildren: () => import('./logistics/logistics.module').then(m => m.LogisticsModule),
             },
             {
                 path: 'dashboard',
@@ -26,8 +26,11 @@ const routes: Routes = [
                 pathMatch: 'full',
             }, {
                 path: 'details/:logisticId',
+                pathMatch: 'full',
                 component: LogisticDetailsFullComponent,
-            },
+            }
+
+
         ],
     },
 ];

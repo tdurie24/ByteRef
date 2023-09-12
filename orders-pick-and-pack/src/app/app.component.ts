@@ -7,6 +7,7 @@ import {takeUntil} from 'rxjs/operators';
 import {CustomLoaderService} from "./@core/services/custom.loader.service";
 import {OrderService} from "./@core/services/order.service";
 import {LogisticsStatusService} from "./@core/services/logistics.status.service";
+import {AccountService} from "./@core/services/account.service";
 
 declare var require: any;
 
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
     constructor(private _authService: SenwesAuthorizationService,
                 private orderService: OrderService,
                 private logisticStatusService: LogisticsStatusService,
+                private accountService: AccountService,
                 private customLoaderService: CustomLoaderService) {
         setCurrencyCode('ZAR');
         setCulture('en-ZA');
@@ -40,7 +42,8 @@ export class AppComponent implements OnInit {
         const appId: string = environment.appId;
         const isAuthenticated = from(this._authService.authenticateToken(appId));
         this._authService.authenticateToken(appId);
-
+        //authenticate the app to access swagger endpoints using the token hardcoded in environment variables.
+        this.accountService.demoLogin();
         this.orderService.updateTempData();
         this.logisticStatusService.getLogisticStatuses()
 

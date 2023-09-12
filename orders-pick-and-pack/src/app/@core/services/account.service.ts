@@ -25,11 +25,11 @@ export class AccountService {
         return this.httpClient.post<LoginResponseModel>(this.accountBaseUrl + 'login', loginData)
             .pipe(
                 map((response) => {
-                    const LoginResponseModel: LoginResponseModel = response;
-                    if (LoginResponseModel) {
-                        localStorage.setItem("LoginResponseModel", JSON.stringify(LoginResponseModel));
-                        this.setCurrentLoginResponseModel(LoginResponseModel);
-                        this.router.navigateByUrl('/members');
+                    const loginResponse: LoginResponseModel = response;
+                    if (loginResponse) {
+                        localStorage.setItem("loginResponse", JSON.stringify(loginResponse));
+                        this.setCurrentLoginResponseModel(loginResponse);
+                       // this.router.navigateByUrl('/dashboard');
                     }
                 })
             );
@@ -37,6 +37,17 @@ export class AccountService {
 
     setCurrentLoginResponseModel(LoginResponseModel: LoginResponseModel | null) {
         this.currentLoginResponseModelSource.next(LoginResponseModel);
+    }
+
+    demoLogin(){
+        let jwtToken = environment.demoToken;
+            let lrm : LoginResponseModel = {
+            token : jwtToken,
+            username : "danielmpofu",
+            email : "danielmpofu123@gmail.com"
+        };
+        localStorage.setItem("loginResponse", JSON.stringify(lrm));
+        this.setCurrentLoginResponseModel(lrm);
     }
 
     isLoggedIn() {

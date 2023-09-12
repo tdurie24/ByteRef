@@ -1,0 +1,24 @@
+<div class="container">
+    <h4>Internal server error  - Refreshing the page will clear out the error</h4>
+
+    <ng-container *ngIf="error">
+
+    <h5 class="text-danger">Error : {{error.message}}</h5>
+<p style="font-weight: bold;">There was an error in the server, something happened while trying to process your request</p>
+
+<p>What to do next? </p>
+<ol>
+    <li>Open dev tools in the browser and look at the failing request</li>
+    <li>Examine the request URL - what end point do you wish to hit.</li>
+    <li>Reproduce the problem in postman, if you cannot the blame Angular.</li>
+</ol>
+
+<p style="font-weight: bold;">Here is the stack trace - First few lines</p>
+<code class="mt-5 mb-5" style="background-color: whitesmoke;">
+{{error.Details}}
+</code>
+    <div class="container mt-5">
+        <button routerLink="/" class="btn btn-outline-info">Home</button>
+    </div>
+</ng-container>
+</div>

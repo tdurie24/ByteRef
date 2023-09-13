@@ -3,9 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OrderService} from "../../../@core/services/order.service";
 import {OrderModel} from "../../../@core/models/order.model";
 import {ClickEventArgs} from "@syncfusion/ej2-navigations";
-import {DialogComponent} from "@syncfusion/ej2-angular-popups";
+
 import {LogisticsModel} from "../../../@core/models/logistics.model";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+
 import {LogisticsStatus} from "../../../@core/models/logistics.status";
 import {LogisticsStatusService} from "../../../@core/services/logistics.status.service";
 import {takeUntil} from "rxjs/operators";
@@ -24,21 +24,23 @@ export class LogisticsDetailComponent implements OnInit {
     logisticsDetailForm: FormGroup = new FormGroup({});
 
     // scan modal
-    @ViewChild('scanItemModal') scanItemModal: DialogComponent | any;
-    @ViewChild('container', {read: ElementRef, static: true}) container: ElementRef | any;
+    // @ViewChild('scanItemModal') scanItemModal: DialogComponent | any;
+    // @ViewChild('container', {read: ElementRef, static: true}) container: ElementRef | any;
 
 
-    public targetElement?: HTMLElement;
-    isScanModalOpen: boolean = false;
+    // public targetElement?: HTMLElement;
+    // isScanModalOpen: boolean = false;
 
 
     toolbarOptions: object;
     filterSettings: Object;
     pageSettings: Object = {pageSizes: true, pageSize: 10, currentPage: 1};
 
-    sortOptions = {columns: [
-        {field: 'lineItemId', direction: 'Descending'},
-        ]};
+    sortOptions = {
+        columns: [
+            {field: 'lineItemId', direction: 'Descending'},
+        ]
+    };
 
     wrapSettings = {wrapMode: 'Content'};
     listOfEventOptions = {
@@ -60,7 +62,7 @@ export class LogisticsDetailComponent implements OnInit {
         },
 
     };
-    dropDownFields: Object = {text:'name', value: 'id'}
+    dropDownFields: Object = {text: 'name', value: 'id'}
     logisticsStatuses: LogisticsStatus[] = [];
 
     filter_scope = {
@@ -71,14 +73,19 @@ export class LogisticsDetailComponent implements OnInit {
     };
 
     _scope = this.filter_scope.active;
-
+    public logisticsModel: LogisticsModel;
 
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
-                @Inject(MAT_DIALOG_DATA) public logisticsModel: LogisticsModel,
-                private dialogRef: MatDialogRef<LogisticsDetailComponent>,
                 private logisticStatusService: LogisticsStatusService,
                 private orderService: OrderService) {
+        this.orderService.currentSelectedOrderObservable.subscribe(
+            {
+                next: logisticModel => {
+                    this.logisticsModel = logisticModel;
+                }
+            }
+        );
     }
 
     initializeForm() {
@@ -98,6 +105,8 @@ export class LogisticsDetailComponent implements OnInit {
 
 
     initializeStatuses() {
+
+
         this.logisticStatusService.currentLogisticsStatusObservable.subscribe({
             next: r => {
                 console.log(r);
@@ -106,11 +115,8 @@ export class LogisticsDetailComponent implements OnInit {
         })
     }
 
-    closeDialog() {
-        this.dialogRef.close();
-    }
-
     private _destroy$: Subject<void> = new Subject<void>();
+
     setScope() {
         this.route.queryParams
             .pipe(takeUntil(this._destroy$))
@@ -133,7 +139,6 @@ export class LogisticsDetailComponent implements OnInit {
     ngOnInit(): void {
         this.initializeForm();
         this.initializeStatuses();
-
 
 
         this.toolbarOptions = [

@@ -6,15 +6,16 @@ import {
 } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import {NavigationExtras, Router} from "@angular/router";
-// import {ToastrModule, ToastrService} from "ngx-toastr";
+
 import {catchError} from "rxjs/operators";
-import {ToastService} from "../services/toast.service";
-import {ToastrService} from "ngx-toastr";
+
+
+import {NbToastrService} from "@nebular/theme";
 
 @Injectable()
 export class HttpErrorsInterceptor implements HttpInterceptor {
 
-    constructor(private router:Router, private toastrService:ToastrService) {}
+    constructor(private router:Router, private toastrService: NbToastrService) {}
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         return next.handle(request).pipe(
@@ -33,12 +34,12 @@ export class HttpErrorsInterceptor implements HttpInterceptor {
                                 throw  modelStateErrors;
                                 // throw  modelStateErrors.flat();
                             }else{
-                                this.toastrService.error(error.error,`Error ${error.status.toString()}`)
+                                this.toastrService.show(error.error,`Error ${error.status.toString()}`)
                             }
                             break;
 
                         case 401:
-                            this.toastrService.error("You are not allowed to access this resource","Unauthorized",);
+                            this.toastrService.show("You are not allowed to access this resource","Unauthorized",);
                             break;
 
                         case 404:
@@ -46,14 +47,14 @@ export class HttpErrorsInterceptor implements HttpInterceptor {
                             break;
 
                         case 500:
-                            this.toastrService.error("Something happened at our end, we are working so hard to fix this.","Internal Server Error");
+                            this.toastrService.show("Something happened at our end, we are working so hard to fix this.","Internal Server Error");
                             const navigationExtras:NavigationExtras = {state:{error:error.error}}
                             this.router.navigateByUrl("/errors/server-error", navigationExtras);
                             break;
 
                         default:
                             this.router.navigateByUrl("/errors/server-error");
-                            this.toastrService.error("Something unexpected happened please try again.","Unexpected Error");
+                            this.toastrService.show("Something unexpected happened please try again.","Unexpected Error");
                             console.log(error);
                             break;
                     }

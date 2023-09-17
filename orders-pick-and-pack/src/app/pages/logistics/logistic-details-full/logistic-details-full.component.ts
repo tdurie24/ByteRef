@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
+
 
 @Component({
     selector: 'logistic-details-full',
@@ -10,7 +10,6 @@ import {MatDialog} from "@angular/material/dialog";
 export class LogisticDetailsFullComponent implements OnInit {
 
     constructor(private activatedRoute: ActivatedRoute,
-                private matDialog: MatDialog,
                 private router: Router) {
     }
 

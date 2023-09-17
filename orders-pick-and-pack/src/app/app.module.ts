@@ -25,7 +25,7 @@ import {DialogModule} from '@syncfusion/ej2-angular-popups';
 import {ScanItemComponent} from "./pages/logistics/scan.item/scan.item.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TextBoxModule} from "@syncfusion/ej2-angular-inputs";
-import {MatDialogModule} from "@angular/material/dialog";
+
 import {LoadingIndicatorsInterceptor} from "./@core/interceptors/loading.spinner.interceptor";
 import {JwtTokenInterceptor} from "./@core/interceptors/jwt.token.interceptor";
 import {HttpErrorsInterceptor} from "./@core/interceptors/http.errors.interceptor";
@@ -65,7 +65,7 @@ export function tokenGetter(request) {
         NbToastrModule.forRoot(),
         CoreModule.forRoot(),
         ThemeModule.forRoot(),
-        MatDialogModule,
+
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
-import {LogisticsService} from "../../../@core/services/logistics.service";
+import {LogisticsService} from "../../../@core/services/order.service";
 import {OrderModel} from "../../../@core/models/order.model";
 
 @Component({

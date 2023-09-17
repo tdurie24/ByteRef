@@ -1,6 +1,6 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LogisticsService} from "../../../@core/services/logistics.service";
+import {LogisticsService} from "../../../@core/services/order.service";
 import {OrderModel} from "../../../@core/models/order.model";
 import {ClickEventArgs} from "@syncfusion/ej2-navigations";
 

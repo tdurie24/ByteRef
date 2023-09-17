@@ -9,7 +9,7 @@ import {handleError} from "app/@core/shared/handleServiceError";
 import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {MenuEventArgs} from "@syncfusion/ej2-angular-splitbuttons";
-import {LogisticsService} from "../../@core/services/logistics.service";
+import {LogisticsService} from "../../@core/services/order.service";
 import {OrderModel} from "../../@core/models/order.model";
 import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 

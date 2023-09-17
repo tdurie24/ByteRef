@@ -5,7 +5,7 @@ import {environment} from 'environments/environment';
 import {from, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {CustomLoaderService} from "./@core/services/custom.loader.service";
-import {LogisticsService} from "./@core/services/logistics.service";
+import {LogisticsService} from "./@core/services/order.service";
 import {LogisticsStatusService} from "./@core/services/logistics.status.service";
 import {AccountService} from "./@core/services/account.service";
 

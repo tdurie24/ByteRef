@@ -31,7 +31,7 @@ import {JwtTokenInterceptor} from "./@core/interceptors/jwt.token.interceptor";
 import {HttpErrorsInterceptor} from "./@core/interceptors/http.errors.interceptor";
 import {NotFoundComponent} from "./pages/errors/not-found/not-found.component";
 import {ServerErrorComponent} from "./pages/errors/server-error/server-error.component";
-import {ToastrModule} from "ngx-toastr";
+
 
 export function tokenGetter(request) {
 
@@ -65,7 +65,6 @@ export function tokenGetter(request) {
         NbToastrModule.forRoot(),
         CoreModule.forRoot(),
         ThemeModule.forRoot(),
-        ToastrModule.forRoot(),
         MatDialogModule,
         JwtModule.forRoot({
             config: {

@@ -19,12 +19,13 @@ export class LogisticsStatusService {
     }
 
     getLogisticStatuses() {
-        this.makeTestStatuses();
-        this.logisticsStatusSource.next(this.makeTestStatuses());
         this.httpClient.get<LogisticsStatus[]>(this.statusBaseUrl).subscribe(
             {
                 next: response => {
                     this.logisticsStatusSource.next(response);
+                    console.log(response);
+                }, error: err => {
+                    console.log(err);
                 }
             }
         )

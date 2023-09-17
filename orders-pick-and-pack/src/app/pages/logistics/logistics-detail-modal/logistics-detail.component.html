@@ -1,13 +1,17 @@
-<div class="">
 
-    <div class="">
-        <div class="row">
-            <div class="col-11"><h3>View/Edit Logistic Details</h3></div>
-            <div class="col"><p (click)="closeDialog()">x</p></div>
+<nb-card
+
+    style="max-height: 80vh!important; overflow-y: scroll!important; overflow-x: hidden; padding: 10px;  max-width: 80vw!important;">
+
+    <nb-card-header>
+        <div class="">
+            <div class="row">
+                <div class="col-11"><h3>View/Edit Logistic Details</h3></div>
+            </div>
         </div>
-    </div>
+    </nb-card-header>
 
-    <div class="card-body">
+    <nb-card-body>
         <form [formGroup]="logisticsDetailForm" id="logisticsDetailForm" novalidate>
 
             <div class="row">
@@ -127,7 +131,9 @@
                 </div>
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mt-2">
-                    <button routerLink="/pages/logistics/details/{{logisticsModel.Id}}" class="btn col btn-dark">Full Details</button>
+                    <button routerLink="/pages/logistics/details/{{logisticsModel.Id}}" class="btn col btn-dark">Full
+                        Details
+                    </button>
                 </div>
 
             </div>
@@ -201,28 +207,24 @@
 
 
         </form>
-    </div>
+    </nb-card-body>
 
-    <div class="card-footer">
+    <nb-card-footer>
         <div class='row mt-2'>
             <div class="col-md-12">
                 <hr>
                 <div class="float-right">
-                    <button style='margin-left: 10px !important' size="small" nbButton status='warning'>
-                        Scan
-                    </button>
 
-                    <button style='margin-left: 10px !important' size="small" nbButton status='danger'>
+                    <button (click)="closeModal()" style='margin-left: 10px !important' size="small" nbButton >
                         Cancel
                     </button>
 
-                    <button style='margin-left: 10px !important' size="small" nbButton status='success'>
+                    <button style='margin-left: 10px !important' size="small" nbButton status='primary'>
                         Submit Changes
                     </button>
                 </div>
             </div>
         </div>
-    </div>
+    </nb-card-footer>
 
-
-</div>
+</nb-card>

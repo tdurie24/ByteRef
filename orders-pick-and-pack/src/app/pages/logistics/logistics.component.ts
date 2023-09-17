@@ -15,7 +15,7 @@ import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 
 import {EmitType} from '@syncfusion/ej2-base';
 import {LogisticsModel} from "../../@core/models/logistics.model";
-import {MatDialog} from "@angular/material/dialog";
+
 import {LogisticsDetailComponent} from "./logistics-detail-modal/logistics-detail.component";
 
 @Component({
@@ -46,7 +46,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     private eventActions = {create: "create", update: "update"};
     event_action = this.eventActions.create;
 
-    private attendeeActions = {add: "add", remove: "remove"};
     filter_scope = {
         created: "created",
         active: "active",
@@ -99,7 +98,7 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         private windowService: NbWindowService,
         private route: ActivatedRoute,
         private orderService: OrderService,
-        private dialog: MatDialog
+        private dialogService: NbDialogService
     ) {
     }
 
@@ -115,19 +114,17 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         });
         this.setScope();
         this.filterSettings = {type: "Menu"};
-        // this.editOrderDialog.hide();
-        // if(this.editOrderDialog){}
-        // this.initilaizeTarget();
-
     }
 
 
     public onOpenEditLogisticDialog(order: any): void {
-        //this.orderService.setSelectedOrder(order);
+        this.orderService.setSelectedOrder(order);
         console.log(order);
-        this.dialog.open(LogisticsDetailComponent, {width: '80%', data: order});
-
-
+        this.dialogService.open(LogisticsDetailComponent, {
+            context: {
+                //title: 'Priview or edit Logistic Data',
+            }
+        });
     }
 
     setScope() {
@@ -149,10 +146,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
             });
     }
 
-    openEventUpdateView(object: any) {
-        this.event_action = this.eventActions.update;
-        this.openWindow(this.editEvent, 'Update', object);
-    }
 
     openWindow(modalRef: TemplateRef<any>, viewTitle: string, data?) {
         const btnConfig = {

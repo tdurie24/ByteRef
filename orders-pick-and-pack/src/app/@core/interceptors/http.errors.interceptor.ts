@@ -34,12 +34,12 @@ export class HttpErrorsInterceptor implements HttpInterceptor {
                                 throw  modelStateErrors;
                                 // throw  modelStateErrors.flat();
                             }else{
-                                this.toastrService.show(error.error,`Error ${error.status.toString()}`)
+                                this.toastrService.warning(error.error,`Error ${error.status.toString()}`)
                             }
                             break;
 
                         case 401:
-                            this.toastrService.show("You are not allowed to access this resource","Unauthorized",);
+                            this.toastrService.warning("You are not allowed to access this resource","Unauthorized",);
                             break;
 
                         case 404:
@@ -47,14 +47,14 @@ export class HttpErrorsInterceptor implements HttpInterceptor {
                             break;
 
                         case 500:
-                            this.toastrService.show("Something happened at our end, we are working so hard to fix this.","Internal Server Error");
+                            this.toastrService.warning("Something happened at our end, we are working so hard to fix this.","Internal Server Error");
                             const navigationExtras:NavigationExtras = {state:{error:error.error}}
                             this.router.navigateByUrl("/errors/server-error", navigationExtras);
                             break;
 
                         default:
                             this.router.navigateByUrl("/errors/server-error");
-                            this.toastrService.show("Something unexpected happened please try again.","Unexpected Error");
+                            this.toastrService.warning("Something unexpected happened please try again.","Unexpected Error");
                             console.log(error);
                             break;
                     }

@@ -1,18 +1,16 @@
 
-<nb-card
-
-    style="max-height: 80vh!important; overflow-y: scroll!important; overflow-x: hidden; padding: 10px;  max-width: 80vw!important;">
-
+    <form [formGroup]="logisticsDetailForm" (ngSubmit)="submitChanges()" id="logisticsDetailForm" novalidate>
+        <nb-card style="max-height: 80vh!important; overflow-y: scroll!important; overflow-x: hidden; padding: 10px;  max-width: 80vw!important;">
     <nb-card-header>
         <div class="">
             <div class="row">
-                <div class="col-11"><h3>View/Edit Logistic Details</h3></div>
+                <div class="col-11"><h3>{{dialogTitle}} Logistic Details</h3></div>
             </div>
         </div>
     </nb-card-header>
 
     <nb-card-body>
-        <form [formGroup]="logisticsDetailForm" id="logisticsDetailForm" novalidate>
+
 
             <div class="row">
 
@@ -21,16 +19,17 @@
                     <hr style="margin-bottom: 20px">
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <small class="control-label required"><b>Order Id</b></small>
+                    <small class="control-label required"><b>Order Number</b></small>
                     <ejs-textbox
                             formControlName="DistributionId"
                             placeholder=""
+
                             maxlength="30"
                             floatLabelType="Always"
                             [cssClass]="componentIsInvalid('Id','logisticsDetailForm') ? 'e-error': 'e-input'">
                     </ejs-textbox>
                     <span *ngIf="componentIsInvalid('Id','logisticsDetailForm')" class="e-error">
-                    <small *ngIf="logisticsDetailForm?.get('Id').hasError('required')">OrderModel Number is required</small></span>
+                    <small *ngIf="logisticsDetailForm?.get('Id').hasError('required')">Order Number is required</small></span>
                 </div>
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -39,11 +38,12 @@
                             formControlName="DistributionId"
                             placeholder=""
                             maxlength="30"
+
                             floatLabelType="Always"
                             [cssClass]="componentIsInvalid('DistributionId','logisticsDetailForm') ? 'e-error': 'e-input'">
                     </ejs-textbox>
                     <span *ngIf="componentIsInvalid('DistributionId','logisticsDetailForm')" class="e-error">
-                    <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">OrderModel Number is required</small></span>
+                    <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">Distribution Id</small></span>
                 </div>
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -51,6 +51,7 @@
                     <ejs-textbox formControlName="CollectionId"
                                  placeholder=""
                                  maxlength="30"
+
                                  floatLabelType="Always"
                                  [cssClass]="componentIsInvalid('CollectionId','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
                     <span *ngIf="componentIsInvalid('CollectionId','logisticsDetailForm')" class="e-error">
@@ -63,6 +64,7 @@
                     <ejs-textbox formControlName="UpdateBy"
                                  placeholder=""
                                  maxlength="30"
+
                                  floatLabelType="Always"
                                  [cssClass]="componentIsInvalid('UpdateBy','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
                     <span *ngIf="componentIsInvalid('UpdateBy','logisticsDetailForm')" class="e-error">
@@ -77,6 +79,7 @@
                                       [dataSource]='logisticsStatuses'
                                       placeholder='Select a status'
                                       popupHeight='200px'
+
                                       [fields]="dropDownFields"
                                       [formControlName]="'LogisticsStatusId'"
                                       popupWidth='250px'></ejs-dropdownlist>
@@ -88,7 +91,10 @@
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <small class="control-label required"><b>Date Created</b></small>
-                    <ejs-textbox formControlName="DateCreated" placeholder="" maxlength="30" floatLabelType="Always"
+                    <ejs-textbox formControlName="DateCreated"
+
+                                 placeholder=""
+                                 maxlength="30" floatLabelType="Always"
                                  [cssClass]="componentIsInvalid('DateCreated','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
                     <span *ngIf="componentIsInvalid('DateCreated','logisticsDetailForm')" class="e-error">
                 <small *ngIf="logisticsDetailForm?.get('DateCreated').hasError('required')">
@@ -106,6 +112,7 @@
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <small class="control-label required"><b>Order Number</b></small>
                     <ejs-textbox
+
                             formControlName="DistributionId"
                             placeholder="" maxlength="30"
                             floatLabelType="Always"
@@ -113,7 +120,7 @@
                     </ejs-textbox>
                     <span *ngIf="componentIsInvalid('DistributionId','logisticsDetailForm')"
                           class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">OrderModel Number is required </small></span>
+                <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">Order Number is required </small></span>
                 </div>
 
 
@@ -130,11 +137,6 @@
                 </small> </span>
                 </div>
 
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mt-2">
-                    <button routerLink="/pages/logistics/details/{{logisticsModel.Id}}" class="btn col btn-dark">Full
-                        Details
-                    </button>
-                </div>
 
             </div>
 
@@ -204,7 +206,7 @@
                     </e-columns>
                 </ejs-grid>
             </div>
-        </form>
+
     </nb-card-body>
 
     <nb-card-footer>
@@ -213,11 +215,17 @@
                 <hr>
                 <div class="float-right">
 
-                    <button (click)="closeModal()" style='margin-left: 10px !important' size="small" nbButton >
-                        Cancel
+                    <button type="button" (click)="closeModal()" style='margin-left: 10px !important' size="small" nbButton>
+                        Close
                     </button>
 
-                    <button style='margin-left: 10px !important' size="small" nbButton status='primary'>
+                    <button type="button" (click)="toggleEdit()" status='warning' style='margin-left: 10px !important' size="small"
+                            nbButton>
+                        {{!editMode ? 'Edit' : 'Cancel Editing'}}
+                    </button>
+
+                    <button type="submit" *ngIf="editMode" style='margin-left: 10px !important' size="small" nbButton
+                            status='primary'>
                         Submit Changes
                     </button>
                 </div>
@@ -225,4 +233,6 @@
         </div>
     </nb-card-footer>
 
-</nb-card>
+        </nb-card>
+    </form>
+

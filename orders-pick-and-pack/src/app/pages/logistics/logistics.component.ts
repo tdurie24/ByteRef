@@ -9,7 +9,7 @@ import {handleError} from "app/@core/shared/handleServiceError";
 import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {MenuEventArgs} from "@syncfusion/ej2-angular-splitbuttons";
-import {OrderService} from "../../@core/services/order.service";
+import {LogisticsService} from "../../@core/services/logistics.service";
 import {OrderModel} from "../../@core/models/order.model";
 import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 
@@ -97,7 +97,7 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         private toastService: ToastService,
         private windowService: NbWindowService,
         private route: ActivatedRoute,
-        private orderService: OrderService,
+        private orderService: LogisticsService,
         private dialogService: NbDialogService
     ) {
     }

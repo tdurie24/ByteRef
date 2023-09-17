@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
-import {OrderService} from "../../../@core/services/order.service";
+import {LogisticsService} from "../../../@core/services/logistics.service";
 import {OrderModel} from "../../../@core/models/order.model";
 
 @Component({
@@ -14,7 +14,7 @@ export class ScanItemComponent implements OnInit {
   @Input('selectedOrder') selectedOrder: OrderModel;
   scannedItemId:string|undefined;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: LogisticsService) { }
 
   ngOnInit(): void {
   }

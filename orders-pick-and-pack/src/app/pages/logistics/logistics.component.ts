@@ -46,7 +46,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     private eventActions = {create: "create", update: "update"};
     event_action = this.eventActions.create;
 
-
     filter_scope = {
         created: "created",
         active: "active",
@@ -100,7 +99,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private orderService: OrderService,
         private dialogService: NbDialogService
-
     ) {
     }
 
@@ -116,17 +114,17 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         });
         this.setScope();
         this.filterSettings = {type: "Menu"};
-        // this.editOrderDialog.hide();
-        // if(this.editOrderDialog){}
-        // this.initilaizeTarget();
-
     }
 
 
     public onOpenEditLogisticDialog(order: any): void {
         this.orderService.setSelectedOrder(order);
         console.log(order);
-        this.dialogService.open(LogisticsDetailComponent, { });
+        this.dialogService.open(LogisticsDetailComponent, {
+            context: {
+                //title: 'Priview or edit Logistic Data',
+            }
+        });
     }
 
     setScope() {
@@ -148,10 +146,6 @@ export class LogisticsComponent implements OnInit, OnDestroy {
             });
     }
 
-    openEventUpdateView(object: any) {
-        this.event_action = this.eventActions.update;
-        this.openWindow(this.editEvent, 'Update', object);
-    }
 
     openWindow(modalRef: TemplateRef<any>, viewTitle: string, data?) {
         const btnConfig = {

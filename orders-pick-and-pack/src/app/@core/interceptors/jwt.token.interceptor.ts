@@ -27,7 +27,7 @@ export class JwtTokenInterceptor implements HttpInterceptor {
           });
         }
       }
-    })
+    });
 
     return next.handle(request);
   }

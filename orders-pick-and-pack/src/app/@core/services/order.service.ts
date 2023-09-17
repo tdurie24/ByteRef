@@ -38,26 +38,30 @@ export class OrderService {
         this.itemsFromApi = this.makeItems();
         this.logisticsFromApi = this.makeLogistics();
     }
-     updateTempData() {
-        this.currentOrdersSource.next(this.ordersFromApi);
-        this.currentItemsSource.next(this.itemsFromApi);
-        this.currentLogisticsSource.next(this.logisticsFromApi);
-    }
+
+    //  updateTempData() {
+    //     this.currentOrdersSource.next(this.ordersFromApi);
+    //     this.currentItemsSource.next(this.itemsFromApi);
+    //     this.currentLogisticsSource.next(this.logisticsFromApi);
+    // }
 
     setSelectedOrder(logisticModel: LogisticsModel) {
         this.currentSelectedLogisticModel.next(logisticModel);
     }
 
     getOrders() {
+
+        this.currentLogisticsSource.next(this.makeLogistics());
+        this.currentOrdersSource.next(this.makeOrders());
         this.httpClient.get<OrderModel[]>(this.ordersBaseUrl).subscribe({
             next: response => {
-                this.currentOrdersSource.next(response);
+                this.ordersFromApi = response;
+                this.currentOrdersSource.next(this.ordersFromApi);
             }, error: error => {
-                //todo properly handle these errors and show a proper crash page
                 console.log(error);
             }
         });
-        this.currentOrdersSource.next(this.makeOrders());
+
     }
 
     updateOrder(order: OrderModel) {

@@ -11,6 +11,7 @@ import {LogisticsStatusService} from "../../../@core/services/logistics.status.s
 import {takeUntil} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {Subject} from "rxjs";
+import {NbDialogRef} from "@nebular/theme";
 
 @Component({
     selector: 'logistics-detail-modal',
@@ -77,6 +78,7 @@ export class LogisticsDetailComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
+                private nbDialogRef: NbDialogRef<LogisticsDetailComponent>,
                 private logisticStatusService: LogisticsStatusService,
                 private orderService: OrderService) {
         this.orderService.currentSelectedOrderObservable.subscribe(
@@ -170,4 +172,7 @@ export class LogisticsDetailComponent implements OnInit {
         }
     }
 
+    closeModal() {
+        this.nbDialogRef.close();
+    }
 }

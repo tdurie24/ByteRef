@@ -5,7 +5,7 @@ import {environment} from 'environments/environment';
 import {from, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {CustomLoaderService} from "./@core/services/custom.loader.service";
-import {OrderService} from "./@core/services/order.service";
+import {LogisticsService} from "./@core/services/logistics.service";
 import {LogisticsStatusService} from "./@core/services/logistics.status.service";
 import {AccountService} from "./@core/services/account.service";
 
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     isLoading: boolean = false;
 
     constructor(private _authService: SenwesAuthorizationService,
-                private orderService: OrderService,
+                private orderService: LogisticsService,
                 private logisticStatusService: LogisticsStatusService,
                 private accountService: AccountService,
                 private customLoaderService: CustomLoaderService) {
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
         this.accountService.demoLogin();
 
         this.logisticStatusService.getLogisticStatuses();
-        this.orderService.getOrders();
+        this.orderService.getLogistics();
 
         this.customLoaderService.isLoading.subscribe({
             next: isLoading => {

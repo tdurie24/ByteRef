@@ -64,16 +64,13 @@ export class OrderService {
 
     }
 
-    updateOrder(order: OrderModel) {
+    updateLogistic(order: LogisticsModel) {
         this.httpClient.put(this.ordersBaseUrl, order)
             .subscribe({
                 next: response => {
-                    const index = this.makeOrders().indexOf(order);
-                    //todo uncomment here when there are proper orders from the API
-                    //this.orders[index] = {...this.orders[index], ...order}
-                    //for now use these orders
+                    //const index = this.makeOrders().indexOf(order);
+                    //this.logisticsFromApi[index] = {...this.logisticsFromApi[index], ...order}
                     this.getOrders();
-                    //this.ordersObservable.subscribe({next:orders})
                 }
             });
     }

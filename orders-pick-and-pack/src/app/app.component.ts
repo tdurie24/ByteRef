@@ -8,6 +8,7 @@ import {CustomLoaderService} from "./@core/services/custom.loader.service";
 import {LogisticsService} from "./@core/services/order.service";
 import {LogisticsStatusService} from "./@core/services/logistics.status.service";
 import {AccountService} from "./@core/services/account.service";
+import {DistributionCompaniesService} from "./@core/services/distribution.companies.service";
 
 declare var require: any;
 
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
                 private orderService: LogisticsService,
                 private logisticStatusService: LogisticsStatusService,
                 private accountService: AccountService,
+                private distributionService: DistributionCompaniesService,
                 private customLoaderService: CustomLoaderService) {
         setCurrencyCode('ZAR');
         setCulture('en-ZA');
@@ -44,10 +46,9 @@ export class AppComponent implements OnInit {
         this._authService.authenticateToken(appId);
         //authenticate the app to access swagger endpoints using the token hardcoded in environment variables.
         this.accountService.demoLogin();
-
         this.logisticStatusService.getLogisticStatuses();
         this.orderService.getLogistics();
-
+        this.distributionService.getDistributionCompanies();
         this.customLoaderService.isLoading.subscribe({
             next: isLoading => {
                 this.isLoading = isLoading;

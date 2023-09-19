@@ -35,9 +35,7 @@ export class LogisticsService {
         this.httpClient.get<LogisticsModel[]>(this.logisticsBaseUrl).subscribe({
             next: response => {
                 this.currentLogisticsSource.next(response);
-            }, error: error => {
-                console.log(error);
-            }
+            },
         });
 
     }

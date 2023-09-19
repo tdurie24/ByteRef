@@ -31,13 +31,4 @@ export class LogisticsStatusService {
         )
     }
 
-    private makeTestStatuses(): LogisticsStatus[] {
-        return [
-            {id: "1", name: "Order Status 1"},
-            {id: "2", name: "Order status 2"},
-            {id: "3", name: "Order status 3"},
-            {id: "4", name: "order status 4"},
-        ]
-    }
-
 }

@@ -13,6 +13,8 @@ import {ActivatedRoute} from "@angular/router";
 import {Subject} from "rxjs";
 import {NbDialogRef, NbToastrService} from "@nebular/theme";
 import {ToastService} from "../../../@core/services/toast.service";
+import {DistributionCompanyModel} from "../../../@core/models/distribution.company.model";
+import {DistributionCompaniesService} from "../../../@core/services/distribution.companies.service";
 
 @Component({
     selector: 'logistics-detail-modal',
@@ -39,15 +41,6 @@ export class LogisticsDetailComponent implements OnInit {
             this.logisticsDetailForm.disable();
         }
     }
-
-    // scan modal
-    // @ViewChild('scanItemModal') scanItemModal: DialogComponent | any;
-    // @ViewChild('container', {read: ElementRef, static: true}) container: ElementRef | any;
-
-
-    // public targetElement?: HTMLElement;
-    // isScanModalOpen: boolean = false;
-
 
     toolbarOptions: object;
     filterSettings: Object;
@@ -80,7 +73,9 @@ export class LogisticsDetailComponent implements OnInit {
 
     };
     dropDownFields: Object = {text: 'name', value: 'id'}
+    deliveryCompanyDropDownFields: Object = {text: 'distrubitionCompany', value: 'distributionReferenceNumber'}
     logisticsStatuses: LogisticsStatus[] = [];
+    deliveryOptionDropDownData: DistributionCompanyModel[] = [];
 
     filter_scope = {
         created: "created",
@@ -94,10 +89,11 @@ export class LogisticsDetailComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
-                private toasterService: NbToastrService,
                 private nbDialogRef: NbDialogRef<LogisticsDetailComponent>,
                 private logisticStatusService: LogisticsStatusService,
+                private distributionService: DistributionCompaniesService,
                 private orderService: LogisticsService) {
+
         this.orderService.currentSelectedOrderObservable.subscribe(
             {
                 next: logisticModel => {
@@ -105,46 +101,58 @@ export class LogisticsDetailComponent implements OnInit {
                 }
             }
         );
+
+        this.distributionService.distributionSourceObservable.subscribe(
+            {
+                next: data => {
+                    this.deliveryOptionDropDownData = data;
+                }
+            });
+
     }
 
+
     initializeForm() {
+
+
         this.logisticsDetailForm = this.formBuilder.group({
             OrderNumber: [{
-                value: this.logisticsModel.Order.OrderNumber,
+                value: this.logisticsModel?.Order?.OrderNumber,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
-            Id: [{value: this.logisticsModel.Id, disabled: !this.editMode}, [...this.formValidators]],
+            Id: [{value: this.logisticsModel?.Id, disabled: !this.editMode}, [...this.formValidators]],
             LogisticsStatusId: [{
-                value: this.logisticsModel.LogisticsStatusId,
+                value: this.logisticsModel?.LogisticsStatusId,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
             DistributionId: [{
-                value: this.logisticsModel.DistributionId,
+                value: this.logisticsModel?.DistributionId,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
             CollectionId: [{
-                value: this.logisticsModel.CollectionId,
+                value: this.logisticsModel?.CollectionId,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
-            UpdateBy: [{value: this.logisticsModel.UpdateBy, disabled: !this.editMode}, [...this.formValidators]],
-            DateCreated: [{value: this.logisticsModel.CreatedDate, disabled: !this.editMode}, [...this.formValidators]],
-            TotalItems: [{
-                value: this.logisticsModel.Order.OrderItems.length,
+            UpdateBy: [{value: this.logisticsModel?.UpdateBy, disabled: !this.editMode}, [...this.formValidators]],
+            DateCreated: [{
+                value: this.logisticsModel?.CreatedDate,
                 disabled: !this.editMode
             }, [...this.formValidators]],
-            UpdateDate: [{value: this.logisticsModel.UpdateDate, disabled: !this.editMode}, [...this.formValidators]],
+            TotalItems: [{
+                value: this.logisticsModel?.Order?.OrderItems.length,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+            UpdateDate: [{value: this.logisticsModel?.UpdateDate, disabled: !this.editMode}, [...this.formValidators]],
 
         });
     }
 
 
     initializeStatuses() {
-
-
         this.logisticStatusService.currentLogisticsStatusObservable.subscribe({
             next: r => {
                 console.log(r);
@@ -176,7 +184,6 @@ export class LogisticsDetailComponent implements OnInit {
     ngOnInit(): void {
         this.initializeForm();
         this.initializeStatuses();
-
 
         this.toolbarOptions = [
             {text: "Search", tooltipTetxt: "Search", id: "filter"},
@@ -212,11 +219,11 @@ export class LogisticsDetailComponent implements OnInit {
     }
 
     submitChanges() {
-        if (this.logisticsDetailForm.valid) {
-            this.orderService.updateLogistic(this.logisticsDetailForm.value);
-        } else {
-            this.toasterService.warning("You have some errors in your form","Form Not Complete");
-        }
+        //if (this.logisticsDetailForm.valid) {
+        this.orderService.updateLogistic(this.logisticsDetailForm.value);
+        // } else {
+        //     this.toasterService.warning("You have some errors in your form","Form Not Complete");
+        // }
 
     }
 }

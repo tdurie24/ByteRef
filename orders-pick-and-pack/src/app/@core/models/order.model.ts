@@ -5,7 +5,7 @@ import { DeliveryLocationDto } from './delivery.location.dto';
 
 export interface OrderModel {
     id?: string,
-    OrderNumber?: number,
+    OrderNumber?: any,
     total?: number,
     LogisticsStatus?: string,
     AssignedTo?: string,

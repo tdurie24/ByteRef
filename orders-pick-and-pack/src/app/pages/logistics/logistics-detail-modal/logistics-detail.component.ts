@@ -41,7 +41,6 @@ export class LogisticsDetailComponent implements OnInit {
             this.logisticsDetailForm.disable();
         }
     }
-
     toolbarOptions: object;
     filterSettings: Object;
     pageSettings: Object = {pageSizes: true, pageSize: 10, currentPage: 1};
@@ -114,39 +113,38 @@ export class LogisticsDetailComponent implements OnInit {
 
     initializeForm() {
 
-
         this.logisticsDetailForm = this.formBuilder.group({
             OrderNumber: [{
-                value: this.logisticsModel?.Order?.OrderNumber,
+                value: this.logisticsModel?.orderNumber,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
-            Id: [{value: this.logisticsModel?.Id, disabled: !this.editMode}, [...this.formValidators]],
+            Id: [{value: this.logisticsModel?.id, disabled: !this.editMode}, [...this.formValidators]],
             LogisticsStatusId: [{
-                value: this.logisticsModel?.LogisticsStatusId,
+                value: this.logisticsModel?.logisticsStatusId,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
             DistributionId: [{
-                value: this.logisticsModel?.DistributionId,
+                value: this.logisticsModel?.distributionId,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
             CollectionId: [{
-                value: this.logisticsModel?.CollectionId,
+                value: this.logisticsModel?.collectionId,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
-            UpdateBy: [{value: this.logisticsModel?.UpdateBy, disabled: !this.editMode}, [...this.formValidators]],
+            UpdateBy: [{value: this.logisticsModel?.updateBy, disabled: !this.editMode}, [...this.formValidators]],
             DateCreated: [{
-                value: this.logisticsModel?.CreatedDate,
+                value: this.logisticsModel?.createdDate,
                 disabled: !this.editMode
             }, [...this.formValidators]],
             TotalItems: [{
-                value: this.logisticsModel?.Order?.OrderItems.length,
+                value: this.logisticsModel?.orderCollection?.length,
                 disabled: !this.editMode
             }, [...this.formValidators]],
-            UpdateDate: [{value: this.logisticsModel?.UpdateDate, disabled: !this.editMode}, [...this.formValidators]],
+            UpdateDate: [{value: this.logisticsModel?.updateDate, disabled: !this.editMode}, [...this.formValidators]],
 
         });
     }

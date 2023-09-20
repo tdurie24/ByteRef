@@ -14,9 +14,11 @@ import {OrderModel} from "../../@core/models/order.model";
 import {DialogComponent} from "@syncfusion/ej2-angular-popups";
 
 import {EmitType} from '@syncfusion/ej2-base';
-import {LogisticsModel} from "../../@core/models/logistics.model";
+import {LogisticsListingDTO, LogisticsModel} from "../../@core/models/logistics.model";
 
 import {LogisticsDetailComponent} from "./logistics-detail-modal/logistics-detail.component";
+import {LogisticsStatusService} from "../../@core/services/logistics.status.service";
+import {DistributionCompaniesService} from "../../@core/services/distribution.companies.service";
 
 @Component({
     selector: 'logistics',
@@ -26,12 +28,10 @@ import {LogisticsDetailComponent} from "./logistics-detail-modal/logistics-detai
 export class LogisticsComponent implements OnInit, OnDestroy {
     @ViewChild("edit") editEvent: TemplateRef<any>;
     @ViewChild("view") viewEvent: TemplateRef<any>;
-
-    // @ViewChild("attendeeView") attendeeView: TemplateRef<any>;
     @ViewChild("confirmationDialog") confirmationDialog: TemplateRef<any>;
     @ViewChild("eventGrid") logisticsTable: GridComponent;
 
-    public data: LogisticsModel[];
+    public data: LogisticsListingDTO[] = [];
 
     protected windowRef: NbWindowRef;
 
@@ -58,33 +58,33 @@ export class LogisticsComponent implements OnInit, OnDestroy {
     listOfEventOptions =
         {
             edit: {
-                text: 'Edit',
+                text: 'View/Edit',
                 id: 'Edit',
             },
-            view: {
-                text: 'View',
-                id: 'View',
-            },
+            // view: {
+            //     text: 'View',
+            //     id: 'View',
+            // },
             cancel: {
                 text: 'Cancel',
                 id: 'Delete',
             },
-            scan: {
-                text: 'Scan',
-                id: 'Scan',
-            },
-            add: {
-                text: 'Add',
-                id: 'Add',
-            },
-            remove: {
-                text: 'Remove',
-                id: 'Remove',
-            },
-            qr: {
-                text: 'QR',
-                id: 'QR',
-            },
+            // scan: {
+            //     text: 'Scan',
+            //     id: 'Scan',
+            // },
+            // add: {
+            //     text: 'Add',
+            //     id: 'Add',
+            // },
+            // remove: {
+            //     text: 'Remove',
+            //     id: 'Remove',
+            // },
+            // qr: {
+            //     text: 'QR',
+            //     id: 'QR',
+            // },
             delete: {
                 text: 'Delete',
                 id: 'Delete',
@@ -98,7 +98,9 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         private windowService: NbWindowService,
         private route: ActivatedRoute,
         private orderService: LogisticsService,
-        private dialogService: NbDialogService
+        private dialogService: NbDialogService,
+        private logisticStatusService: LogisticsStatusService,
+        private distributionCompanyService: DistributionCompaniesService,
     ) {
     }
 
@@ -107,9 +109,30 @@ export class LogisticsComponent implements OnInit, OnDestroy {
         this.toolbarOptions = [
             {text: "Search", tooltipTetxt: "Search", id: "filter"},
         ];
+
+        this.data = [];
+
         this.orderService.currentLogisticsObservable.subscribe({
             next: logistics => {
-                this.data = logistics;
+
+                for (let logistic of logistics) {
+                    let logisticsStatus = this.logisticStatusService.getStatus(logistic?.logisticsStatusId);
+                    let distributionCompanyName = this.distributionCompanyService.getDistributionCompany(logistic?.distributionId);
+
+                    let logisticsListingDTO: LogisticsListingDTO = {
+                        Id: logistic?.id,
+                        UpdateBy: logistic?.updateBy,
+                        CreatedDate: logistic?.createdDate.toString(),
+                        UpdateDate: logistic?.updateDate,
+                        LogisticsStatus: logisticsStatus?.name,
+                        DistributionCompany: distributionCompanyName?.distrubitionCompany,
+                        CollectionId: logistic?.collectionId,
+                        OrderNumber: logistic?.orderNumber,
+                        TotalItems: logistic?.orderCollection?.length,
+                    };
+                    this.data.push(logisticsListingDTO);
+                }
+
             }
         });
         this.setScope();

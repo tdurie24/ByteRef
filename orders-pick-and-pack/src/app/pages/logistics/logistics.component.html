@@ -1,7 +1,6 @@
 <div #container class="main">
 
 
-
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between align-self-center">
@@ -39,7 +38,7 @@
                               [allowPdfExport]="true"
                               [sortSettings]="sortOptions">
                         <e-columns>
-                            <e-column field="Id" headerText="Logistic Id" textAlign="Left" minWidth="80"
+                            <e-column field="OrderNumber" headerText="Order Number" textAlign="Left" minWidth="80"
                                       width="160" maxWidth="250"></e-column>
 
                             <e-column field="LogisticsStatusId" headerText="Status Id" textAlign="Left" minWidth="100"
@@ -66,15 +65,9 @@
                                     <!--                  <span *ngIf="expression"></span>-->
                                     <ng-container>
                                         <button id="manage-actions-normal" ejs-dropdownbutton
-                                                [items]="[
-                      listOfEventOptions.edit,
-                      listOfEventOptions.view,
-                      listOfEventOptions.scan,
-                      listOfEventOptions.add,
-                      listOfEventOptions.remove,
-                      listOfEventOptions.qr,
-                      listOfEventOptions.delete
-                    ]" content="MANAGE / VIEW" (select)="eventOptionsHandler($event, data)"></button>
+                                                [items]="[ listOfEventOptions.edit,  listOfEventOptions.delete ]"
+                                                content="MANAGE / VIEW"
+                                                (select)="eventOptionsHandler($event, data)"></button>
                                     </ng-container>
 
                                     <!-- buttons for active events -->
@@ -83,25 +76,15 @@
                                         <ng-container *ngIf="data.isInviteOnlyEvent; else openToAll">
                                             <button id="manage-actions-active"
                                                     *ngIf="data.userCanCheckIn; else openCantCheckIn" ejs-dropdownbutton
-                                                    [items]="[
-                        listOfEventOptions.edit,
-                        listOfEventOptions.view,
-                        listOfEventOptions.scan,
-                        listOfEventOptions.add,
-                        listOfEventOptions.remove,
-                        listOfEventOptions.qr,
-                        listOfEventOptions.delete
-                      ]" content="MANAGE / VIEW" (select)="eventOptionsHandler($event, data)"></button>
+                                                    [items]="[ listOfEventOptions.edit,  listOfEventOptions.delete  ]"
+                                                    content="MANAGE / VIEW"
+                                                    (select)="eventOptionsHandler($event, data)"></button>
 
                                             <ng-template #openCantCheckIn>
-                                                <button id="manage-actions-cant-checkin" ejs-dropdownbutton [items]="[
-                          listOfEventOptions.edit,
-                          listOfEventOptions.view,
-                          listOfEventOptions.scan,
-                          listOfEventOptions.add,
-                          listOfEventOptions.remove,
-                          listOfEventOptions.delete
-                        ]" content="MANAGE / VIEW" (select)="eventOptionsHandler($event, data)"></button>
+                                                <button id="manage-actions-cant-checkin" ejs-dropdownbutton
+                                                        [items]="[  listOfEventOptions.edit, listOfEventOptions.delete  ]"
+                                                        content="MANAGE / VIEW"
+                                                        (select)="eventOptionsHandler($event, data)"></button>
                                             </ng-template>
                                         </ng-container>
 
@@ -109,12 +92,10 @@
                                         <ng-template #openToAll>
                                             <ng-container>
                                                 <ng-template #closedCantCheckIn>
-                                                    <button id="manage-actions-closed-checkin" ejs-dropdownbutton [items]="[
-                            listOfEventOptions.edit,
-                            listOfEventOptions.view,
-                            listOfEventOptions.scan,
-                            listOfEventOptions.delete
-                          ]" content="MANAGE / VIEW" (select)="eventOptionsHandler($event, data)"></button>
+                                                    <button id="manage-actions-closed-checkin" ejs-dropdownbutton
+                                                            [items]="[   listOfEventOptions.edit,  listOfEventOptions.delete  ]"
+                                                            content="MANAGE / VIEW"
+                                                            (select)="eventOptionsHandler($event, data)"></button>
                                                 </ng-template>
                                             </ng-container>
                                         </ng-template>

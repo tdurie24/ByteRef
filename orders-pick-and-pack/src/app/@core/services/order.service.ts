@@ -34,6 +34,7 @@ export class LogisticsService {
     getLogistics() {
         this.httpClient.get<LogisticsModel[]>(this.logisticsBaseUrl).subscribe({
             next: response => {
+                console.log(response);
                 this.currentLogisticsSource.next(response);
             },
         });
@@ -55,135 +56,10 @@ export class LogisticsService {
 
     }
 
-    private makeLogistics(): LogisticsModel[] {
-        return [
-            {
-                Id: "order101",
-                UpdateBy: "dmpofu123",
-                CreatedDate: new Date(),
-                UpdateDate: new Date(),
-                LogisticsStatusId: "1",
-                DistributionId: "114536SamoraRoad",
-                CollectionId: "string",
-                Order: this.makeOrders()[0],
-                TotalItems: 233,
-            }, {
-                Id: "order102",
-                UpdateBy: "tedd123",
-                CreatedDate: new Date(),
-                UpdateDate: new Date(),
-                LogisticsStatusId: "2",
-                DistributionId: "114536SamoraRoad",
-                CollectionId: "string",
-                Order: this.makeOrders()[1],
-                TotalItems: 23,
-            },
-        ];
-    }
-
-    private makeOrders(): OrderModel[] {
-        return [
-            {
-                id: "testorder1",
-                OrderNumber: 1,
-                total: 2,
-                LogisticsStatus: "string",
-                AssignedTo: "string",
-                DeliveryLocationId: 'string',
-                FulfillmentLocationId: 'string',
-                DeliveryLocationDto: null,
-                FulfillmentLocationDto: null,
-                OrderItems: this.makeItems(),
-                totalItems: 129,
-                dateModified: new Date(),
-                orderDate: new Date(),
-                dateCreated: new Date(),
-            }, {
-                id: "testorder1",
-                OrderNumber: 1,
-                total: 2,
-                LogisticsStatus: "string",
-                AssignedTo: "string",
-                DeliveryLocationId: 'string',
-                FulfillmentLocationId: 'string',
-                DeliveryLocationDto: null,
-                FulfillmentLocationDto: null,
-                OrderItems: this.makeItems(),
-                totalItems: 129,
-                dateModified: new Date(),
-                orderDate: new Date(),
-                dateCreated: new Date(),
-            }, {
-                id: "testorder1",
-                OrderNumber: 1,
-                total: 2,
-                LogisticsStatus: "string",
-                AssignedTo: "string",
-                DeliveryLocationId: 'string',
-                FulfillmentLocationId: 'string',
-                DeliveryLocationDto: null,
-                FulfillmentLocationDto: null,
-                OrderItems: this.makeItems(),
-                totalItems: 129,
-                dateModified: new Date(),
-                orderDate: new Date(),
-                dateCreated: new Date(),
-            }
-        ];
-    }
-
-
-    makeItems(): OrderItem[] {
-        return [
-
-            {
-                lineItemId: 'string',
-                fulfillableQuantity: 234,
-                fulfillableService: 'string',
-                fulfillableStatus: 'string',
-                grams: 'string',
-                productTitle: 'test product name',
-                productPrice: 245,
-                quantity: 12,
-                requiresShipping: false,
-                sku: 'string1',
-                orderId: 'string1',
-                id: 'string1',
-            },
-            {
-                lineItemId: 'string',
-                fulfillableQuantity: 234,
-                fulfillableService: 'string',
-                fulfillableStatus: 'string',
-                grams: 'string',
-                productTitle: 'test product name',
-                productPrice: 245,
-                quantity: 12,
-                requiresShipping: false,
-                sku: 'stri11ng',
-                orderId: 'strin11g',
-                id: 'string11',
-            },
-            {
-                lineItemId: 'string',
-                fulfillableQuantity: 234,
-                fulfillableService: 'string',
-                fulfillableStatus: 'string',
-                grams: 'string',
-                productTitle: 'test product name',
-                productPrice: 245,
-                quantity: 12,
-                requiresShipping: false,
-                sku: 'strin11g',
-                orderId: 'st1111ring',
-                id: 'stri1111ng',
-            }
-        ]
-    }
 
     getItem(itemId: string) {
-        let item: OrderItem | undefined = this.makeItems().find(item => item.id === itemId);
-        return item;
+        // let item: OrderItem | undefined = this.makeItems().find(item => item.id === itemId);
+        // return item;
     }
 
 

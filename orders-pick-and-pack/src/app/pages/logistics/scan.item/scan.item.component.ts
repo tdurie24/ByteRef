@@ -33,7 +33,7 @@ export class ScanItemComponent implements OnInit {
   handleScanButton() {
     if(this.scannedItemId){
       let scannedItem = this.orderService.getItem(this.scannedItemId);
-      this.orderService.addScannedItem(this.selectedOrder,scannedItem);
+      //this.orderService.addScannedItem(this.selectedOrder,scannedItem);
       //do we really have to go to the service
       //maybe for the api call
     }

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
-import {LogisticsModel} from "../models/logistics.model";
 import {environment} from "../../../environments/environment";
 import {LogisticsStatus} from "../models/logistics.status";
 
@@ -11,7 +10,7 @@ import {LogisticsStatus} from "../models/logistics.status";
 export class LogisticsStatusService {
 
     private statusBaseUrl = environment.apiUrl + "LogisticsStatuses";
-
+    private logisticStatuses: LogisticsStatus[] = [];
     private logisticsStatusSource: BehaviorSubject<LogisticsStatus[] | null> = new BehaviorSubject<LogisticsStatus[] | null>(null);
     currentLogisticsStatusObservable = this.logisticsStatusSource.asObservable();
 
@@ -24,6 +23,7 @@ export class LogisticsStatusService {
                 next: response => {
                     this.logisticsStatusSource.next(response);
                     console.log(response);
+                    this.logisticStatuses = response;
                 }, error: err => {
                     console.log(err);
                 }
@@ -31,4 +31,7 @@ export class LogisticsStatusService {
         )
     }
 
+    getStatus(logisticsStatusId: string): LogisticsStatus {
+        return this.logisticStatuses.find(item => item.id === logisticsStatusId);
+    }
 }

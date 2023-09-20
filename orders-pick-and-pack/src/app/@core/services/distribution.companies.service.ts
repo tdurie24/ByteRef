@@ -11,7 +11,7 @@ import {DistributionCompanyModel} from "../models/distribution.company.model";
 export class DistributionCompaniesService {
 
     private distributionCompaniesBaseUrl = environment.apiUrl + "DistributionCompanies";
-
+    private distributionCompanies: DistributionCompanyModel[] = [];
     private distributionSource: BehaviorSubject<DistributionCompanyModel[] | null> = new BehaviorSubject<DistributionCompanyModel[] | null>(null);
     distributionSourceObservable = this.distributionSource.asObservable();
 
@@ -30,4 +30,9 @@ export class DistributionCompaniesService {
             }
         )
     }
+
+    getDistributionCompany(id: string): DistributionCompanyModel {
+        return this.distributionCompanies.find(c=> c.id === id);
+    }
+
 }

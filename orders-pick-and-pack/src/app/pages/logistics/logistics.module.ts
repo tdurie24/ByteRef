@@ -9,12 +9,12 @@ import { DropDownButtonModule } from "@syncfusion/ej2-angular-splitbuttons";
 import { LogisticsDetailComponent } from './logistics-detail-modal/logistics-detail.component';
 import {DialogAllModule} from "@syncfusion/ej2-angular-popups";
 import { ScanItemComponent } from './scan.item/scan.item.component';
-import {AppModule} from "../../app.module";
 import { LogisticDetailsFullComponent } from './logistic-details-full/logistic-details-full.component';
-
+import {ReusableOrdersGridComponent} from "./reusable-orders-grid/reusable-orders-grid.component";
 
 @NgModule({
-  declarations: [LogisticsComponent, LogisticsDetailComponent, ScanItemComponent, LogisticDetailsFullComponent],
+  declarations: [LogisticsComponent,
+      LogisticsDetailComponent,ReusableOrdersGridComponent, ScanItemComponent, LogisticDetailsFullComponent],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -24,7 +24,6 @@ import { LogisticDetailsFullComponent } from './logistic-details-full/logistic-d
         DropDownButtonModule,
         DialogAllModule,
         FormsModule,
-        //AppModule,
     ]
 })
 export class LogisticsModule { }

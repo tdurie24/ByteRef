@@ -31,6 +31,10 @@ import {JwtTokenInterceptor} from "./@core/interceptors/jwt.token.interceptor";
 import {HttpErrorsInterceptor} from "./@core/interceptors/http.errors.interceptor";
 import {NotFoundComponent} from "./pages/errors/not-found/not-found.component";
 import {ServerErrorComponent} from "./pages/errors/server-error/server-error.component";
+//import { OrdersGridReusableComponent } from './components/components/orders-grid-reusable/orders-grid-reusable.component';
+import {DropDownButtonModule} from "@syncfusion/ej2-angular-splitbuttons";
+import {GridModule} from "@syncfusion/ej2-angular-grids";
+import { ReusableOrdersGridComponent } from './pages/logistics/reusable-orders-grid/reusable-orders-grid.component';
 
 
 export function tokenGetter(request) {
@@ -49,13 +53,17 @@ export function tokenGetter(request) {
 
 @NgModule({
     declarations: [AppComponent,
-        LoadingSpinnerComponent, LoginComponent, NotFoundComponent,ServerErrorComponent],
+        LoadingSpinnerComponent,
+        LoginComponent,
+        NotFoundComponent,
+        ServerErrorComponent,
+        ],
     imports: [
         BrowserModule,
         DialogModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        LogisticsModule,
+         LogisticsModule,
         AppRoutingModule,
         NbSidebarModule.forRoot(),
         NbMenuModule.forRoot(),
@@ -88,6 +96,8 @@ export function tokenGetter(request) {
         FormsModule,
         ReactiveFormsModule,
         TextBoxModule,
+        DropDownButtonModule,
+        GridModule,
     ],
     providers: [CanDeactivateGuard, VirtualizationService,
         {provide: HTTP_INTERCEPTORS, useClass: LoadingIndicatorsInterceptor, multi: true},
@@ -96,7 +106,10 @@ export function tokenGetter(request) {
     ],
 
     bootstrap: [AppComponent],
-    exports: []
+    exports: [
+        ReusableOrdersGridComponent
+
+    ]
 })
 export class AppModule {
 }

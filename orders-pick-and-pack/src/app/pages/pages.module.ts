@@ -15,11 +15,9 @@ import { OrderDetailsComponent } from './logistics/order.details/order.details.c
     NbMenuModule,
     DashboardModule,
     NbCardModule,
-
   ],
   declarations: [
     PagesComponent,
-    OrderDetailsComponent,
   ],
 })
 

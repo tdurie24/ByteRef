@@ -34,7 +34,9 @@ import {ServerErrorComponent} from "./pages/errors/server-error/server-error.com
 //import { OrdersGridReusableComponent } from './components/components/orders-grid-reusable/orders-grid-reusable.component';
 import {DropDownButtonModule} from "@syncfusion/ej2-angular-splitbuttons";
 import {GridModule} from "@syncfusion/ej2-angular-grids";
-import { ReusableOrdersGridComponent } from './pages/logistics/reusable-orders-grid/reusable-orders-grid.component';
+import {LogisticsGridComponent} from './components/components/logistics-grid/logistics-grid.component';
+
+//import { ReusableOrdersGridComponent } from './pages/logistics/reusable-orders-grid/reusable-orders-grid.component';
 
 
 export function tokenGetter(request) {
@@ -57,13 +59,14 @@ export function tokenGetter(request) {
         LoginComponent,
         NotFoundComponent,
         ServerErrorComponent,
-        ],
+
+    ],
     imports: [
         BrowserModule,
         DialogModule,
         BrowserAnimationsModule,
         HttpClientModule,
-         LogisticsModule,
+        LogisticsModule,
         AppRoutingModule,
         NbSidebarModule.forRoot(),
         NbMenuModule.forRoot(),
@@ -106,10 +109,7 @@ export function tokenGetter(request) {
     ],
 
     bootstrap: [AppComponent],
-    exports: [
-        ReusableOrdersGridComponent
-
-    ]
+    exports: []
 })
 export class AppModule {
 }

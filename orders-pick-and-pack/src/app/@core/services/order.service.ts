@@ -34,7 +34,7 @@ export class LogisticsService {
     getLogistics() {
         this.httpClient.get<LogisticsModel[]>(this.logisticsBaseUrl).subscribe({
             next: response => {
-                // console.log(response);
+                 console.log(response);
                 this.logisticsFromApi = response;
                 this.currentLogisticsSource.next(response);
             },
@@ -56,7 +56,6 @@ export class LogisticsService {
     deleteOrder(orderId: any) {
 
     }
-
 
     getLogisticModel(itemId: string) {
         let item: LogisticsModel | undefined = this.logisticsFromApi.find(item => item.id === itemId);

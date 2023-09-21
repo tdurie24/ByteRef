@@ -7,20 +7,17 @@ import {LogisticsService} from "../../../@core/services/order.service";
 import {takeUntil} from "rxjs/operators";
 import {ClickEventArgs} from "@syncfusion/ej2-navigations";
 import {LogisticsModel} from "../../../@core/models/logistics.model";
-import {LogisticsDetailComponent} from "../logistics-detail-modal/logistics-detail.component";
+import {LogisticsDetailComponent} from "../../../pages/logistics/logistics-detail-modal/logistics-detail.component";
 import {MenuEventArgs} from "@syncfusion/ej2-angular-splitbuttons";
 
 @Component({
-  selector: 'reusable-orders-grid',
-  templateUrl: './reusable-orders-grid.component.html',
-  styleUrls: ['./reusable-orders-grid.component.scss']
+  selector: 'logistics-grid',
+  templateUrl: './logistics-grid.component.html',
+  styleUrls: ['./logistics-grid.component.scss']
 })
-export class ReusableOrdersGridComponent implements OnInit {
+export class LogisticsGridComponent implements OnInit {
 
   @Input('data') data: any;
-
-
-
   protected windowRef: NbWindowRef;
 //caister -leopold and tongo
   // grid settings

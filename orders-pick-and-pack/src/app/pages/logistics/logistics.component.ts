@@ -33,14 +33,13 @@ export class LogisticsComponent implements OnInit {
 
 
     constructor(
-
         private orderService: LogisticsService,
         private logisticStatusService: LogisticsStatusService,
-
     ) {
     }
 
     newOrders: LogisticsListingDTO[] = [];
+    allOrders: LogisticsListingDTO[] = [];
     processingOrders: LogisticsListingDTO[] = [];
     readyForCollection: LogisticsListingDTO[] = [];
     collectedOrders: LogisticsListingDTO[] = [];
@@ -64,24 +63,25 @@ export class LogisticsComponent implements OnInit {
                         OrderNumber: logistic?.orderNumber,
                         TotalItems: logistic?.orderCollection?.length,
                     };
+                    this.allOrders.push(logisticsListingDTO);
 
-                    // switch (logisticsListingDTO.LogisticsStatus) {
-                    //     case this.logisticStatusService.LOGISTIC_STATUS_NULL:
-                    //         this.newOrders.push(logisticsListingDTO);
-                    //         break;
-                    //
-                    //     case this.logisticStatusService.LOGISTIC_STATUS_COLLECTED:
-                    //         this.collectedOrders.push(logisticsListingDTO);
-                    //         break;
-                    //
-                    //     case this.logisticStatusService.LOGISTIC_STATUS_READY_FOR_COLLECTION:
-                    //         this.readyForCollection.push(logisticsListingDTO);
-                    //         break;
-                    //
-                    //     default:
-                    //         this.processingOrders.push(logisticsListingDTO);
-                    //
-                    // }
+                    //new orders
+                    if (logisticsListingDTO?.LogisticsStatus === this.logisticStatusService?.LOGISTIC_STATUS_NULL || logisticsListingDTO?.LogisticsStatus === this.logisticStatusService?.LOGISTIC_STATUS_RECEIVED) {
+                        this.newOrders.push(logisticsListingDTO);
+                    }
+                    //collected
+                    else if (logisticsListingDTO?.LogisticsStatus === this.logisticStatusService?.LOGISTIC_STATUS_COLLECTED) {
+                        this.collectedOrders.push(logisticsListingDTO);
+                    }
+                    //ready for collection.
+                    else if (logisticsListingDTO?.LogisticsStatus === this.logisticStatusService?.LOGISTIC_STATUS_READY_FOR_COLLECTION) {
+                        this.readyForCollection.push(logisticsListingDTO);
+                    }
+
+                    //processing logistics
+                    else if(logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_NULL || logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_RECEIVED) {
+                        this.processingOrders.push(logisticsListingDTO);
+                    }
 
                 }
 

@@ -10,11 +10,17 @@ import { LogisticsDetailComponent } from './logistics-detail-modal/logistics-det
 import {DialogAllModule} from "@syncfusion/ej2-angular-popups";
 import { ScanItemComponent } from './scan.item/scan.item.component';
 import { LogisticDetailsFullComponent } from './logistic-details-full/logistic-details-full.component';
-import {ReusableOrdersGridComponent} from "./reusable-orders-grid/reusable-orders-grid.component";
+//import {ReusableOrdersGridComponent} from "./reusable-orders-grid/reusable-orders-grid.component";
+import {AppModule} from "../../app.module";
+import {LogisticsGridComponent} from "../../components/components/logistics-grid/logistics-grid.component";
 
 @NgModule({
   declarations: [LogisticsComponent,
-      LogisticsDetailComponent,ReusableOrdersGridComponent, ScanItemComponent, LogisticDetailsFullComponent],
+      LogisticsDetailComponent,
+      LogisticsGridComponent,
+      ScanItemComponent,
+     // LogisticDetailsFullComponent
+  ],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -24,6 +30,8 @@ import {ReusableOrdersGridComponent} from "./reusable-orders-grid/reusable-order
         DropDownButtonModule,
         DialogAllModule,
         FormsModule,
+        //AppModule,
+        //AppModule,
     ]
 })
 export class LogisticsModule { }

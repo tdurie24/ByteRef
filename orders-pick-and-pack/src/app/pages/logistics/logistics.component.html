@@ -20,21 +20,25 @@
     <nb-card>
         <nb-card-body>
             <nb-tabset>
-                <nb-tab tabTitle="New Orders">
-                    <reusable-orders-grid [data]="newOrders"></reusable-orders-grid>
+                <nb-tab tabTitle="All Orders">
+                    <logistics-grid [data]="allOrders"></logistics-grid>
                 </nb-tab>
 
-<!--                 <nb-tab tabTitle="Processing">-->
-<!--                    <orders-grid-reusable [data]="processingOrders"></orders-grid-reusable>-->
-<!--                </nb-tab>-->
+                <nb-tab tabTitle="New Orders">
+                    <logistics-grid [data]="newOrders"></logistics-grid>
+                </nb-tab>
 
-<!--                <nb-tab tabTitle="Ready For Collection">-->
-<!--                    <orders-grid-reusable [data]="readyForCollection"></orders-grid-reusable>-->
-<!--                </nb-tab>-->
+                 <nb-tab tabTitle="Processing">
+                    <logistics-grid [data]="processingOrders"></logistics-grid>
+                </nb-tab>
 
-<!--                <nb-tab tabTitle="Collected">-->
-<!--                    <orders-grid-reusable [data]="collectedOrders"></orders-grid-reusable>-->
-<!--                </nb-tab>-->
+                <nb-tab tabTitle="Ready For Collection">
+                    <logistics-grid [data]="readyForCollection"></logistics-grid>
+                </nb-tab>
+
+                <nb-tab tabTitle="Collected">
+                    <logistics-grid [data]="collectedOrders"></logistics-grid>
+                </nb-tab>
 
             </nb-tabset>
         </nb-card-body>

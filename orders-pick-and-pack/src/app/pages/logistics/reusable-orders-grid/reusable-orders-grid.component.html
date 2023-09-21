@@ -1,0 +1,90 @@
+
+<ejs-grid #eventGrid id="Grid"
+          [dataSource]="data"
+          height="300"
+          allowPaging="true"
+          allowFiltering="true"
+          allowSorting="true"
+          allowTextWrap="true"
+          (toolbarClick)="toolbarHandler($event)"
+          [textWrapSettings]="wrapSettings"
+          [toolbar]="toolbarOptions"
+          [filterSettings]="filterSettings"
+          [pageSettings]="pageSettings"
+          [allowResizing]="true"
+          [allowExcelExport]="true"
+          [allowPdfExport]="true"
+          [sortSettings]="sortOptions">
+    <e-columns>
+        <e-column field="OrderNumber" headerText="Order Number" textAlign="Left" minWidth="80"
+                  width="160" maxWidth="250"></e-column>
+
+        <e-column field="LogisticsStatus" headerText="Logistics Status" textAlign="Left" minWidth="100"
+                  width="180" maxWidth="300"></e-column>
+
+        <e-column field="DistributionCompany" headerText="Distribution Company" textAlign="Left"
+                  minWidth="100"
+                  width="180" maxWidth="300"></e-column>
+
+        <e-column field="TotalItems" headerText="Total Items" textAlign="Left" minWidth="100"
+                  width="180" maxWidth="300"></e-column>
+
+        <e-column field="UpdateDate" headerText="Date Updated" textAlign="Left" format="yMd"
+                  minWidth="100" width="180" maxWidth="360"></e-column>
+
+        <e-column field="CreatedDate" headerText="Date Created" textAlign="Left" format="yMd"
+                  minWidth="100" width="180" maxWidth="360"></e-column>
+
+        <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
+            <ng-template class="actions-container" #manageView let-data>
+                <!--                  <span *ngIf="expression"></span>-->
+                <ng-container>
+                    <button id="manage-actions-normal" ejs-dropdownbutton
+                            [items]="[ listOfEventOptions.edit,  listOfEventOptions.delete ]"
+                            content="MANAGE / VIEW"
+                            (select)="eventOptionsHandler($event, data)"></button>
+                </ng-container>
+
+                <!-- buttons for active events -->
+                <ng-container *ngIf="_scope === filter_scope.active; else inactive">
+                    <!-- buttons for inviteOnly events -->
+                    <ng-container *ngIf="data.isInviteOnlyEvent; else openToAll">
+                        <button id="manage-actions-active"
+                                *ngIf="data.userCanCheckIn; else openCantCheckIn" ejs-dropdownbutton
+                                [items]="[ listOfEventOptions.edit,  listOfEventOptions.delete  ]"
+                                content="MANAGE / VIEW"
+                                (select)="eventOptionsHandler($event, data)"></button>
+
+                        <ng-template #openCantCheckIn>
+                            <button id="manage-actions-cant-checkin" ejs-dropdownbutton
+                                    [items]="[  listOfEventOptions.edit, listOfEventOptions.delete  ]"
+                                    content="MANAGE / VIEW"
+                                    (select)="eventOptionsHandler($event, data)"></button>
+                        </ng-template>
+                    </ng-container>
+
+                    <!-- buttons for events open to everyone -->
+                    <ng-template #openToAll>
+                        <ng-container>
+                            <ng-template #closedCantCheckIn>
+                                <button id="manage-actions-closed-checkin" ejs-dropdownbutton
+                                        [items]="[   listOfEventOptions.edit,  listOfEventOptions.delete  ]"
+                                        content="MANAGE / VIEW"
+                                        (select)="eventOptionsHandler($event, data)"></button>
+                            </ng-template>
+                        </ng-container>
+                    </ng-template>
+                    <!--  -->
+                </ng-container>
+
+                <!-- buttons for inactive/past events -->
+                <ng-template #inactive>
+                    <button id="manage-actions" *ngIf="_scope === filter_scope.inactive" ejs-button
+                            (click)="openWindow(data.eventName, data)">
+                        View Event
+                    </button>
+                </ng-template>
+            </ng-template>
+        </e-column>
+    </e-columns>
+</ejs-grid>

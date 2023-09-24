@@ -26,11 +26,6 @@ import {DistributionCompaniesService} from "../../@core/services/distribution.co
     styleUrls: ["./logistics.component.scss"],
 })
 export class LogisticsComponent implements OnInit {
-    @ViewChild("edit") editEvent: TemplateRef<any>;
-    @ViewChild("view") viewEvent: TemplateRef<any>;
-    @ViewChild("confirmationDialog") confirmationDialog: TemplateRef<any>;
-    @ViewChild("eventGrid") logisticsTable: GridComponent;
-
 
     constructor(
         private orderService: LogisticsService,
@@ -46,7 +41,6 @@ export class LogisticsComponent implements OnInit {
 
     public ngOnInit(): void {
 
-
         this.orderService.currentLogisticsObservable.subscribe({
             next: logistics => {
 
@@ -57,12 +51,14 @@ export class LogisticsComponent implements OnInit {
                         UpdateBy: logistic?.updateBy,
                         CreatedDate: logistic?.createdDate,
                         UpdateDate: logistic?.updateDate,
-                        LogisticsStatus: logistic?.logisticStatus?.name,
+                        LogisticsStatus: logistic?.orderStatus?.name,
                         DistributionCompany: logistic?.orderDistribution?.distrubitionCompany,
                         CollectionId: logistic?.collectionId,
                         OrderNumber: logistic?.orderNumber,
-                        TotalItems: logistic?.orderCollection?.length,
+                        TotalItems: logistic?.totalItems,
                     };
+
+
                     this.allOrders.push(logisticsListingDTO);
 
                     //new orders
@@ -77,7 +73,6 @@ export class LogisticsComponent implements OnInit {
                     else if (logisticsListingDTO?.LogisticsStatus === this.logisticStatusService?.LOGISTIC_STATUS_READY_FOR_COLLECTION) {
                         this.readyForCollection.push(logisticsListingDTO);
                     }
-
                     //processing logistics
                     else if(logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_NULL || logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_RECEIVED) {
                         this.processingOrders.push(logisticsListingDTO);

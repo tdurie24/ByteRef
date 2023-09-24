@@ -15,10 +15,9 @@ export class LogisticsStatusService {
     currentLogisticsStatusObservable = this.logisticsStatusSource.asObservable();
 
     LOGISTIC_STATUS_NULL: string = null;
-    LOGISTIC_STATUS_RECEIVED: string = "received";
-    LOGISTIC_STATUS_READY_FOR_COLLECTION: string = "ready for collection";
-    LOGISTIC_STATUS_COLLECTED: string = "collected";
-
+    LOGISTIC_STATUS_RECEIVED: string = "Order Received";
+    LOGISTIC_STATUS_READY_FOR_COLLECTION: string = "Ready for Collection";
+    LOGISTIC_STATUS_COLLECTED: string = "Collected";
 
     constructor(private httpClient: HttpClient) {
     }

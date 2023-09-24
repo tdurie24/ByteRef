@@ -18,7 +18,7 @@ export class LogisticsService {
     private currentLogisticsSource: BehaviorSubject<LogisticsModel[] | null> = new BehaviorSubject<LogisticsModel[] | null>(null);
     currentLogisticsObservable = this.currentLogisticsSource.asObservable();
 
-    currentSelectedLogisticModel: BehaviorSubject<LogisticsModel | null> = new BehaviorSubject<LogisticsModel | null>(null);
+    private currentSelectedLogisticModel: BehaviorSubject<LogisticsModel | null> = new BehaviorSubject<LogisticsModel | null>(null);
     currentSelectedOrderObservable = this.currentSelectedLogisticModel.asObservable();
     logisticsFromApi: LogisticsModel[] = [];
     logisticsBaseUrl: string = environment.apiUrl + "logistics/"
@@ -34,7 +34,7 @@ export class LogisticsService {
     getLogistics() {
         this.httpClient.get<LogisticsModel[]>(this.logisticsBaseUrl).subscribe({
             next: response => {
-                 console.log(response);
+                console.log(response);
                 this.logisticsFromApi = response;
                 this.currentLogisticsSource.next(response);
             },

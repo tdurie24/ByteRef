@@ -1,0 +1,65 @@
+<form [formGroup]="collectionDetailForm"
+      (ngSubmit)="submitChanges()"
+      id="logisticsDetailForm" novalidate>
+    <nb-card>
+        <nb-card-header>Add/Edit Collection Details</nb-card-header>
+        <nb-card-body>
+
+            <div class="">
+                <small class="control-label required"><b>Collection By</b></small>
+                <ejs-textbox
+                        formControlName="collectionBy"
+                        placeholder=""
+                        maxlength="30"
+                        floatLabelType="Always"
+                        [cssClass]="componentIsInvalid('Id','logisticsDetailForm') ? 'e-error': 'e-input'">
+                </ejs-textbox>
+                <span *ngIf="componentIsInvalid('collectionBy','logisticsDetailForm')" class="e-error">
+                    <small *ngIf="collectionDetailForm?.get('collectionBy').hasError('required')">Order Number is required</small>
+            </span>
+            </div>
+
+
+            <div class="">
+                <small class="control-label required"><b>Collection Date</b></small>
+                <ejs-datepicker
+                        formControlName="collectionDate"
+                        placeholder=""
+                        maxlength="30"
+                        floatLabelType="Always"
+                        [cssClass]="componentIsInvalid('Id','logisticsDetailForm') ? 'e-error': 'e-input'">
+                </ejs-datepicker>
+                <span *ngIf="componentIsInvalid('collectionDate','logisticsDetailForm')" class="e-error">
+                    <small *ngIf="collectionDetailForm?.get('collectionDate').hasError('required')">Collection date is required</small>
+            </span>
+            </div>
+
+            <div class="">
+                <small class="control-label required"><b>Updated By</b></small>
+                <ejs-textbox
+                        formControlName="updatedBy"
+                        placeholder=""
+                        maxlength="30"
+                        floatLabelType="Always"
+                        [cssClass]="componentIsInvalid('Id','logisticsDetailForm') ? 'e-error': 'e-input'">
+                </ejs-textbox>
+                <span *ngIf="componentIsInvalid('updatedBy','logisticsDetailForm')" class="e-error">
+                    <small *ngIf="collectionDetailForm?.get('updatedBy').hasError('required')">Updated by is required</small>
+            </span>
+            </div>
+
+        </nb-card-body>
+        <nb-card-footer>
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6 row">
+                    <button (click)="close()" nbButton style="margin-right: 5px" status="basic" size="small">Close</button>
+                    <button nbButton status="primary" size="small">Save</button>
+                </div>
+
+            </div>
+
+        </nb-card-footer>
+    </nb-card>
+
+</form>

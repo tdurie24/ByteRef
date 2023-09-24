@@ -1,6 +1,7 @@
 import {OrderModel} from "./order.model";
 import {LogisticsStatus} from "./logistics.status";
 import {DistributionCompanyModel} from "./distribution.company.model";
+import {OrderCollectionDto} from "./order.collection.dto";
 
 export interface LogisticsModel {
     id?: string,
@@ -12,9 +13,10 @@ export interface LogisticsModel {
     collectionId?: string,
     orderId?: string,
     orderNumber?: any,
-    logisticStatus?: LogisticsStatus,
+    orderStatus?: LogisticsStatus,
     orderDistribution?: DistributionCompanyModel,
-    orderCollection?: OrderModel[],
+    orderCollection?: OrderCollectionDto,
+    totalItems:number,
 }
 
 export interface LogisticsListingDTO {

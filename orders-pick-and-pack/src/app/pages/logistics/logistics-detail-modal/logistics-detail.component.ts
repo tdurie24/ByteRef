@@ -11,10 +11,11 @@ import {LogisticsStatusService} from "../../../@core/services/logistics.status.s
 import {takeUntil} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {Subject} from "rxjs";
-import {NbDialogRef, NbToastrService} from "@nebular/theme";
+import {NbDialogRef, NbDialogService, NbToastrService} from "@nebular/theme";
 import {ToastService} from "../../../@core/services/toast.service";
 import {DistributionCompanyModel} from "../../../@core/models/distribution.company.model";
 import {DistributionCompaniesService} from "../../../@core/services/distribution.companies.service";
+import {CollectionDetailsComponent} from "./collection-details/collection-details.component";
 
 @Component({
     selector: 'logistics-detail-modal',
@@ -41,6 +42,7 @@ export class LogisticsDetailComponent implements OnInit {
             this.logisticsDetailForm.disable();
         }
     }
+
     toolbarOptions: object;
     filterSettings: Object;
     pageSettings: Object = {pageSizes: true, pageSize: 10, currentPage: 1};
@@ -88,6 +90,7 @@ export class LogisticsDetailComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
+                private dialog: NbDialogService,
                 private nbDialogRef: NbDialogRef<LogisticsDetailComponent>,
                 private logisticStatusService: LogisticsStatusService,
                 private distributionService: DistributionCompaniesService,
@@ -141,7 +144,7 @@ export class LogisticsDetailComponent implements OnInit {
                 disabled: !this.editMode
             }, [...this.formValidators]],
             TotalItems: [{
-                value: this.logisticsModel?.orderCollection?.length,
+                value: this.logisticsModel?.totalItems,
                 disabled: !this.editMode
             }, [...this.formValidators]],
             UpdateDate: [{value: this.logisticsModel?.updateDate, disabled: !this.editMode}, [...this.formValidators]],
@@ -216,6 +219,7 @@ export class LogisticsDetailComponent implements OnInit {
         this.nbDialogRef.close();
     }
 
+
     submitChanges() {
         //if (this.logisticsDetailForm.valid) {
         this.orderService.updateLogistic(this.logisticsDetailForm.value);
@@ -223,5 +227,9 @@ export class LogisticsDetailComponent implements OnInit {
         //     this.toasterService.warning("You have some errors in your form","Form Not Complete");
         // }
 
+    }
+
+    addCollectionDetails() {
+        this.dialog.open(CollectionDetailsComponent);
     }
 }

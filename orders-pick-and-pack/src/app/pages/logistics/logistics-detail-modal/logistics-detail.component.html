@@ -1,17 +1,17 @@
-
-    <form [formGroup]="logisticsDetailForm"
-          (ngSubmit)="submitChanges()"
-          id="logisticsDetailForm" novalidate>
-        <nb-card style="max-height: 80vh!important; overflow-y: scroll!important; overflow-x: hidden; padding: 10px;  max-width: 80vw!important;">
-    <nb-card-header>
-        <div class="">
-            <div class="row">
-                <div class="col-11"><h3>{{dialogTitle}} Logistic Details</h3></div>
+<form [formGroup]="logisticsDetailForm"
+      (ngSubmit)="submitChanges()"
+      id="logisticsDetailForm" novalidate>
+    <nb-card
+            style="max-height: 95vh!important; overflow-y: scroll!important; overflow-x: hidden; padding: 10px;  max-width: 98vw!important;">
+        <nb-card-header>
+            <div class="">
+                <div class="row">
+                    <div class="col-11"><h3>{{dialogTitle}} Logistic Details</h3></div>
+                </div>
             </div>
-        </div>
-    </nb-card-header>
+        </nb-card-header>
 
-    <nb-card-body>
+        <nb-card-body>
 
 
             <div class="row">
@@ -51,13 +51,26 @@
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <small class="control-label required"><b>Collection</b></small>
-                    <ejs-textbox formControlName="CollectionId"
-                                 placeholder=""
-                                 maxlength="30"
-                                 floatLabelType="Always"
-                                 [cssClass]="componentIsInvalid('CollectionId','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
-                    <span *ngIf="componentIsInvalid('CollectionId','logisticsDetailForm')" class="e-error">
+
+                    <div class="row no-gutters">
+                        <div class="col-11">
+                            <ejs-textbox formControlName="CollectionId"
+                                         placeholder=""
+                                         maxlength="30"
+                                         floatLabelType="Always"
+                                         [cssClass]="componentIsInvalid('CollectionId','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                            <span *ngIf="componentIsInvalid('CollectionId','logisticsDetailForm')" class="e-error">
                 <small *ngIf="logisticsDetailForm?.get('CollectionId').hasError('required')"> Logistics Status is required</small></span>
+                        </div>
+                        <div class="col-1">
+                            <button type="button"
+                                    (click)="addCollectionDetails()"
+                                    style='margin-left: 10px !important' size="small"
+                                    nbButton status="basic">Edit</button>
+                        </div>
+                    </div>
+
+
                 </div>
 
 

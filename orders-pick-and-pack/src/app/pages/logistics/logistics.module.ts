@@ -13,12 +13,15 @@ import { LogisticDetailsFullComponent } from './logistic-details-full/logistic-d
 //import {ReusableOrdersGridComponent} from "./reusable-orders-grid/reusable-orders-grid.component";
 import {AppModule} from "../../app.module";
 import {LogisticsGridComponent} from "../../components/components/logistics-grid/logistics-grid.component";
+import { CollectionDetailsComponent } from './logistics-detail-modal/collection-details/collection-details.component';
+import {NbLayoutModule, NbTableModule} from "@nebular/theme";
 
 @NgModule({
   declarations: [LogisticsComponent,
       LogisticsDetailComponent,
       LogisticsGridComponent,
       ScanItemComponent,
+      CollectionDetailsComponent,
      // LogisticDetailsFullComponent
   ],
     imports: [
@@ -30,6 +33,8 @@ import {LogisticsGridComponent} from "../../components/components/logistics-grid
         DropDownButtonModule,
         DialogAllModule,
         FormsModule,
+        NbTableModule,
+        NbLayoutModule,
         //AppModule,
         //AppModule,
     ]

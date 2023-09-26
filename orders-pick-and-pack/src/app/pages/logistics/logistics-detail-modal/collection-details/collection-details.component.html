@@ -1,65 +1,107 @@
-<form [formGroup]="collectionDetailForm"
-      (ngSubmit)="submitChanges()"
-      id="logisticsDetailForm" novalidate>
-    <nb-card>
-        <nb-card-header>Add/Edit Collection Details</nb-card-header>
-        <nb-card-body>
+<nb-card style="width: 40vw!important;">
+    <nb-card-header>Order Collection Details</nb-card-header>
+    <nb-card-body>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-check">
+                    <input (change)="collectionTypeChanged('collection')"
+                           class="form-check-input" type="radio"
+                           name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Collection
+                    </label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-check">
+                    <input (change)="collectionTypeChanged('delivery')"
+                           class="form-check-input" type="radio"
+                           checked
+                           name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Delivery
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="isCollection">
 
             <div class="">
                 <small class="control-label required"><b>Collection By</b></small>
-                <ejs-textbox
-                        formControlName="collectionBy"
-                        placeholder=""
-                        maxlength="30"
-                        floatLabelType="Always"
-                        [cssClass]="componentIsInvalid('Id','logisticsDetailForm') ? 'e-error': 'e-input'">
-                </ejs-textbox>
-                <span *ngIf="componentIsInvalid('collectionBy','logisticsDetailForm')" class="e-error">
-                    <small *ngIf="collectionDetailForm?.get('collectionBy').hasError('required')">Order Number is required</small>
-            </span>
+                <input type="text"
+                       [(ngModel)]="collectedBy"
+                       placeholder=""
+                       maxlength="30"
+                       name="collectedBy"
+                       class="form-control"/>
             </div>
-
 
             <div class="">
                 <small class="control-label required"><b>Collection Date</b></small>
-                <ejs-datepicker
-                        formControlName="collectionDate"
-                        placeholder=""
-                        maxlength="30"
-                        floatLabelType="Always"
-                        [cssClass]="componentIsInvalid('Id','logisticsDetailForm') ? 'e-error': 'e-input'">
-                </ejs-datepicker>
-                <span *ngIf="componentIsInvalid('collectionDate','logisticsDetailForm')" class="e-error">
-                    <small *ngIf="collectionDetailForm?.get('collectionDate').hasError('required')">Collection date is required</small>
-            </span>
+                <input type="date"
+                       [(ngModel)]="collectionDate"
+                       placeholder=""
+                       maxlength="30"
+                       name="collectionDate"
+                       class="form-control"/>
+
             </div>
+
+        </div>
+
+        <div *ngIf="!isCollection">
 
             <div class="">
-                <small class="control-label required"><b>Updated By</b></small>
-                <ejs-textbox
-                        formControlName="updatedBy"
-                        placeholder=""
-                        maxlength="30"
-                        floatLabelType="Always"
-                        [cssClass]="componentIsInvalid('Id','logisticsDetailForm') ? 'e-error': 'e-input'">
-                </ejs-textbox>
-                <span *ngIf="componentIsInvalid('updatedBy','logisticsDetailForm')" class="e-error">
-                    <small *ngIf="collectionDetailForm?.get('updatedBy').hasError('required')">Updated by is required</small>
-            </span>
+                <small class="control-label required"><b>Delivery Company</b></small>
+                <select name="deliveryCompany"
+                        class="form-control form-select"
+                        (ngModelChange)="setSelectedCompany($event)"
+                        [(ngModel)]="selectedDeliveryCompany">
+                    <option *ngFor="let companyModel of deliveryCompanies" [ngValue]="companyModel">
+                        {{companyModel.distrubitionCompany}}
+                    </option>
+                </select>
+                <!--                <ejs-dropdownlist id='xd'-->
+                <!--                                  [value]="'id'"-->
+                <!--                                  [dataSource]='deliveryCompanies'-->
+                <!--                                  placeholder='Select a delivery company for this order'-->
+                <!--                                  popupHeight='200px'-->
+                <!--                                  [fields]="deliveryCompanyDropDownFields"-->
+                <!--                                  [(ngModel)]="selectedDeliveryCompany"-->
+                <!--                                  popupWidth='250px'></ejs-dropdownlist>-->
             </div>
 
-        </nb-card-body>
-        <nb-card-footer>
-            <div class="row">
-                <div class="col-6"></div>
-                <div class="col-6 row">
-                    <button (click)="close()" nbButton style="margin-right: 5px" status="basic" size="small">Close</button>
-                    <button nbButton status="primary" size="small">Save</button>
-                </div>
 
+        </div>
+
+        <div class="">
+            <small class="control-label required"><b>Updated By</b></small>
+            <input type="text"
+                   [(ngModel)]="updatedBy"
+                   placeholder=""
+                   disabled
+                   name="updatedBy"
+                   maxlength="30"
+                   class="form-control"/>
+        </div>
+
+
+    </nb-card-body>
+    <nb-card-footer>
+
+        <div class="container">
+            <div class="row justify-content-end">
+                <button (click)="close()" nbButton style="margin-right: 5px" status="basic" size="small">Close
+                </button>
+                <button (click)="submitChanges()" nbButton status="primary" size="small">Save</button>
             </div>
+        </div>
 
-        </nb-card-footer>
-    </nb-card>
 
-</form>
+    </nb-card-footer>
+</nb-card>
+
+<!--</form>-->

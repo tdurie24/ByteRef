@@ -1,5 +1,5 @@
 export interface OrderCollectionDto {
-    id: string,
+    id?: string,
     collectionBy: string,
     collectionDate: string,
     updatedBy: string,

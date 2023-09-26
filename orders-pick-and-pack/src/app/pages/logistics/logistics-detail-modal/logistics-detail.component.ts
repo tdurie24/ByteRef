@@ -87,6 +87,7 @@ export class LogisticsDetailComponent implements OnInit {
 
     _scope = this.filter_scope.active;
     public logisticsModel: LogisticsModel;
+    selectedDeliveryCompany: any = {};
 
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,

@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 
 import {environment} from "../../../environments/environment";
-
+//import jwt_decode from 'jwt-decode';
 import {Router} from "@angular/router";
 import {LoginResponseModel} from "../models/login.response.model";
 import {map} from "rxjs/operators";
@@ -33,6 +33,16 @@ export class AccountService {
                     }
                 })
             );
+    }
+
+    //todo come back and fix this part
+
+    getDecodedAccessToken(token: string): any {
+        try {
+            //return jwt_decode(token);
+        } catch(Error) {
+            return null;
+        }
     }
 
     setCurrentLoginResponseModel(LoginResponseModel: LoginResponseModel | null) {

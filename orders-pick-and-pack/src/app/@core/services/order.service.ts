@@ -8,6 +8,8 @@ import {map} from "rxjs/operators";
 import {DeliveryLocationDto} from "../models/delivery.location.dto";
 import {FulfillmentLocationDto} from "../models/fulfillment.location.dto";
 import {LogisticsModel} from "../models/logistics.model";
+import {DistributionCompanyModel} from "../models/distribution.company.model";
+import {OrderCollectionDto} from "../models/order.collection.dto";
 
 @Injectable({
     providedIn: 'root',
@@ -65,5 +67,34 @@ export class LogisticsService {
 
     addScannedItem(order: any, item: OrderItem) {
         //todo add the logic to add the scanned item into the items array of the selected order
+    }
+
+    getSelectedOrder(): LogisticsModel {
+        let order: LogisticsModel = null;
+        this.currentSelectedOrderObservable.subscribe({
+            next: o => {
+                order = o;
+            }
+        });
+        return order;
+    }
+
+    updateCollectionDetails(collectionDto: OrderCollectionDto): void {
+        let order: LogisticsModel = this.getSelectedOrder();
+        order.distributionId = "";
+        order.orderDistribution = null;
+        order.collectionId = collectionDto.collectionBy;
+        order.orderCollection = collectionDto;
+        this.setSelectedOrder(order);
+    }
+
+    updateDeliveryDetails(distributionCompany: DistributionCompanyModel): void {
+        let order: LogisticsModel = this.getSelectedOrder();
+        order.collectionId = "";
+        order.collectionId = null;
+        order.distributionId = distributionCompany.distrubitionCompany;
+        order.orderDistribution = distributionCompany;
+        this.setSelectedOrder(order);
+
     }
 }

@@ -22,8 +22,8 @@ export interface LogisticsModel {
 export interface LogisticsListingDTO {
     Id?: string,
     UpdateBy?: string,
-    CreatedDate?: Date,
-    UpdateDate?: Date,
+    CreatedDate?: any,
+    UpdateDate?: any,
     LogisticsStatus?: string,
     DistributionCompany?: string,
     CollectionId?: string,

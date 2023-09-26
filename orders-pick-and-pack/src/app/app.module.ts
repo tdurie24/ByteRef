@@ -25,7 +25,7 @@ import {DialogModule} from '@syncfusion/ej2-angular-popups';
 import {ScanItemComponent} from "./pages/logistics/scan.item/scan.item.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TextBoxModule} from "@syncfusion/ej2-angular-inputs";
-
+import {DatePipe} from '@angular/common';
 import {LoadingIndicatorsInterceptor} from "./@core/interceptors/loading.spinner.interceptor";
 import {JwtTokenInterceptor} from "./@core/interceptors/jwt.token.interceptor";
 import {HttpErrorsInterceptor} from "./@core/interceptors/http.errors.interceptor";
@@ -102,7 +102,7 @@ export function tokenGetter(request) {
         DropDownButtonModule,
         GridModule,
     ],
-    providers: [CanDeactivateGuard, VirtualizationService,
+    providers: [CanDeactivateGuard,DatePipe, VirtualizationService,
         {provide: HTTP_INTERCEPTORS, useClass: LoadingIndicatorsInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: HttpErrorsInterceptor, multi: true},

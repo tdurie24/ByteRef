@@ -19,6 +19,7 @@ import {LogisticsListingDTO, LogisticsModel} from "../../@core/models/logistics.
 import {LogisticsDetailComponent} from "./logistics-detail-modal/logistics-detail.component";
 import {LogisticsStatusService} from "../../@core/services/logistics.status.service";
 import {DistributionCompaniesService} from "../../@core/services/distribution.companies.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
     selector: 'logistics',
@@ -28,9 +29,9 @@ import {DistributionCompaniesService} from "../../@core/services/distribution.co
 export class LogisticsComponent implements OnInit {
 
     constructor(
+        private datePipe: DatePipe,
         private orderService: LogisticsService,
-        private logisticStatusService: LogisticsStatusService,
-    ) {
+        private logisticStatusService: LogisticsStatusService) {
     }
 
     newOrders: LogisticsListingDTO[] = [];
@@ -49,8 +50,8 @@ export class LogisticsComponent implements OnInit {
                     let logisticsListingDTO: LogisticsListingDTO = {
                         Id: logistic?.id,
                         UpdateBy: logistic?.updateBy,
-                        CreatedDate: logistic?.createdDate,
-                        UpdateDate: logistic?.updateDate,
+                        CreatedDate: this.formatDate(logistic?.createdDate),
+                        UpdateDate: this.formatDate(logistic?.updateDate),
                         LogisticsStatus: logistic?.orderStatus?.name,
                         DistributionCompany: logistic?.orderDistribution?.distrubitionCompany,
                         CollectionId: logistic?.collectionId,
@@ -83,6 +84,10 @@ export class LogisticsComponent implements OnInit {
             }
         });
 
+    }
+
+    formatDate(date:string|Date): string{
+       return  this.datePipe.transform(date,"dd/MM/yyyy HH:mm");
     }
 
 }

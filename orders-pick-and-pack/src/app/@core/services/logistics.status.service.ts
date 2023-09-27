@@ -9,7 +9,8 @@ import {LogisticsStatus} from "../models/logistics.status";
 })
 export class LogisticsStatusService {
 
-    private statusBaseUrl = environment.apiUrl + "/Order/Status/All";
+    private statusBaseUrl = environment.api_orders_base_url + "Order/Status/All";
+    //'https://integration-qa.senwes.co.za/service/retail/b2c_orders/api/Order/Status/All
     private logisticStatuses: LogisticsStatus[] = [];
     private logisticsStatusSource: BehaviorSubject<LogisticsStatus[] | null> = new BehaviorSubject<LogisticsStatus[] | null>(null);
     currentLogisticsStatusObservable = this.logisticsStatusSource.asObservable();

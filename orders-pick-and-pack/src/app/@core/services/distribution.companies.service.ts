@@ -10,7 +10,7 @@ import {DistributionCompanyModel} from "../models/distribution.company.model";
 })
 export class DistributionCompaniesService {
 
-    private distributionCompaniesBaseUrl = environment.apiUrl + "DistributionCompanies";
+    private distributionCompaniesBaseUrl = environment.api_logistics_base_url + "DistributionCompanies";
     private distributionCompanies: DistributionCompanyModel[] = [];
     private distributionSource: BehaviorSubject<DistributionCompanyModel[] | null> = new BehaviorSubject<DistributionCompanyModel[] | null>(null);
     distributionSourceObservable = this.distributionSource.asObservable();

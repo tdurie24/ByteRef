@@ -19,6 +19,7 @@ import {CollectionDetailsComponent} from "./collection-details/collection-detail
 import {OrderResponse} from "../../../@core/models/order.details.model";
 import {FullfilmentDetailsComponent} from "./fullfilment-details/fullfilment-details.component";
 import {DeliveryDetailsComponent} from "./delivery-details/delivery-details.component";
+import {DropDownListComponent} from "@syncfusion/ej2-angular-dropdowns";
 
 @Component({
     selector: 'logistics-detail-modal',
@@ -34,6 +35,7 @@ export class LogisticsDetailComponent implements OnInit {
     formValidators = [Validators.required,];
     logisticsDetailForm: FormGroup = new FormGroup({});
     dialogTitle: string = "View";
+
 
     toggleEdit() {
         this.editMode = !this.editMode;
@@ -76,7 +78,7 @@ export class LogisticsDetailComponent implements OnInit {
         },
 
     };
-    dropDownFields: Object = {text: 'name', value: 'id'}
+    dropDownFields: Object = {text: 'statusDisplay', value: 'id'}
     deliveryCompanyDropDownFields: Object = {text: 'distrubitionCompany', value: 'distributionReferenceNumber'}
     logisticsStatuses: LogisticsStatus[] = [];
     deliveryOptionDropDownData: DistributionCompanyModel[] = [];
@@ -95,6 +97,7 @@ export class LogisticsDetailComponent implements OnInit {
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
                 private dialog: NbDialogService,
+                private toastService:NbToastrService,
                 private nbDialogRef: NbDialogRef<LogisticsDetailComponent>,
                 private logisticStatusService: LogisticsStatusService,
                 private distributionService: DistributionCompaniesService,
@@ -117,87 +120,7 @@ export class LogisticsDetailComponent implements OnInit {
 
     }
 
-
     initializeForm() {
-
-        /*
-        *
-        * {"id":"00000000-0000-0000-0000-000000000000",
-"order":{"id":null,
-"orderNumber":"5456774070574",
-"total":37890,
-
-"paymentGateway":null,
-"fulfilmentStatus":null,
-
-"dateCreated":"2023-09-14T10:46:42.0417784+00:00",
-"dateModified":null,
-"financialStatus":null,
-*
-*
-"orderStatus":{"id":"00000000-0000-0000-0000-000000000000",
-"statusId":1,
-"name":"Order Received",
-"description":"Order Received"},
-*
-*
-"--deliveryLocation":{"name":"Jaco",
-"address1":"2 Jim Fouche Rd",
-"phone":"079 969 2440",
-"city":"Theunissen",
-"zip":"9410",
-"province":"Free State",
-"country":"South Africa",
-"lastName":"Roux",
-"address2":null,
-"company":null,
-"latitude":null,
-"longitude":null,
-"countryCode":"ZA",
-"provinceCode":"FS",
-"dateModified":"2023-09-27T03:32:17.7026109+02:00"},
-*
-*
-"--fulfillmentLocation":null,
-"--customer":null,
-"--subTotal":37000,
-"--taxTotal":4826.09,
-"--shippingTotal":890,
-"--oneId":null,
-*
-*
-"orderItems":[{"lineItemId":"14100593836334",
-"fulfillableQuantity":2,
-"fulfillableService":"manual",
-"fulfillableStatus":null,
-"grams":96000,
-"productTitle":"Ryobi RG-7900K Generator 7500W 4-Stroke Key-Start",
-"productPrice":"16000.00",
-"quantity":2,
-"requiresShipping":true,
-"sku":"G10812012",
-"isPacked":null},
-{"lineItemId":"14100593869102",
-"fulfillableQuantity":2,
-"fulfillableService":"manual",
-"fulfillableStatus":null,
-"grams":75000,
-"productTitle":"JoJo Vertical Water Tank - Winter Grass (2400L)",
-"productPrice":"2500.00",
-"quantity":2,
-"requiresShipping":true,
-"sku":"1S1Pk113",
-"isPacked":null}]},
-*
-*
-"updatedBy":null,
-"updatedDate":"2023-09-23T16:13:13.0835793",
-"orderCreated":"2023-09-14T10:46:42.0417784",
-"orderCollection":null,
-"orderDistribution":null}
-        *
-        * */
-
 
         this.logisticsDetailForm = this.formBuilder.group({
 
@@ -301,7 +224,6 @@ export class LogisticsDetailComponent implements OnInit {
         });
     }
 
-
     initializeStatuses() {
         this.logisticStatusService.currentLogisticsStatusObservable.subscribe({
             next: r => {
@@ -310,7 +232,6 @@ export class LogisticsDetailComponent implements OnInit {
             }
         })
     }
-
 
     setScope() {
         this.route.queryParams
@@ -343,7 +264,6 @@ export class LogisticsDetailComponent implements OnInit {
         this.filterSettings = {type: "Menu"};
     }
 
-
     componentIsInvalid(control: string, formName: string): boolean {
         const forms = {
             'logisticsDetailForm': this.logisticsDetailForm
@@ -356,6 +276,14 @@ export class LogisticsDetailComponent implements OnInit {
 
     }
 
+    @ViewChild('ddlelement')
+    public dropDownListObject?: DropDownListComponent;
+    updateOrderStatus(statusId: any){
+        this.orderService.updateOrderStatus(this.logisticsModel.id, statusId )
+            .subscribe({next:res=>{},error:err=>{
+                this.toastService.warning("Unable to update the order status please try again","Update Failed");
+                }});
+    }
 
     toolbarHandler(args: ClickEventArgs): void {
         switch (args.item.id) {

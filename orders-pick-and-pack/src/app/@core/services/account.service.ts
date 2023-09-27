@@ -16,7 +16,7 @@ export class AccountService {
 
     private currentLoginResponseModelSource = new BehaviorSubject<LoginResponseModel | null>(null);
     currentLoginResponseModel$ = this.currentLoginResponseModelSource.asObservable();
-    accountBaseUrl: string = environment.apiUrl + "account/"
+    accountBaseUrl: string = environment.api_logistics_base_url + "account/"
 
     constructor(private httpClient: HttpClient, private router: Router) {
     }

@@ -6,7 +6,7 @@
         <nb-card-header>
             <div class="">
                 <div class="row">
-                    <div class="col-11"><h3>{{dialogTitle}} Logistic Details</h3></div>
+                    <div class="col-11"><h3>{{dialogTitle}} Order Details</h3></div>
                 </div>
             </div>
         </nb-card-header>
@@ -35,9 +35,11 @@
                 </div>
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <small class="control-label required"><b>Delivery Company</b></small>
+                    <small class="control-label required"><b> Order Status</b></small>
 
                     <ejs-dropdownlist id='xd'
+                                      #ddlelement
+(change)="updateOrderStatus($event)"
                                       [value]="'id'"
                                       [dataSource]='deliveryOptionDropDownData'
                                       placeholder='Select a delivery company for this order'
@@ -46,12 +48,12 @@
                                       [formControlName]="'LogisticsStatusId'"
                                       popupWidth='250px'></ejs-dropdownlist>
                     <span *ngIf="componentIsInvalid('UpdateDate','logisticsDetailForm')" class="e-error">
-                        <small *ngIf="logisticsDetailForm?.get('UpdateDate').hasError('required')">Logistics delivery is required</small>
+                        <small *ngIf="logisticsDetailForm?.get('UpdateDate').hasError('required')">order status is required</small>
                     </span>
                 </div>
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <small class="control-label required"><b>Collection</b></small>
+                    <small class="control-label required"><b>Collection Info</b></small>
 
                     <div class="row no-gutters">
                         <div class="col-11">
@@ -61,7 +63,7 @@
                                          floatLabelType="Always"
                                          [cssClass]="componentIsInvalid('CollectionId','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
                             <span *ngIf="componentIsInvalid('CollectionId','logisticsDetailForm')" class="e-error">
-                <small *ngIf="logisticsDetailForm?.get('CollectionId').hasError('required')"> Logistics Status is required</small></span>
+                <small *ngIf="logisticsDetailForm?.get('CollectionId').hasError('required')">Collection Info is required</small></span>
                         </div>
                         <div class="col-1">
                             <button type="button"
@@ -89,7 +91,7 @@
 
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <small class="control-label required"><b>Logistics Status</b></small>
+                    <small class="control-label required"><b>Order Status</b></small>
                     <ejs-dropdownlist id='x'
                                       [value]="'id'"
                                       [dataSource]='logisticsStatuses'
@@ -98,8 +100,8 @@
                                       [fields]="dropDownFields"
                                       [formControlName]="'LogisticsStatusId'"
                                       popupWidth='250px'></ejs-dropdownlist>
-                    <span *ngIf="componentIsInvalid('UpdateDate','logisticsDetailForm')" class="e-error">
-                    <small *ngIf="logisticsDetailForm?.get('UpdateDate').hasError('required')">Logistics Status is required</small></span>
+                    <span *ngIf="componentIsInvalid('LogisticsStatusId','logisticsDetailForm')" class="e-error">
+                    <small *ngIf="logisticsDetailForm?.get('LogisticsStatusId').hasError('required')">order Status is required</small></span>
                 </div>
 
 

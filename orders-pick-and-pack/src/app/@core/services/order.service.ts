@@ -22,10 +22,10 @@ export class LogisticsService {
     currentLogisticsObservable = this.currentLogisticsSource.asObservable();
 
     private currentSelectedLogisticModel: BehaviorSubject<OrderResponse | null> = new BehaviorSubject<LogisticsModel | null>(null);
-    currentSelectedOrderObservable :Observable<OrderResponse> = this.currentSelectedLogisticModel.asObservable();
+    currentSelectedOrderObservable: Observable<OrderResponse> = this.currentSelectedLogisticModel.asObservable();
 
     logisticsFromApi: LogisticsModel[] = [];
-    logisticsBaseUrl: string = environment.apiUrl + "logistics/"
+    logisticsBaseUrl: string = environment.api_logistics_base_url + "logistics/"
 
     constructor(private httpClient: HttpClient) {
 
@@ -45,8 +45,8 @@ export class LogisticsService {
         });
     }
 
-    getOrderDetails(orderNumber:string): Observable<OrderResponse>{
-      return  this.httpClient.get<OrderResponse>(this.logisticsBaseUrl+`${orderNumber}`)
+    getOrderDetails(orderNumber: string): Observable<OrderResponse> {
+        return this.httpClient.get<OrderResponse>(this.logisticsBaseUrl + `${orderNumber}`)
     }
 
     updateLogistic(logisticsModel: LogisticsModel) {
@@ -101,5 +101,9 @@ export class LogisticsService {
         // order.orderDistribution = distributionCompany;
         // this.setSelectedOrder(order);
 
+    }
+
+    updateOrderStatus(id: string, statusId: string) {
+        return this.httpClient.put(environment.api_orders_base_url + "Orders/Update/Status", {id: id, status: status});
     }
 }

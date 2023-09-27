@@ -17,6 +17,8 @@ import {DistributionCompanyModel} from "../../../@core/models/distribution.compa
 import {DistributionCompaniesService} from "../../../@core/services/distribution.companies.service";
 import {CollectionDetailsComponent} from "./collection-details/collection-details.component";
 import {OrderResponse} from "../../../@core/models/order.details.model";
+import {FullfilmentDetailsComponent} from "./fullfilment-details/fullfilment-details.component";
+import {DeliveryDetailsComponent} from "./delivery-details/delivery-details.component";
 
 @Component({
     selector: 'logistics-detail-modal',
@@ -197,7 +199,6 @@ export class LogisticsDetailComponent implements OnInit {
         * */
 
 
-
         this.logisticsDetailForm = this.formBuilder.group({
 
 
@@ -277,8 +278,10 @@ export class LogisticsDetailComponent implements OnInit {
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
-            UpdateBy: [{value: this.logisticsModel?.updatedBy,
-                disabled: !this.editMode}, [...this.formValidators]],
+            UpdateBy: [{
+                value: this.logisticsModel?.updatedBy,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
 
             DateCreated: [{
                 value: this.logisticsModel?.orderCreated,
@@ -290,8 +293,10 @@ export class LogisticsDetailComponent implements OnInit {
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
-            UpdateDate: [{value: this.logisticsModel?.updatedDate,
-                disabled: !this.editMode}, [...this.formValidators]],
+            UpdateDate: [{
+                value: this.logisticsModel?.updatedDate,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
 
         });
     }
@@ -374,7 +379,7 @@ export class LogisticsDetailComponent implements OnInit {
     }
 
     addCollectionDetails() {
-        if(this.editMode){
+        if (this.editMode) {
             this.dialog.open(CollectionDetailsComponent);
         }
 
@@ -383,13 +388,14 @@ export class LogisticsDetailComponent implements OnInit {
     protected readonly JSON = JSON;
 
     editFulfilemt() {
-        if(this.editMode){
-
+        if (this.editMode) {
+            this.dialog.open(FullfilmentDetailsComponent);
         }
     }
-    editDeliveryLocation() {
-        if(this.editMode){
 
+    editDeliveryLocation() {
+        if (this.editMode) {
+            this.dialog.open(DeliveryDetailsComponent);
         }
     }
 }

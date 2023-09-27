@@ -9,7 +9,7 @@ import {LogisticsStatus} from "../models/logistics.status";
 })
 export class LogisticsStatusService {
 
-    private statusBaseUrl = environment.apiUrl + "LogisticsStatuses";
+    private statusBaseUrl = environment.apiUrl + "/Order/Status/All";
     private logisticStatuses: LogisticsStatus[] = [];
     private logisticsStatusSource: BehaviorSubject<LogisticsStatus[] | null> = new BehaviorSubject<LogisticsStatus[] | null>(null);
     currentLogisticsStatusObservable = this.logisticsStatusSource.asObservable();
@@ -39,4 +39,8 @@ export class LogisticsStatusService {
     getStatus(logisticsStatusId: string): LogisticsStatus {
         return this.logisticStatuses.find(item => item.id === logisticsStatusId);
     }
+}
+export enum OrderStatuses{
+    packed="packed",
+
 }

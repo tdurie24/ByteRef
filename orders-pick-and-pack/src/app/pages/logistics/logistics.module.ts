@@ -15,6 +15,8 @@ import {AppModule} from "../../app.module";
 import {LogisticsGridComponent} from "../../components/components/logistics-grid/logistics-grid.component";
 import { CollectionDetailsComponent } from './logistics-detail-modal/collection-details/collection-details.component';
 import {NbLayoutModule, NbTableModule} from "@nebular/theme";
+import { DeliveryDetailsComponent } from './logistics-detail-modal/delivery-details/delivery-details.component';
+import { FullfilmentDetailsComponent } from './logistics-detail-modal/fullfilment-details/fullfilment-details.component';
 
 @NgModule({
   declarations: [LogisticsComponent,
@@ -22,6 +24,8 @@ import {NbLayoutModule, NbTableModule} from "@nebular/theme";
       LogisticsGridComponent,
       ScanItemComponent,
       CollectionDetailsComponent,
+      DeliveryDetailsComponent,
+      FullfilmentDetailsComponent,
      // LogisticDetailsFullComponent
   ],
     imports: [

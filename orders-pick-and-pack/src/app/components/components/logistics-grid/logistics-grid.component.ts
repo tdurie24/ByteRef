@@ -126,15 +126,17 @@ export class LogisticsGridComponent implements OnInit {
     }
 
     public onOpenEditLogisticDialog(order: any): void {
-        let logistic: LogisticsModel = this.orderService.getLogisticModel(order?.Id);
-        this.orderService.setSelectedOrder(logistic);
-        console.log(logistic);
-        this.dialogService.open(LogisticsDetailComponent, {
-            closeOnEsc: false,
-            closeOnBackdropClick: false,
-            context: {
-
-                //title: 'Priview or edit Logistic Data',
+        this.orderService.getOrderDetails(order?.OrderNumber).subscribe({
+            next: order => {
+                this.orderService.setSelectedOrder(order)
+                this.dialogService.open(LogisticsDetailComponent, {
+                    closeOnEsc: false,
+                    closeOnBackdropClick: false,
+                    context: {}
+                });
+            }, error: error => {
+                //this is not needed really -- errors are thrown by nature.
+                console.log(error);
             }
         });
     }
@@ -147,7 +149,7 @@ export class LogisticsGridComponent implements OnInit {
                 this.onOpenEditLogisticDialog(data);
             }
         }
-        if (args.item.id === "View") {
+        if (args.item.id === "Delete") {
             this.toastService.showSuccess("Coming soon", "We are still on this one")
         }
 

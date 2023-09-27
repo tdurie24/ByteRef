@@ -16,6 +16,7 @@ import {ToastService} from "../../../@core/services/toast.service";
 import {DistributionCompanyModel} from "../../../@core/models/distribution.company.model";
 import {DistributionCompaniesService} from "../../../@core/services/distribution.companies.service";
 import {CollectionDetailsComponent} from "./collection-details/collection-details.component";
+import {OrderResponse} from "../../../@core/models/order.details.model";
 
 @Component({
     selector: 'logistics-detail-modal',
@@ -86,7 +87,7 @@ export class LogisticsDetailComponent implements OnInit {
     };
 
     _scope = this.filter_scope.active;
-    public logisticsModel: LogisticsModel;
+    public logisticsModel: OrderResponse;
     selectedDeliveryCompany: any = {};
 
     constructor(private formBuilder: FormBuilder,
@@ -117,38 +118,180 @@ export class LogisticsDetailComponent implements OnInit {
 
     initializeForm() {
 
+        /*
+        *
+        * {"id":"00000000-0000-0000-0000-000000000000",
+"order":{"id":null,
+"orderNumber":"5456774070574",
+"total":37890,
+
+"paymentGateway":null,
+"fulfilmentStatus":null,
+
+"dateCreated":"2023-09-14T10:46:42.0417784+00:00",
+"dateModified":null,
+"financialStatus":null,
+*
+*
+"orderStatus":{"id":"00000000-0000-0000-0000-000000000000",
+"statusId":1,
+"name":"Order Received",
+"description":"Order Received"},
+*
+*
+"--deliveryLocation":{"name":"Jaco",
+"address1":"2 Jim Fouche Rd",
+"phone":"079 969 2440",
+"city":"Theunissen",
+"zip":"9410",
+"province":"Free State",
+"country":"South Africa",
+"lastName":"Roux",
+"address2":null,
+"company":null,
+"latitude":null,
+"longitude":null,
+"countryCode":"ZA",
+"provinceCode":"FS",
+"dateModified":"2023-09-27T03:32:17.7026109+02:00"},
+*
+*
+"--fulfillmentLocation":null,
+"--customer":null,
+"--subTotal":37000,
+"--taxTotal":4826.09,
+"--shippingTotal":890,
+"--oneId":null,
+*
+*
+"orderItems":[{"lineItemId":"14100593836334",
+"fulfillableQuantity":2,
+"fulfillableService":"manual",
+"fulfillableStatus":null,
+"grams":96000,
+"productTitle":"Ryobi RG-7900K Generator 7500W 4-Stroke Key-Start",
+"productPrice":"16000.00",
+"quantity":2,
+"requiresShipping":true,
+"sku":"G10812012",
+"isPacked":null},
+{"lineItemId":"14100593869102",
+"fulfillableQuantity":2,
+"fulfillableService":"manual",
+"fulfillableStatus":null,
+"grams":75000,
+"productTitle":"JoJo Vertical Water Tank - Winter Grass (2400L)",
+"productPrice":"2500.00",
+"quantity":2,
+"requiresShipping":true,
+"sku":"1S1Pk113",
+"isPacked":null}]},
+*
+*
+"updatedBy":null,
+"updatedDate":"2023-09-23T16:13:13.0835793",
+"orderCreated":"2023-09-14T10:46:42.0417784",
+"orderCollection":null,
+"orderDistribution":null}
+        *
+        * */
+
+
+
         this.logisticsDetailForm = this.formBuilder.group({
+
+
             OrderNumber: [{
-                value: this.logisticsModel?.orderNumber,
+                value: this.logisticsModel?.order?.orderNumber,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            paymentGateway: [{
+                value: this.logisticsModel?.order?.paymentGateway,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            deliveryLocation: [{
+                value: this.logisticsModel?.order?.deliveryLocation?.address1,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            shippingTotal: [{
+                value: this.logisticsModel?.order?.shippingTotal,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            subTotal: [{
+                value: this.logisticsModel?.order?.subTotal,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            oneId: [{
+                value: this.logisticsModel?.order?.oneId,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            taxTotal: [{
+                value: this.logisticsModel?.order?.taxTotal,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            customer: [{
+                value: this.logisticsModel?.order?.customer,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            fulfillmentLocation: [{
+                value: this.logisticsModel?.order?.fulfillmentLocation,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            deliveryOption: [{
+                value: this.logisticsModel?.order?.deliveryOption,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            financialStatus: [{
+                value: this.logisticsModel?.order?.financialStatus,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            orderDate: [{
+                value: this.logisticsModel?.order?.orderDate,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
             Id: [{value: this.logisticsModel?.id, disabled: !this.editMode}, [...this.formValidators]],
             LogisticsStatusId: [{
-                value: this.logisticsModel?.logisticsStatusId,
+                value: this.logisticsModel?.order?.orderStatus?.statusId,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
             DistributionId: [{
-                value: this.logisticsModel?.distributionId,
+                value: this.logisticsModel?.order.deliveryOption,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
             CollectionId: [{
-                value: this.logisticsModel?.collectionId,
+                value: this.logisticsModel?.order?.customer,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
-            UpdateBy: [{value: this.logisticsModel?.updateBy, disabled: !this.editMode}, [...this.formValidators]],
+            UpdateBy: [{value: this.logisticsModel?.updatedBy,
+                disabled: !this.editMode}, [...this.formValidators]],
+
             DateCreated: [{
-                value: this.logisticsModel?.createdDate,
+                value: this.logisticsModel?.orderCreated,
                 disabled: !this.editMode
             }, [...this.formValidators]],
+
             TotalItems: [{
-                value: this.logisticsModel?.totalItems,
+                value: this.logisticsModel?.order?.total,
                 disabled: !this.editMode
             }, [...this.formValidators]],
-            UpdateDate: [{value: this.logisticsModel?.updateDate, disabled: !this.editMode}, [...this.formValidators]],
+
+            UpdateDate: [{value: this.logisticsModel?.updatedDate,
+                disabled: !this.editMode}, [...this.formValidators]],
 
         });
     }
@@ -231,6 +374,22 @@ export class LogisticsDetailComponent implements OnInit {
     }
 
     addCollectionDetails() {
-        this.dialog.open(CollectionDetailsComponent);
+        if(this.editMode){
+            this.dialog.open(CollectionDetailsComponent);
+        }
+
+    }
+
+    protected readonly JSON = JSON;
+
+    editFulfilemt() {
+        if(this.editMode){
+
+        }
+    }
+    editDeliveryLocation() {
+        if(this.editMode){
+
+        }
     }
 }

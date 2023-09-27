@@ -17,7 +17,7 @@
             <div class="row">
 
                 <div class="col-12">
-                    <h6>Logistic Details</h6>
+                    <h6>Order Details</h6>
                     <hr style="margin-bottom: 20px">
                 </div>
 
@@ -95,7 +95,6 @@
                                       [dataSource]='logisticsStatuses'
                                       placeholder='Select a status'
                                       popupHeight='200px'
-
                                       [fields]="dropDownFields"
                                       [formControlName]="'LogisticsStatusId'"
                                       popupWidth='250px'></ejs-dropdownlist>
@@ -117,24 +116,45 @@
                      </span>
                 </div>
 
+
+
+
                 <div class="col-12 mt-2">
-                    <h6>Order Details</h6>
+                    <h6>Payment Details</h6>
                     <hr style="margin-bottom: 20px">
                 </div>
 
 
+
+
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <small class="control-label required"><b>Order Number</b></small>
+                    <small class="control-label required"><b>Order Date</b></small>
                     <ejs-textbox
-                            formControlName="DistributionId"
+                            formControlName="orderDate"
                             placeholder="" maxlength="30"
                             floatLabelType="Always"
-                            [cssClass]="componentIsInvalid('OrderNumber','logisticsDetailForm') ? 'e-error': 'e-input'">
+                            [cssClass]="componentIsInvalid('orderDate','logisticsDetailForm') ? 'e-error': 'e-input'">
                     </ejs-textbox>
-                    <span *ngIf="componentIsInvalid('DistributionId','logisticsDetailForm')"
+                    <span *ngIf="componentIsInvalid('orderDate','logisticsDetailForm')"
                           class="e-error">
-                    <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">Order Number is required </small></span>
+                    <small *ngIf="logisticsDetailForm?.get('orderDate').hasError('required')">Order Date is required </small></span>
                 </div>
+
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Financial Status</b></small>
+                    <ejs-textbox
+                            formControlName="financialStatus"
+                            placeholder="" maxlength="30"
+                            floatLabelType="Always"
+                            [cssClass]="componentIsInvalid('financialStatus','logisticsDetailForm') ? 'e-error': 'e-input'">
+                    </ejs-textbox>
+                    <span *ngIf="componentIsInvalid('financialStatus','logisticsDetailForm')"
+                          class="e-error">
+                    <small *ngIf="logisticsDetailForm?.get('financialStatus').hasError('required')">Financial Status is required </small></span>
+                </div>
+
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <small class="control-label required"><b>Total Items</b></small>
@@ -147,15 +167,171 @@
                         <small *ngIf="logisticsDetailForm?.get('TotalItems').hasError('required')">Total Items required</small></span>
                 </div>
 
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Subtotal</b></small>
+                    <ejs-textbox formControlName="subTotal"
+                                 placeholder=""
+                                 maxlength="30"
+                                 floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('subTotal','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('subTotal','logisticsDetailForm')" class="e-error">
+                        <small *ngIf="logisticsDetailForm?.get('subTotal').hasError('required')">Sub Total required</small></span>
+                </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Payment Gateway</b></small>
+                    <ejs-textbox formControlName="paymentGateway"
+                                 placeholder=""
+                                 maxlength="30"
+                                 floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('paymentGateway','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('paymentGateway','logisticsDetailForm')" class="e-error">
+                        <small *ngIf="logisticsDetailForm?.get('paymentGateway').hasError('required')">Sub Total required</small></span>
+                </div>
+
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Tax Total</b></small>
+                    <ejs-textbox formControlName="taxTotal"
+                                 placeholder=""
+                                 maxlength="30"
+                                 floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('taxTotal','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('taxTotal','logisticsDetailForm')" class="e-error">
+                        <small *ngIf="logisticsDetailForm?.get('taxTotal').hasError('required')">Tax Total required</small></span>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>One id</b></small>
+                    <ejs-textbox formControlName="oneId"
+                                 placeholder=""
+                                 maxlength="30"
+                                 floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('oneId','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('oneId','logisticsDetailForm')" class="e-error">
+                        <small *ngIf="logisticsDetailForm?.get('oneId').hasError('required')">Tax Total required</small></span>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Tax Total</b></small>
+                    <ejs-textbox formControlName="shippingTotal"
+                                 placeholder=""
+                                 maxlength="30"
+                                 floatLabelType="Always"
+                                 [cssClass]="componentIsInvalid('shippingTotal','logisticsDetailForm') ? 'e-error': 'e-input'"></ejs-textbox>
+                    <span *ngIf="componentIsInvalid('shippingTotal','logisticsDetailForm')" class="e-error">
+                        <small *ngIf="logisticsDetailForm?.get('shippingTotal').hasError('required')">Shipping Total required</small></span>
+                </div>
+
+
+                <div class="col-12 mt-2">
+                    <h6>Shipping & Delivery Details</h6>
+                    <hr style="margin-bottom: 20px">
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Shipping Option</b></small>
+                    <ejs-textbox
+                            formControlName="DistributionId"
+                            placeholder="" maxlength="30"
+                            floatLabelType="Always"
+                            [cssClass]="componentIsInvalid('OrderNumber','logisticsDetailForm') ? 'e-error': 'e-input'">
+                    </ejs-textbox>
+                    <span *ngIf="componentIsInvalid('DistributionId','logisticsDetailForm')"
+                          class="e-error">
+                    <small *ngIf="logisticsDetailForm?.get('DistributionId').hasError('required')">Shipping Option is required </small></span>
+                </div>
+
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Delivery Option</b></small>
+                    <ejs-textbox
+                            formControlName="orderDate"
+                            placeholder="" maxlength="30"
+                            floatLabelType="Always"
+                            [cssClass]="componentIsInvalid('deliveryOption','logisticsDetailForm') ? 'e-error': 'e-input'">
+                    </ejs-textbox>
+                    <span *ngIf="componentIsInvalid('deliveryOption','logisticsDetailForm')"
+                          class="e-error">
+                    <small *ngIf="logisticsDetailForm?.get('deliveryOption').hasError('required')">Delivery Option is required </small></span>
+                </div>
+
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Customer</b></small>
+                    <ejs-textbox
+                            formControlName="customer"
+                            placeholder="" maxlength="30"
+                            floatLabelType="Always"
+                            [cssClass]="componentIsInvalid('customer','logisticsDetailForm') ? 'e-error': 'e-input'">
+                    </ejs-textbox>
+                    <span *ngIf="componentIsInvalid('customer','logisticsDetailForm')"
+                          class="e-error">
+                    <small *ngIf="logisticsDetailForm?.get('customer').hasError('required')">Customer is required </small></span>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Fulfillment Location</b></small>
+
+                    <div class="row no-gutters">
+                        <div class="col-11">
+                            <ejs-textbox
+                                    formControlName="financialStatus"
+                                    placeholder="" maxlength="30"
+                                    floatLabelType="Always"
+                                    [cssClass]="componentIsInvalid('fulfillmentLocation','logisticsDetailForm') ? 'e-error': 'e-input'">
+                            </ejs-textbox>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" (click)="editFulfilemt()" style='margin-left: 10px !important' nbButton size="small" status="basic">Edit</button>
+                        </div>
+                    </div>
+
+                    <span *ngIf="componentIsInvalid('fulfillmentLocation','logisticsDetailForm')"
+                          class="e-error">
+                    <small *ngIf="logisticsDetailForm?.get('fulfillmentLocation').hasError('required')">Fulfillment Location is required </small></span>
+                </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <small class="control-label required"><b>Delivery Location</b></small>
+
+                    <div class="row no-gutters">
+                        <div class="col-11">
+                            <ejs-textbox
+                                    formControlName="deliveryLocation"
+                                    placeholder="" maxlength="30"
+                                    floatLabelType="Always"
+                                    [cssClass]="componentIsInvalid('deliveryLocation','logisticsDetailForm') ? 'e-error': 'e-input'">
+                            </ejs-textbox>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" (click)="editDeliveryLocation()" style='margin-left: 10px !important' nbButton size="small" status="basic">Edit</button>
+                        </div>
+                    </div>
+
+                    <span *ngIf="componentIsInvalid('deliveryLocation','logisticsDetailForm')"
+                          class="e-error">
+                    <small *ngIf="logisticsDetailForm?.get('deliveryLocation').hasError('required')">Delivery Location is required </small></span>
+                </div>
+
+
             </div>
 
+
+
+
             <div class="mt-3 mb-3">
-                <h3>Items in order</h3>
+                <h6>Order Items</h6>
 
                 <ejs-grid
                         style="position: unset!important; "
                         #eventGrid id="Grid"
-                        [dataSource]="logisticsModel?.orderCollection"
+                        [dataSource]="logisticsModel?.order.orderItems"
                         height="300"
                         allowPaging="true"
                         allowFiltering="true"
@@ -184,6 +360,7 @@
                                   maxWidth="360">
                         </e-column>
 
+
                         <e-column field="productPrice" headerText="Product Price"
                                   minWidth="100" width="180"
                                   maxWidth="360">
@@ -195,6 +372,11 @@
                         </e-column>
 
                         <e-column field="quantity" headerText="Item Quantity"
+                                  minWidth="100" width="180"
+                                  maxWidth="360">
+                        </e-column>
+
+                        <e-column field="quantity" headerText="Packed"
                                   minWidth="100" width="180"
                                   maxWidth="360">
                         </e-column>

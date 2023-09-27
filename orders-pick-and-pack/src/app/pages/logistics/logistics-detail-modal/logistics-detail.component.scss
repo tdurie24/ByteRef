@@ -1,0 +1,38 @@
+
+
+.modal-header-icon {
+  color: rgba(31, 31, 31, 0.82);
+  font-size: 20px;
+  padding: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.max-size {
+  max-height: 95vh !important;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+  padding: 10px;
+  max-width: 98vw !important;
+}
+
+.min-size{
+  pointer-events: all;
+  margin-top: 90vh;
+  margin-left: 80vw!important;
+  max-height: 7vh !important;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+  padding: 10px;
+  max-width: 20vw !important;
+  bottom: 0!important;
+}
+.cdk-overlay-pane {
+  height: 100px!important;
+  background-color: red!important;
+  pointer-events: none!important;
+}
+nb-dialog-container{
+
+}
+

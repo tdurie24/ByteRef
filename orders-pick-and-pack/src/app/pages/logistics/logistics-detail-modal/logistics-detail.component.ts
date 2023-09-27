@@ -16,7 +16,7 @@ import {ToastService} from "../../../@core/services/toast.service";
 import {DistributionCompanyModel} from "../../../@core/models/distribution.company.model";
 import {DistributionCompaniesService} from "../../../@core/services/distribution.companies.service";
 import {CollectionDetailsComponent} from "./collection-details/collection-details.component";
-import {OrderResponse} from "../../../@core/models/order.details.model";
+import {OrderItem, OrderResponse} from "../../../@core/models/order.details.model";
 import {FullfilmentDetailsComponent} from "./fullfilment-details/fullfilment-details.component";
 import {DeliveryDetailsComponent} from "./delivery-details/delivery-details.component";
 import {DropDownListComponent} from "@syncfusion/ej2-angular-dropdowns";
@@ -38,6 +38,7 @@ export class LogisticsDetailComponent implements OnInit {
 
 
     toggleEdit() {
+
         this.editMode = !this.editMode;
         if (this.editMode) {
             this.dialogTitle = "Update";
@@ -97,7 +98,7 @@ export class LogisticsDetailComponent implements OnInit {
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
                 private dialog: NbDialogService,
-                private toastService:NbToastrService,
+                private toastService: NbToastrService,
                 private nbDialogRef: NbDialogRef<LogisticsDetailComponent>,
                 private logisticStatusService: LogisticsStatusService,
                 private distributionService: DistributionCompaniesService,
@@ -120,10 +121,26 @@ export class LogisticsDetailComponent implements OnInit {
 
     }
 
+    gridData: any[] = [];
+
+    prepareItems() {
+        for (const order of this.logisticsModel?.order?.orderItems) {
+            console.log(order);
+            if (order.isPacked !== null) {
+                order.isPacked = "No";
+            } else if (order.isPacked === false) {
+                order.isPacked = "No";
+            } else {
+                order.isPacked = "Yes";
+            }
+            this.gridData.push(order);
+        }
+    }
+
+
     initializeForm() {
-
+        this.prepareItems();
         this.logisticsDetailForm = this.formBuilder.group({
-
 
             OrderNumber: [{
                 value: this.logisticsModel?.order?.orderNumber,
@@ -278,11 +295,15 @@ export class LogisticsDetailComponent implements OnInit {
 
     @ViewChild('ddlelement')
     public dropDownListObject?: DropDownListComponent;
-    updateOrderStatus(statusId: any){
-        this.orderService.updateOrderStatus(this.logisticsModel.id, statusId )
-            .subscribe({next:res=>{},error:err=>{
-                this.toastService.warning("Unable to update the order status please try again","Update Failed");
-                }});
+
+    updateOrderStatus(statusId: any) {
+        this.orderService.updateOrderStatus(this.logisticsModel.id, statusId)
+            .subscribe({
+                next: res => {
+                }, error: err => {
+                    this.toastService.warning("Unable to update the order status please try again", "Update Failed");
+                }
+            });
     }
 
     toolbarHandler(args: ClickEventArgs): void {
@@ -325,5 +346,12 @@ export class LogisticsDetailComponent implements OnInit {
         if (this.editMode) {
             this.dialog.open(DeliveryDetailsComponent);
         }
+    }
+
+    isMaxed:boolean = true;
+    @ViewChild("parentModal") parentModal;
+    minimizeModal() {
+        console.log(`minimize ${this.isMaxed}`)
+        this.isMaxed = !this.isMaxed;
     }
 }

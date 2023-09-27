@@ -132,6 +132,7 @@ export class LogisticsGridComponent implements OnInit {
                 this.dialogService.open(LogisticsDetailComponent, {
                     closeOnEsc: false,
                     closeOnBackdropClick: false,
+                    hasBackdrop:false,
                     context: {}
                 });
             }, error: error => {

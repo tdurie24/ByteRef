@@ -1,3 +1,5 @@
+import {OrderItem} from "./order.item";
+
 export interface OrderResponse {
     id?: string
     order?: OrderDetails
@@ -26,6 +28,7 @@ export interface OrderDetails {
     subTotal?: number
     taxTotal?: number
     shippingTotal?: number
+    deliveryTotal?: number
     oneId?: any
     orderItems?: OrderItem[]
 }
@@ -55,16 +58,3 @@ export interface DeliveryLocation {
     dateModified?: string
 }
 
-export interface OrderItem {
-    lineItemId?: string
-    fulfillableQuantity?: number
-    fulfillableService?: string
-    fulfillableStatus?: any
-    grams?: number
-    productTitle?: string
-    productPrice?: string
-    quantity?: number
-    requiresShipping?: boolean
-    sku?: string
-    isPacked?: any
-}

@@ -1,18 +1,9 @@
 <nb-card style="width: 40vw!important;">
-    <nb-card-header>Order Collection Details</nb-card-header>
+    <nb-card-header>Order Collection</nb-card-header>
     <nb-card-body>
 
         <div class="row">
-            <div class="col-6">
-                <div class="form-check">
-                    <input (change)="collectionTypeChanged('collection')"
-                           class="form-check-input" type="radio"
-                           name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Collection
-                    </label>
-                </div>
-            </div>
+
             <div class="col-6">
                 <div class="form-check">
                     <input (change)="collectionTypeChanged('delivery')"
@@ -24,11 +15,23 @@
                     </label>
                 </div>
             </div>
+
+            <div class="col-6">
+                <div class="form-check">
+                    <input (change)="collectionTypeChanged('collection')"
+                           class="form-check-input" type="radio"
+
+                           name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Collection
+                    </label>
+                </div>
+            </div>
+
         </div>
 
 
         <div *ngIf="isCollection">
-
             <div class="">
                 <small class="control-label required"><b>Collection By</b></small>
                 <input type="text"
@@ -38,22 +41,9 @@
                        name="collectedBy"
                        class="form-control"/>
             </div>
-
-            <div class="">
-                <small class="control-label required"><b>Collection Date</b></small>
-                <input type="date"
-                       [(ngModel)]="collectionDate"
-                       placeholder=""
-                       maxlength="30"
-                       name="collectionDate"
-                       class="form-control"/>
-
-            </div>
-
         </div>
 
         <div *ngIf="!isCollection">
-
             <div class="">
                 <small class="control-label required"><b>Delivery Company</b></small>
                 <select name="deliveryCompany"
@@ -64,28 +54,7 @@
                         {{companyModel.distrubitionCompany}}
                     </option>
                 </select>
-                <!--                <ejs-dropdownlist id='xd'-->
-                <!--                                  [value]="'id'"-->
-                <!--                                  [dataSource]='deliveryCompanies'-->
-                <!--                                  placeholder='Select a delivery company for this order'-->
-                <!--                                  popupHeight='200px'-->
-                <!--                                  [fields]="deliveryCompanyDropDownFields"-->
-                <!--                                  [(ngModel)]="selectedDeliveryCompany"-->
-                <!--                                  popupWidth='250px'></ejs-dropdownlist>-->
             </div>
-
-
-        </div>
-
-        <div class="">
-            <small class="control-label required"><b>Updated By</b></small>
-            <input type="text"
-                   [(ngModel)]="updatedBy"
-                   placeholder=""
-                   disabled
-                   name="updatedBy"
-                   maxlength="30"
-                   class="form-control"/>
         </div>
 
 

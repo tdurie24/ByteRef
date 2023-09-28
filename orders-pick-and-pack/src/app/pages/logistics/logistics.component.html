@@ -21,9 +21,7 @@
     <nb-card>
         <nb-card-body>
             <nb-tabset>
-                <nb-tab tabTitle="All Orders">
-                    <logistics-grid [data]="allOrders"></logistics-grid>
-                </nb-tab>
+
 
                 <nb-tab tabTitle="New Orders">
                     <logistics-grid [data]="newOrders"></logistics-grid>
@@ -39,6 +37,10 @@
 
                 <nb-tab tabTitle="Collected">
                     <logistics-grid [data]="collectedOrders"></logistics-grid>
+                </nb-tab>
+
+                <nb-tab tabTitle="All Orders">
+                    <logistics-grid [data]="allOrders"></logistics-grid>
                 </nb-tab>
 
             </nb-tabset>

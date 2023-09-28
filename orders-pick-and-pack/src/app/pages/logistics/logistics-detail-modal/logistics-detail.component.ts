@@ -16,10 +16,11 @@ import {ToastService} from "../../../@core/services/toast.service";
 import {DistributionCompanyModel} from "../../../@core/models/distribution.company.model";
 import {DistributionCompaniesService} from "../../../@core/services/distribution.companies.service";
 import {CollectionDetailsComponent} from "./collection-details/collection-details.component";
-import {OrderItem, OrderResponse} from "../../../@core/models/order.details.model";
+import {OrderResponse} from "../../../@core/models/order.details.model";
 import {FullfilmentDetailsComponent} from "./fullfilment-details/fullfilment-details.component";
 import {DeliveryDetailsComponent} from "./delivery-details/delivery-details.component";
 import {DropDownListComponent} from "@syncfusion/ej2-angular-dropdowns";
+import {DatePipe} from "@angular/common";
 
 @Component({
     selector: 'logistics-detail-modal',
@@ -29,9 +30,8 @@ import {DropDownListComponent} from "@syncfusion/ej2-angular-dropdowns";
 export class LogisticsDetailComponent implements OnInit {
     // public logisticsDetailForm: FormGroup;
 
-    private _destroy$: Subject<void> = new Subject<void>();
-    editMode: boolean = false;
 
+    editMode: boolean = true;
     formValidators = [Validators.required,];
     logisticsDetailForm: FormGroup = new FormGroup({});
     dialogTitle: string = "View";
@@ -49,59 +49,22 @@ export class LogisticsDetailComponent implements OnInit {
         }
     }
 
-    toolbarOptions: object;
-    filterSettings: Object;
-    pageSettings: Object = {pageSizes: true, pageSize: 10, currentPage: 1};
-
-    sortOptions = {
-        columns: [
-            {field: 'lineItemId', direction: 'Descending'},
-        ]
-    };
-
-    wrapSettings = {wrapMode: 'Content'};
-    listOfEventOptions = {
-        details: {
-            text: 'Details',
-            id: 'Details',
-        },
-        edit: {
-            text: 'Edit',
-            id: 'Edit',
-        },
-        add: {
-            text: 'Replace',
-            id: 'Replace',
-        },
-        remove: {
-            text: 'Remove',
-            id: 'Remove',
-        },
-
-    };
     dropDownFields: Object = {text: 'statusDisplay', value: 'id'}
     deliveryCompanyDropDownFields: Object = {text: 'distrubitionCompany', value: 'distributionReferenceNumber'}
     logisticsStatuses: LogisticsStatus[] = [];
     deliveryOptionDropDownData: DistributionCompanyModel[] = [];
 
-    filter_scope = {
-        created: "created",
-        active: "active",
-        inactive: "inactive",
-        all_events: "all_logistics",
-    };
 
-    _scope = this.filter_scope.active;
     public logisticsModel: OrderResponse;
     selectedDeliveryCompany: any = {};
 
     constructor(private formBuilder: FormBuilder,
-                private route: ActivatedRoute,
                 private dialog: NbDialogService,
                 private toastService: NbToastrService,
                 private nbDialogRef: NbDialogRef<LogisticsDetailComponent>,
                 private logisticStatusService: LogisticsStatusService,
                 private distributionService: DistributionCompaniesService,
+                private datePipe: DatePipe,
                 private orderService: LogisticsService) {
 
         this.orderService.currentSelectedOrderObservable.subscribe(
@@ -121,25 +84,16 @@ export class LogisticsDetailComponent implements OnInit {
 
     }
 
-    gridData: any[] = [];
+    ngOnInit(): void {
+        this.initializeForm();
+        this.initializeStatuses();
 
-    prepareItems() {
-        for (const order of this.logisticsModel?.order?.orderItems) {
-            console.log(order);
-            if (order.isPacked !== null) {
-                order.isPacked = "No";
-            } else if (order.isPacked === false) {
-                order.isPacked = "No";
-            } else {
-                order.isPacked = "Yes";
-            }
-            this.gridData.push(order);
-        }
+
     }
 
 
     initializeForm() {
-        this.prepareItems();
+
         this.logisticsDetailForm = this.formBuilder.group({
 
             OrderNumber: [{
@@ -174,6 +128,11 @@ export class LogisticsDetailComponent implements OnInit {
 
             taxTotal: [{
                 value: this.logisticsModel?.order?.taxTotal,
+                disabled: !this.editMode
+            }, [...this.formValidators]],
+
+            deliveryTotal: [{
+                value: this.logisticsModel?.order?.deliveryTotal,
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
@@ -224,7 +183,7 @@ export class LogisticsDetailComponent implements OnInit {
             }, [...this.formValidators]],
 
             DateCreated: [{
-                value: this.logisticsModel?.orderCreated,
+                value: this.datePipe.transform(this.logisticsModel?.orderCreated, "dd/MM/yyyy h:m"),
                 disabled: !this.editMode
             }, [...this.formValidators]],
 
@@ -250,36 +209,6 @@ export class LogisticsDetailComponent implements OnInit {
         })
     }
 
-    setScope() {
-        this.route.queryParams
-            .pipe(takeUntil(this._destroy$))
-            .subscribe((param: { event_filter: String }) => {
-                if (param.event_filter) {
-                    switch (param.event_filter) {
-                        case this.filter_scope.active:
-                            this._scope = this.filter_scope.active;
-                            // get active jobs
-                            break;
-                        default:
-                            this._scope = this.filter_scope.active;
-                            // get active jobs
-                            break;
-                    }
-                }
-            });
-    }
-
-    ngOnInit(): void {
-        this.initializeForm();
-        this.initializeStatuses();
-
-        this.toolbarOptions = [
-            {text: "Search", tooltipTetxt: "Search", id: "filter"},
-        ];
-
-        this.setScope();
-        this.filterSettings = {type: "Menu"};
-    }
 
     componentIsInvalid(control: string, formName: string): boolean {
         const forms = {
@@ -289,12 +218,6 @@ export class LogisticsDetailComponent implements OnInit {
         return (forms[formName].get(control).touched || forms[formName].get(control).dirty) && !forms[formName].get(control).valid
     }
 
-    eventOptionsHandler($event: any, data: any) {
-
-    }
-
-    @ViewChild('ddlelement')
-    public dropDownListObject?: DropDownListComponent;
 
     updateOrderStatus(statusId: any) {
         this.orderService.updateOrderStatus(this.logisticsModel.id, statusId)
@@ -306,12 +229,6 @@ export class LogisticsDetailComponent implements OnInit {
             });
     }
 
-    toolbarHandler(args: ClickEventArgs): void {
-        switch (args.item.id) {
-            case "add":
-                break;
-        }
-    }
 
     closeModal() {
         this.nbDialogRef.close();
@@ -329,7 +246,17 @@ export class LogisticsDetailComponent implements OnInit {
 
     addCollectionDetails() {
         if (this.editMode) {
-            this.dialog.open(CollectionDetailsComponent);
+            this.dialog.open(CollectionDetailsComponent, {
+                closeOnEsc: false, closeOnBackdropClick: false,
+            }).onClose.subscribe({
+                next: value => {
+                    if (value) {
+
+                        this.initializeForm();
+                        //this.initializeStatuses();
+                    }
+                }
+            })
         }
 
     }
@@ -348,8 +275,9 @@ export class LogisticsDetailComponent implements OnInit {
         }
     }
 
-    isMaxed:boolean = true;
+    isMaxed: boolean = true;
     @ViewChild("parentModal") parentModal;
+
     minimizeModal() {
         console.log(`minimize ${this.isMaxed}`)
         this.isMaxed = !this.isMaxed;

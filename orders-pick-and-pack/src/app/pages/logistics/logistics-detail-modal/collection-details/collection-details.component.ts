@@ -65,6 +65,7 @@ export class CollectionDetailsComponent implements OnInit {
                 createdDate: new Date().toDateString()
             };
             this.orderService.updateCollectionDetails(orderCollectionDto);
+            this.dialogRef.close(this.collectedBy);
         } else {
             let deliveryCompany: DistributionCompanyModel
                 = this.deliveryCompanies.find(d => d.distributionReferenceNumber == this.selectedDeliveryCompany)
@@ -72,9 +73,9 @@ export class CollectionDetailsComponent implements OnInit {
             if (deliveryCompany !== null) {
                 this.orderService.updateDeliveryDetails(deliveryCompany);
             }
-
+            this.dialogRef.close(this.selectedDeliveryCompany);
         }
-        this.dialogRef.close();
+
 
     }
 

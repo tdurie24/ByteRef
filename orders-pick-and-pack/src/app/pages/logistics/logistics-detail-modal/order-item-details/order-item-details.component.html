@@ -1,0 +1,134 @@
+<!--nb-dialog-container-->
+<form [formGroup]="orderItemsDetailsForm"
+      (ngSubmit)="submitChanges()"
+      id="logisticsDetailForm" novalidate>
+    <nb-card style="width: 45vw">
+
+        <nb-card-header>
+            <div class="float-left">
+                <h6>Item Details</h6>
+            </div>
+
+            <div class="float-right">
+                <span class="fa fa-close modal-header-icon" (click)="closeModal()"></span>
+            </div>
+
+        </nb-card-header>
+
+        <nb-card-body>
+
+
+<!--
+
+
+
+
+    requiresShipping?: boolean,
+
+    isPacked?: any
+-->
+            <div class="form-row">
+
+                <div class="form-group col-md-12">
+                    <label>Product Title</label>
+                    <input class="form-control"
+                           disabled
+                           formControlName="productTitle"
+                           placeholder="Product Title">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Product Price</label>
+                    <input class="form-control"
+                           disabled
+                           formControlName="productPrice"
+                           placeholder="Product Price">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Product quantity</label>
+                    <input class="form-control"
+                           disabled
+                           formControlName="quantity"
+                           placeholder="Quantity">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Product grams</label>
+                    <input class="form-control"
+                           disabled
+                           formControlName="grams"
+                           placeholder="grams">
+                </div>
+
+
+
+                <div class="form-group col-md-12">
+                    <label>Line Item Id</label>
+                    <input class="form-control"
+                           disabled
+                           formControlName="lineItemId"
+                           placeholder="Line Item Id">
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label>Product sku</label>
+                    <input class="form-control"
+                           disabled
+                           formControlName="sku"
+                           placeholder="sku">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Fulfillable Quantity</label>
+                    <input class="form-control"
+                           disabled
+                           formControlName="fulfillableQuantity"
+                           placeholder="Fulfillable Quantity">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Fulfillable Service</label>
+                    <input class="form-control"
+                           disabled
+                           formControlName="fulfillableService"
+                           placeholder="Fulfillable Service">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Fulfillable Status</label>
+                    <input class="form-control"
+                           disabled
+                           formControlName="fulfillableStatus"
+                           placeholder="Fulfillable Status">
+                </div>
+
+                hr
+                requires shipping
+                <br>
+                hr
+                Is packed?
+
+
+            </div>
+        </nb-card-body>
+
+        <nb-card-footer>
+            <div class='row mt-2'>
+                <div class="col-md-12">
+                    <hr>
+                    <div class="float-right">
+                        <button type="submit" style='margin-left: 10px !important' size="small"
+                                nbButton
+                                status="basic">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nb-card-footer>
+
+    </nb-card>
+</form>
+
+
+

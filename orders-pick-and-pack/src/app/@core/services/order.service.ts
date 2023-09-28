@@ -17,12 +17,14 @@ import {OrderDetails, OrderResponse} from "../models/order.details.model";
 })
 export class LogisticsService {
 
-
     private currentLogisticsSource: BehaviorSubject<LogisticsModel[] | null> = new BehaviorSubject<LogisticsModel[] | null>(null);
     currentLogisticsObservable = this.currentLogisticsSource.asObservable();
 
     private currentSelectedLogisticModel: BehaviorSubject<OrderResponse | null> = new BehaviorSubject<LogisticsModel | null>(null);
     currentSelectedOrderObservable: Observable<OrderResponse> = this.currentSelectedLogisticModel.asObservable();
+
+    private currentSelectedOrderItem: BehaviorSubject<OrderItem | null> = new BehaviorSubject<OrderItem | null>(null);
+    currentSelectedOrderItemObservable: Observable<OrderItem> = this.currentSelectedOrderItem.asObservable();
 
     logisticsFromApi: LogisticsModel[] = [];
     logisticsBaseUrl: string = environment.api_logistics_base_url + "logistics/"
@@ -35,6 +37,11 @@ export class LogisticsService {
         this.currentSelectedLogisticModel.next(logisticModel);
     }
 
+    setSelectedOrderItem(item: OrderItem) {
+        this.currentSelectedOrderItem.next(item);
+    }
+
+
     getLogistics() {
         this.httpClient.get<LogisticsModel[]>(this.logisticsBaseUrl).subscribe({
             next: response => {
@@ -46,7 +53,8 @@ export class LogisticsService {
     }
 
     getOrderDetails(orderNumber: string): Observable<OrderResponse> {
-        return this.httpClient.get<OrderResponse>(this.logisticsBaseUrl + `${orderNumber}`)
+         return this.httpClient.get<OrderResponse>(this.logisticsBaseUrl + `${orderNumber}`);
+        //return this.httpClient.get<OrderResponse>(environment.api_logistics_base_url + `${orderNumber}`);
     }
 
     updateLogistic(logisticsModel: LogisticsModel) {

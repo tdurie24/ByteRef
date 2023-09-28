@@ -28,17 +28,16 @@ import {DatePipe} from "@angular/common";
 })
 export class LogisticsComponent implements OnInit {
 
-    constructor(
-        private datePipe: DatePipe,
-        private orderService: LogisticsService,
-        private logisticStatusService: LogisticsStatusService) {
-    }
-
     newOrders: LogisticsListingDTO[] = [];
     allOrders: LogisticsListingDTO[] = [];
     processingOrders: LogisticsListingDTO[] = [];
     readyForCollection: LogisticsListingDTO[] = [];
     collectedOrders: LogisticsListingDTO[] = [];
+    constructor(
+        private datePipe: DatePipe,
+        private orderService: LogisticsService,
+        private logisticStatusService: LogisticsStatusService) {
+    }
 
     public ngOnInit(): void {
 

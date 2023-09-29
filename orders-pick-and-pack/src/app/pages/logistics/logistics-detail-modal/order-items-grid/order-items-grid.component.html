@@ -1,0 +1,68 @@
+<ejs-grid
+        style="position: unset!important; "
+        #eventGrid id="Grid"
+        [dataSource]="gridData"
+        height="300"
+        allowPaging="true"
+        allowFiltering="true"
+        allowSorting="true"
+        allowTextWrap="true"
+        (toolbarClick)="toolbarHandler($event)"
+        [textWrapSettings]="wrapSettings"
+        [toolbar]="toolbarOptions"
+        [filterSettings]="filterSettings"
+        [pageSettings]="pageSettings"
+        [allowResizing]="true"
+        [allowExcelExport]="true"
+        [allowPdfExport]="true"
+        [sortSettings]="sortOptions">
+
+
+    <e-columns>
+
+        <e-column field="lineItemId" headerText="Line Id"
+                  minWidth="100" width="180"
+                  maxWidth="360">
+        </e-column>
+
+        <e-column field="productTitle" headerText="Item Title"
+                  minWidth="100" width="180"
+                  maxWidth="360">
+        </e-column>
+
+
+        <e-column field="productPrice" headerText="Product Price"
+                  minWidth="100" width="180"
+                  maxWidth="360">
+        </e-column>
+
+        <e-column field="sku" headerText="Item SKU" textAlign="Left"
+                  minWidth="100" width="180"
+                  maxWidth="360">
+        </e-column>
+
+        <e-column field="quantity" headerText="Item Quantity"
+                  minWidth="100" width="180"
+                  maxWidth="360">
+        </e-column>
+
+        <e-column field="isPacked" headerText="Packed"
+                  minWidth="100" width="180"
+                  maxWidth="360">
+        </e-column>
+
+
+        <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
+            <ng-template class="actions-container" #manageView let-data>
+                <ng-container>
+                    <button id="manage-actions" ejs-dropdownbutton
+                            [items]="[ listOfEventOptions.edit ]"
+                            content="MANAGE / VIEW"
+                            (select)="eventOptionsHandler($event, data)"></button>
+                </ng-container>
+
+            </ng-template>
+        </e-column>
+
+    </e-columns>
+</ejs-grid>

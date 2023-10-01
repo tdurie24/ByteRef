@@ -20,6 +20,7 @@ import {LogisticsDetailComponent} from "./logistics-detail-modal/logistics-detai
 import {LogisticsStatusService} from "../../@core/services/logistics.status.service";
 import {DistributionCompaniesService} from "../../@core/services/distribution.companies.service";
 import {DatePipe} from "@angular/common";
+import {LogisticStatuses} from "../../@core/enums/logistic.statuses";
 
 @Component({
     selector: 'logistics',
@@ -33,6 +34,7 @@ export class LogisticsComponent implements OnInit {
     processingOrders: LogisticsListingDTO[] = [];
     readyForCollection: LogisticsListingDTO[] = [];
     collectedOrders: LogisticsListingDTO[] = [];
+
     constructor(
         private datePipe: DatePipe,
         private orderService: LogisticsService,
@@ -62,19 +64,24 @@ export class LogisticsComponent implements OnInit {
                     this.allOrders.push(logisticsListingDTO);
 
                     //new orders
-                    if (logisticsListingDTO?.LogisticsStatus === this.logisticStatusService?.LOGISTIC_STATUS_NULL || logisticsListingDTO?.LogisticsStatus === this.logisticStatusService?.LOGISTIC_STATUS_RECEIVED) {
+                    if (logisticsListingDTO?.LogisticsStatus === ""
+                        || logisticsListingDTO?.LogisticsStatus === null
+                        || logisticsListingDTO?.LogisticsStatus.includes("Received")) {
                         this.newOrders.push(logisticsListingDTO);
                     }
                     //collected
-                    else if (logisticsListingDTO?.LogisticsStatus === this.logisticStatusService?.LOGISTIC_STATUS_COLLECTED) {
+                    else if (logisticsListingDTO?.LogisticsStatus === LogisticStatuses.ClientCollected
+                        || logisticsListingDTO?.LogisticsStatus === LogisticStatuses.OrderCollected
+                        || logisticsListingDTO?.LogisticsStatus === LogisticStatuses.CourierCollected) {
                         this.collectedOrders.push(logisticsListingDTO);
                     }
                     //ready for collection.
-                    else if (logisticsListingDTO?.LogisticsStatus === this.logisticStatusService?.LOGISTIC_STATUS_READY_FOR_COLLECTION) {
+                    else if (logisticsListingDTO?.LogisticsStatus === LogisticStatuses.OrderReadyForCollection) {
                         this.readyForCollection.push(logisticsListingDTO);
                     }
                     //processing logistics
-                    else if(logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_NULL || logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_RECEIVED) {
+                    else {
+                        //if (logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_NULL || logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_RECEIVED) {
                         this.processingOrders.push(logisticsListingDTO);
                     }
 
@@ -85,8 +92,8 @@ export class LogisticsComponent implements OnInit {
 
     }
 
-    formatDate(date:string|Date): string{
-       return  this.datePipe.transform(date,"dd/MM/yyyy HH:mm");
+    formatDate(date: string | Date): string {
+        return this.datePipe.transform(date, "dd/MM/yyyy HH:mm");
     }
 
 }

@@ -1,0 +1,21 @@
+export enum LogisticStatuses {
+    OrderReceived="Order Received",
+    ReceivedPendingAccountPayment="Received Pending Account Payment",
+    Account_Request_Payment ="Account Request Payment",
+    AccountPaymentCompleted="Account Payment Completed",
+    OptimalLocationVerified="Optimal Location Verified",
+    AgrinetOrderReceived="Agrinet Order Received",
+    PendingPickupLocationSelection="Pending Pickup Location Selection",
+    PickupLocationSelected="Pickup Location Selected",
+    OrderReadyForPackaging="Order Ready For Packaging",
+    OrderInProcessed="Order in Processed",
+    OrderReadyForCollection="Order Ready for Collection",
+    OrderCollected="Order Collected",
+    AccountPaidPendingShopifyUpdate="Account Paid Pending Shopify Update",
+    PendingSAPPayment="Pending SAP Payment",
+    PackagingInProgress="Packaging In Progress",
+    ClientCollected ="Client Collected",
+    CourierCollected="Courier Collected",
+    AwaitingCourier="Awaiting Courier",
+    AwaitingClient="Awaiting Client"
+}

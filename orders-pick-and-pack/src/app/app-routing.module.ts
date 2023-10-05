@@ -2,8 +2,7 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 
-export const routes: Routes = [
-  {
+export const routes: Routes = [{
     path: 'pages',
     loadChildren: () =>
       import('./pages/pages.module').then((m) => m.PagesModule),

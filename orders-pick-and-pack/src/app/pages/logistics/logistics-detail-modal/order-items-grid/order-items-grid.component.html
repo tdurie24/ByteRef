@@ -52,17 +52,7 @@
         </e-column>
 
 
-        <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
-            <ng-template class="actions-container" #manageView let-data>
-                <ng-container>
-                    <button id="manage-actions" ejs-dropdownbutton
-                            [items]="[ listOfEventOptions.edit ]"
-                            content="MANAGE / VIEW"
-                            (select)="eventOptionsHandler($event, data)"></button>
-                </ng-container>
-
-            </ng-template>
-        </e-column>
+       
 
     </e-columns>
 </ejs-grid>

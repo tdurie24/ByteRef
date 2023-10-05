@@ -81,7 +81,6 @@ export class LogisticsComponent implements OnInit {
                     }
                     //processing logistics
                     else {
-                        //if (logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_NULL || logisticsListingDTO?.LogisticsStatus !== this.logisticStatusService?.LOGISTIC_STATUS_RECEIVED) {
                         this.processingOrders.push(logisticsListingDTO);
                     }
 

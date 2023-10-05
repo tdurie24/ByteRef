@@ -8,7 +8,6 @@ import {ActivatedRoute, Router} from "@angular/router";
     styleUrls: ['./logistic-details-full.component.scss']
 })
 export class LogisticDetailsFullComponent implements OnInit {
-
     constructor(private activatedRoute: ActivatedRoute,
                 private router: Router) {
     }

@@ -7,7 +7,6 @@ import {NbDialogRef} from "@nebular/theme";
   styleUrls: ['./fullfilment-details.component.scss']
 })
 export class FullfilmentDetailsComponent implements OnInit {
-
   constructor(
       private dialogRef: NbDialogRef<FullfilmentDetailsComponent>
   ) { }

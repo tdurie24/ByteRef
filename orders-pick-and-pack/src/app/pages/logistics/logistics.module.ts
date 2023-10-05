@@ -10,7 +10,6 @@ import { LogisticsDetailComponent } from './logistics-detail-modal/logistics-det
 import {DialogAllModule} from "@syncfusion/ej2-angular-popups";
 import { ScanItemComponent } from './scan.item/scan.item.component';
 import { LogisticDetailsFullComponent } from './logistic-details-full/logistic-details-full.component';
-//import {ReusableOrdersGridComponent} from "./reusable-orders-grid/reusable-orders-grid.component";
 import {AppModule} from "../../app.module";
 import {LogisticsGridComponent} from "../../components/components/logistics-grid/logistics-grid.component";
 import { CollectionDetailsComponent } from './logistics-detail-modal/collection-details/collection-details.component';
@@ -30,7 +29,6 @@ import { OrderItemDetailsComponent } from './logistics-detail-modal/order-item-d
       FullfilmentDetailsComponent,
       OrderItemsGridComponent,
       OrderItemDetailsComponent,
-     // LogisticDetailsFullComponent
   ],
     imports: [
         CommonModule,
@@ -43,8 +41,6 @@ import { OrderItemDetailsComponent } from './logistics-detail-modal/order-item-d
         FormsModule,
         NbTableModule,
         NbLayoutModule,
-        //AppModule,
-        //AppModule,
     ]
 })
 export class LogisticsModule { }

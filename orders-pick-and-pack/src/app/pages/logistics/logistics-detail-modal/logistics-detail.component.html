@@ -56,11 +56,7 @@
                 <small *ngIf="logisticsDetailForm?.get('CollectionId').hasError('required')">Collection Info is required</small></span>
                         </div>
                         <div class="col-1">
-                            <button type="button"
-                                    (click)="addCollectionDetails()"
-                                    style='margin-left: 10px !important' size="small"
-                                    nbButton status="basic">Edit
-                            </button>
+                         
                         </div>
                     </div>
 
@@ -154,21 +150,7 @@
 
         </nb-card-body>
 
-        <nb-card-footer>
-            <div class='row mt-2'>
-                <div class="col-md-12">
-                    <hr>
-                    <div class="float-right">
-                        <button type="submit" *ngIf="editMode" style='margin-left: 10px !important' size="small"
-                                nbButton
-                                status="basic">
-                            Submit Changes
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </nb-card-footer>
-
+    
     </nb-card>
 </form>
 

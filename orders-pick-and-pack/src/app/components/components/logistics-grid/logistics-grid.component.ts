@@ -53,7 +53,7 @@ export class LogisticsGridComponent implements OnInit {
             },
 
             delete: {
-                text: 'Delete',
+                text: 'Download Pick and Pack Slip',
                 id: 'Delete',
             }
         };

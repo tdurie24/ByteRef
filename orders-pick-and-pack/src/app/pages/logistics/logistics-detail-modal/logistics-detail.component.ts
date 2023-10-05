@@ -67,16 +67,14 @@ export class LogisticsDetailComponent implements OnInit {
                 private datePipe: DatePipe,
                 private orderService: LogisticsService) {
 
-        this.orderService.currentSelectedOrderObservable.subscribe(
-            {
+        this.orderService.currentSelectedOrderObservable.subscribe({
                 next: logisticModel => {
                     this.logisticsModel = logisticModel;
                 }
             }
         );
 
-        this.distributionService.distributionSourceObservable.subscribe(
-            {
+        this.distributionService.distributionSourceObservable.subscribe({
                 next: data => {
                     this.deliveryOptionDropDownData = data;
                 }

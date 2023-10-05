@@ -8,12 +8,6 @@ import { GeneralService } from 'app/@core/services/general.service';
 @Component({
   selector: 'ngx-pages',
   styleUrls: ['pages.component.scss'],
-  // template: `
-  //   <ngx-one-column-layout>
-  //     <nb-menu [items]="menu"></nb-menu>
-  //     <router-outlet></router-outlet>
-  //   </ngx-one-column-layout>
-  // `,
   template: `
   <ngx-one-column-layout>
   <nb-menu [items]="menu"></nb-menu>
@@ -36,9 +30,6 @@ export class PagesComponent implements OnDestroy {
     this._destroy$.next();
     this._destroy$.complete();
   }
-
-
-
 }
 
 

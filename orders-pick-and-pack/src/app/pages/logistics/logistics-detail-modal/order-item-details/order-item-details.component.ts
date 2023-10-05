@@ -27,7 +27,6 @@ export class OrderItemDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
         this.initForm();
     }
 
@@ -44,7 +43,6 @@ export class OrderItemDetailsComponent implements OnInit {
             requiresShipping: [{value: this.selectedOrderItem?.requiresShipping, disabled: true}, [...this.formValidators]],
             sku: [{value: this.selectedOrderItem?.sku, disabled: true}, [...this.formValidators]],
             orderId: [{value: this.selectedOrderItem?.orderId, disabled: true}, [...this.formValidators]],
-           // id: [{value: this.selectedOrderItem?.id, disabled: true}, [...this.formValidators]],
             isPacked: [{value: this.selectedOrderItem?.isPacked, disabled: true}, [...this.formValidators]],
         });
     }

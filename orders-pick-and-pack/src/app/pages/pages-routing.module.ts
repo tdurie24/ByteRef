@@ -6,13 +6,11 @@ import {AuthGuard} from 'app/@core/guards/auth.guard';
 import {APP_BASE_HREF} from '@angular/common';
 import {LogisticDetailsFullComponent} from "./logistics/logistic-details-full/logistic-details-full.component";
 
-const routes: Routes = [
-    {
+const routes: Routes = [{
         path: '',
         canActivate: [AuthGuard],
         component: PagesComponent,
-        children: [
-            {
+        children: [{
                 path: 'logistics',
                 loadChildren: () => import('./logistics/logistics.module').then(m => m.LogisticsModule),
             },
@@ -29,8 +27,6 @@ const routes: Routes = [
                 pathMatch: 'full',
                 component: LogisticDetailsFullComponent,
             }
-
-
         ],
     },
 ];

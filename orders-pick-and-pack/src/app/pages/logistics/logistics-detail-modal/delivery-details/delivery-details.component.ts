@@ -7,7 +7,6 @@ import {NbDialogRef} from "@nebular/theme";
     styleUrls: ['./delivery-details.component.scss']
 })
 export class DeliveryDetailsComponent implements OnInit {
-
     constructor(
         private dialogRef: NbDialogRef<DeliveryDetailsComponent>
     ) {

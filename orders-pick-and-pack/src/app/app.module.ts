@@ -31,12 +31,9 @@ import {JwtTokenInterceptor} from "./@core/interceptors/jwt.token.interceptor";
 import {HttpErrorsInterceptor} from "./@core/interceptors/http.errors.interceptor";
 import {NotFoundComponent} from "./pages/errors/not-found/not-found.component";
 import {ServerErrorComponent} from "./pages/errors/server-error/server-error.component";
-//import { OrdersGridReusableComponent } from './components/components/orders-grid-reusable/orders-grid-reusable.component';
 import {DropDownButtonModule} from "@syncfusion/ej2-angular-splitbuttons";
 import {GridModule} from "@syncfusion/ej2-angular-grids";
 import {LogisticsGridComponent} from './components/components/logistics-grid/logistics-grid.component';
-
-//import { ReusableOrdersGridComponent } from './pages/logistics/reusable-orders-grid/reusable-orders-grid.component';
 
 
 export function tokenGetter(request) {

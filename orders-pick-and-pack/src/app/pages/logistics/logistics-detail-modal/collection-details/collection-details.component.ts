@@ -13,11 +13,9 @@ import {DistributionCompanyModel} from "../../../../@core/models/distribution.co
     styleUrls: ['./collection-details.component.scss']
 })
 export class CollectionDetailsComponent implements OnInit {
-
     isCollection: boolean = false;
     collectionDetails: any = {};
     selectedDeliveryCompany: any = '';
-    //collectionDetailForm: FormGroup = new FormGroup({});
     deliveryCompanies: DistributionCompanyModel[] = [];
     deliveryCompanyDropDownFields: Object = {text: 'distrubitionCompany', value: 'distributionReferenceNumber'}
     collectedBy: string = '';
@@ -30,7 +28,6 @@ export class CollectionDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
         this.orderService.currentSelectedOrderObservable.subscribe({
             next: logisticModel => {
                 this.collectionDetails = logisticModel.orderCollection;
@@ -46,10 +43,8 @@ export class CollectionDetailsComponent implements OnInit {
 
     componentIsInvalid(control: string, formName: string): boolean {
         const forms = {
-            //'collectionDetailsForm': this.collectionDetailForm
         }
         return false;
-        // return (forms[formName].get(control).touched || forms[formName].get(control).dirty) && !forms[formName].get(control).valid
     }
 
     submitChanges() {
@@ -93,6 +88,5 @@ export class CollectionDetailsComponent implements OnInit {
 
     setSelectedCompany(event: any) {
         console.log(event);
-        // this.selectedDeliveryCompany = {};
     }
 }

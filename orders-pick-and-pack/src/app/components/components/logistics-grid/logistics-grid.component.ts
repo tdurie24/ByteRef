@@ -126,18 +126,18 @@ export class LogisticsGridComponent implements OnInit {
     }
 
     public onOpenEditLogisticDialog(order: any): void {
-        this.orderService.getOrderDetails(order?.OrderNumber).subscribe({
+        this.orderService.getOrderDetails(order?.orderNumber).subscribe({
             next: order => {
                 this.orderService.setSelectedOrder(order)
                 this.dialogService.open(LogisticsDetailComponent, {
                     closeOnEsc: false,
                     closeOnBackdropClick: false,
-                    hasBackdrop:false,
+                    hasBackdrop: false,
                     context: {}
                 });
             }, error: error => {
-                //this is not needed really -- errors are thrown by nature.
-                console.log(error);
+                //this is not needed really -- errors are thrown by that service umm that interceptor
+                //console.log(error);
             }
         });
     }

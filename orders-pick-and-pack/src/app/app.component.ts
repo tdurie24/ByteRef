@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
         const isAuthenticated = from(this._authService.authenticateToken(appId));
         this._authService.authenticateToken(appId);
         //authenticate the app to access swagger endpoints using the token hardcoded in environment variables.
-        this.accountService.demoLogin();
+        this.accountService.getDecodedAccessToken();
         this.logisticStatusService.getLogisticStatuses();
         this.orderService.getLogistics();
         this.distributionService.getDistributionCompanies();

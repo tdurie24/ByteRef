@@ -70,15 +70,16 @@ export class LogisticsDetailComponent implements OnInit {
         this.orderService.currentSelectedOrderObservable.subscribe({
                 next: logisticModel => {
                     this.logisticsModel = logisticModel;
+                    console.log(logisticModel);
                 }
             }
         );
 
         this.distributionService.distributionSourceObservable.subscribe({
-                next: data => {
-                    this.deliveryOptionDropDownData = data;
-                }
-            });
+            next: data => {
+                this.deliveryOptionDropDownData = data;
+            }
+        });
 
     }
 
@@ -91,111 +92,75 @@ export class LogisticsDetailComponent implements OnInit {
 
 
     initializeForm() {
-
+// console.log(his.logisticsModel?.order?.orderStatus?.statusId)
         this.logisticsDetailForm = this.formBuilder.group({
 
             OrderNumber: [{
                 value: this.logisticsModel?.order?.orderNumber,
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
-            paymentGateway: [{
-                value: this.logisticsModel?.order?.paymentGateway,
-                disabled: !this.editMode
-            }, [...this.formValidators]],
-
-            deliveryLocation: [{
-                value: this.logisticsModel?.order?.deliveryLocation?.address1,
-                disabled: !this.editMode
-            }, [...this.formValidators]],
 
             shippingTotal: [{
                 value: this.logisticsModel?.order?.shippingTotal,
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
             subTotal: [{
                 value: this.logisticsModel?.order?.subTotal,
-                disabled: !this.editMode
+                disabled:true
             }, [...this.formValidators]],
 
-            oneId: [{
-                value: this.logisticsModel?.order?.oneId,
-                disabled: !this.editMode
-            }, [...this.formValidators]],
 
             taxTotal: [{
                 value: this.logisticsModel?.order?.taxTotal,
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
             deliveryTotal: [{
                 value: this.logisticsModel?.order?.deliveryTotal,
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
-            customer: [{
-                value: this.logisticsModel?.order?.customer,
-                disabled: !this.editMode
-            }, [...this.formValidators]],
-
-            fulfillmentLocation: [{
-                value: this.logisticsModel?.order?.fulfillmentLocation,
-                disabled: !this.editMode
-            }, [...this.formValidators]],
-
-            deliveryOption: [{
-                value: this.logisticsModel?.order?.deliveryOption,
-                disabled: !this.editMode
-            }, [...this.formValidators]],
-
-            financialStatus: [{
-                value: this.logisticsModel?.order?.financialStatus,
-                disabled: !this.editMode
-            }, [...this.formValidators]],
-
-            orderDate: [{
-                value: this.logisticsModel?.order?.orderDate,
-                disabled: !this.editMode
-            }, [...this.formValidators]],
-
-            Id: [{value: this.logisticsModel?.id, disabled: !this.editMode}, [...this.formValidators]],
-            LogisticsStatusId: [{
+            logisticsStatusId: [{
                 value: this.logisticsModel?.order?.orderStatus?.statusId,
-                disabled: !this.editMode
+                disabled: false
             }, [...this.formValidators]],
 
             DistributionId: [{
                 value: this.logisticsModel?.order.deliveryOption,
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
             CollectionId: [{
                 value: this.logisticsModel?.order?.customer,
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
             UpdateBy: [{
                 value: this.logisticsModel?.updatedBy,
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
             DateCreated: [{
                 value: this.datePipe.transform(this.logisticsModel?.orderCreated, "dd/MM/yyyy h:m"),
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
             TotalItems: [{
                 value: this.logisticsModel?.order?.total,
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
             UpdateDate: [{
                 value: this.logisticsModel?.updatedDate,
-                disabled: !this.editMode
+                disabled: true
             }, [...this.formValidators]],
 
         });
+
+        console.log(this.logisticsDetailForm.value);
+        console.log(this.logisticsModel?.order?.orderStatus?.statusId);
     }
 
     initializeStatuses() {

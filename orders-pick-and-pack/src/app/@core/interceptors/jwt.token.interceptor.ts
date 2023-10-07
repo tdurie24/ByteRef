@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 
 import {take} from "rxjs/operators";
 import {AccountService} from "../services/account.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor {
@@ -17,15 +18,15 @@ export class JwtTokenInterceptor implements HttpInterceptor {
   constructor(private accountService:AccountService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    this.accountService.currentLoginResponseModel$.pipe(take(1)).subscribe({
-      next: userResponseModel  =>{
-        if(userResponseModel){
-          request = request.clone({
-            setHeaders:{
-              Authorization: `Bearer ${userResponseModel.token}`
-            }
-          });
-        }
+
+    let tokenString = localStorage.getItem('token');
+    if (!tokenString) {
+      tokenString = environment.demoToken;
+    }
+
+    request = request.clone({
+      setHeaders:{
+        Authorization: `Bearer ${tokenString}`
       }
     });
 

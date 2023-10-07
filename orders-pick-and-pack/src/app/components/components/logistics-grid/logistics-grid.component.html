@@ -16,23 +16,23 @@
           [allowPdfExport]="true"
           [sortSettings]="sortOptions">
     <e-columns>
-        <e-column field="OrderNumber" headerText="Order Number" textAlign="Left" minWidth="80"
+        <e-column field="orderNumber" headerText="Order Number" textAlign="Left" minWidth="80"
                   width="160" maxWidth="250"></e-column>
 
-        <e-column field="LogisticsStatus" headerText="Order Status" textAlign="Left" minWidth="100"
+        <e-column field="orderStatusName" headerText="Order Status" textAlign="Left" minWidth="100"
                   width="180" maxWidth="300"></e-column>
 
 <!--        <e-column field="DistributionCompany" headerText="Distribution Company" textAlign="Left"-->
 <!--                  minWidth="100"-->
 <!--                  width="180" maxWidth="300"></e-column>-->
 
-        <e-column field="TotalItems" headerText="Total Items" textAlign="Left" minWidth="100"
+        <e-column field="totalItems" headerText="Total Items" textAlign="Left" minWidth="100"
                   width="180" maxWidth="300"></e-column>
 
-        <e-column field="UpdateDate" headerText="Date Updated" textAlign="Left" format="yMd"
+        <e-column field="updateDate" headerText="Date Updated" textAlign="Left" format="yMd"
                   minWidth="100" width="180" maxWidth="360"></e-column>
 
-        <e-column field="CreatedDate" headerText="Date Created" textAlign="Left" format="yMd"
+        <e-column field="createdDate" headerText="Date Created" textAlign="Left" format="yMd"
                   minWidth="100" width="180" maxWidth="360"></e-column>
 
         <e-column [template]="manageView" headerText="" width="220" allowFiltering="false">
@@ -41,7 +41,7 @@
                 <ng-container>
                     <button id="manage-actions-normal" ejs-dropdownbutton
                             [items]="[ listOfEventOptions.edit,  listOfEventOptions.delete ]"
-                            content="MANAGE / VIEW"
+                            content="MANAGE"
                             (select)="eventOptionsHandler($event, data)"></button>
                 </ng-container>
 
@@ -52,13 +52,13 @@
                         <button id="manage-actions-active"
                                 *ngIf="data.userCanCheckIn; else openCantCheckIn" ejs-dropdownbutton
                                 [items]="[ listOfEventOptions.edit,  listOfEventOptions.delete  ]"
-                                content="MANAGE / VIEW"
+                                content="MANAGE"
                                 (select)="eventOptionsHandler($event, data)"></button>
 
                         <ng-template #openCantCheckIn>
                             <button id="manage-actions-cant-checkin" ejs-dropdownbutton
                                     [items]="[  listOfEventOptions.edit, listOfEventOptions.delete  ]"
-                                    content="MANAGE / VIEW"
+                                    content="MANAGE"
                                     (select)="eventOptionsHandler($event, data)"></button>
                         </ng-template>
                     </ng-container>
@@ -69,7 +69,7 @@
                             <ng-template #closedCantCheckIn>
                                 <button id="manage-actions-closed-checkin" ejs-dropdownbutton
                                         [items]="[   listOfEventOptions.edit,  listOfEventOptions.delete  ]"
-                                        content="MANAGE / VIEW"
+                                        content="MANAGE"
                                         (select)="eventOptionsHandler($event, data)"></button>
                             </ng-template>
                         </ng-container>

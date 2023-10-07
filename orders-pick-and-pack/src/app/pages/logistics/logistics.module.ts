@@ -8,9 +8,6 @@ import { EventsRoutingModule } from './logistics-routing.module';
 import { DropDownButtonModule } from "@syncfusion/ej2-angular-splitbuttons";
 import { LogisticsDetailComponent } from './logistics-detail-modal/logistics-detail.component';
 import {DialogAllModule} from "@syncfusion/ej2-angular-popups";
-import { ScanItemComponent } from './scan.item/scan.item.component';
-import { LogisticDetailsFullComponent } from './logistic-details-full/logistic-details-full.component';
-import {AppModule} from "../../app.module";
 import {LogisticsGridComponent} from "../../components/components/logistics-grid/logistics-grid.component";
 import { CollectionDetailsComponent } from './logistics-detail-modal/collection-details/collection-details.component';
 import {NbLayoutModule, NbTableModule} from "@nebular/theme";
@@ -23,7 +20,6 @@ import { OrderItemDetailsComponent } from './logistics-detail-modal/order-item-d
   declarations: [LogisticsComponent,
       LogisticsDetailComponent,
       LogisticsGridComponent,
-      ScanItemComponent,
       CollectionDetailsComponent,
       DeliveryDetailsComponent,
       FullfilmentDetailsComponent,

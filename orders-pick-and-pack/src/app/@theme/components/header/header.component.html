@@ -6,12 +6,16 @@
 
     <a class="logo" href="#" (click)="navigateHome()">
       <div class="d-none d-md-inline-block">
-        <img src="./assets/images/logo.png" width="150" height="150" class="img-fluid d-inline-block align-bottom"
+        <img src="./assets/images/logo.png"
+             width="150" height="150"
+             class="img-fluid d-inline-block align-bottom"
           alt="Senwes Logo" />
       </div>
 
       <div class="d-inline-block d-md-none">
-        <img src="./assets/images/logo.png" width="75" height="75" class="img-fluid d-inline-block align-bottom"
+        <img src="./assets/images/logo.png"
+             width="75" height="75"
+             class="img-fluid d-inline-block align-bottom"
           alt="Senwes Logo" />
       </div>
 
@@ -27,7 +31,7 @@
     <nb-action class="control-item" title="Home" icon="home-outline" (click)="home()"></nb-action>
     <nb-action class="control-item" title="Log Out" icon="log-out-outline" (click)="logOut()"></nb-action>
     <nb-action class="user-action" *nbIsGranted="['view', 'user']">
-      <nb-user [onlyPicture]="userPictureOnly" [name]="user"> </nb-user>
+      <nb-user [onlyPicture]="userPictureOnly" [name]="loggedInUser?.nameid"> </nb-user>
     </nb-action>
   </nb-actions>
 </div>

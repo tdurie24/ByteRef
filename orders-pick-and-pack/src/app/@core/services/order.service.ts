@@ -7,7 +7,7 @@ import {OrderItem} from "../models/order.item";
 import {map} from "rxjs/operators";
 import {DeliveryLocationDto} from "../models/delivery.location.dto";
 import {FulfillmentLocationDto} from "../models/fulfillment.location.dto";
-import {LogisticsModel} from "../models/logistics.model";
+import {LogisticsListingDTO, LogisticsModel} from "../models/logistics.model";
 import {DistributionCompanyModel} from "../models/distribution.company.model";
 import {OrderCollectionDto} from "../models/order.collection.dto";
 import {OrderDetails, OrderResponse} from "../models/order.details.model";
@@ -17,7 +17,7 @@ import {OrderDetails, OrderResponse} from "../models/order.details.model";
 })
 export class LogisticsService {
 
-    private currentLogisticsSource: BehaviorSubject<LogisticsModel[] | null> = new BehaviorSubject<LogisticsModel[] | null>(null);
+    private currentLogisticsSource: BehaviorSubject<LogisticsListingDTO[] | null> = new BehaviorSubject<LogisticsListingDTO[] | null>(null);
     currentLogisticsObservable = this.currentLogisticsSource.asObservable();
 
     private currentSelectedLogisticModel: BehaviorSubject<OrderResponse | null> = new BehaviorSubject<LogisticsModel | null>(null);
@@ -26,7 +26,7 @@ export class LogisticsService {
     private currentSelectedOrderItem: BehaviorSubject<OrderItem | null> = new BehaviorSubject<OrderItem | null>(null);
     currentSelectedOrderItemObservable: Observable<OrderItem> = this.currentSelectedOrderItem.asObservable();
 
-    logisticsFromApi: LogisticsModel[] = [];
+    logisticsFromApi: LogisticsListingDTO[] = [];
     logisticsBaseUrl: string = environment.api_logistics_base_url + "logistics/"
 
     constructor(private httpClient: HttpClient) {
@@ -43,7 +43,7 @@ export class LogisticsService {
 
 
     getLogistics() {
-        this.httpClient.get<LogisticsModel[]>(this.logisticsBaseUrl).subscribe({
+        this.httpClient.get<LogisticsListingDTO[]>(this.logisticsBaseUrl).subscribe({
             next: response => {
                 console.log(response);
                 this.logisticsFromApi = response;
@@ -73,7 +73,7 @@ export class LogisticsService {
     }
 
     getLogisticModel(itemId: string) {
-        let item: LogisticsModel | undefined = this.logisticsFromApi.find(item => item.id === itemId);
+        let item: LogisticsListingDTO | undefined = this.logisticsFromApi.find(item => item.id === itemId);
         return item;
     }
 

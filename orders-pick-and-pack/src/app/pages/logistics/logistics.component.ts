@@ -29,7 +29,7 @@ import {LogisticStatuses} from "../../@core/enums/logistic.statuses";
 })
 export class LogisticsComponent implements OnInit {
 
-    newOrders: LogisticsListingDTO[] = [];
+    readyForPackaging: LogisticsListingDTO[] = [];
     allOrders: LogisticsListingDTO[] = [];
     processingOrders: LogisticsListingDTO[] = [];
     readyForCollection: LogisticsListingDTO[] = [];
@@ -46,37 +46,28 @@ export class LogisticsComponent implements OnInit {
         this.orderService.currentLogisticsObservable.subscribe({
             next: logistics => {
 
-                for (let logistic of logistics) {
+                this.allOrders = logistics;
+                for (let logisticsListingDTO of logistics) {
 
-                    let logisticsListingDTO: LogisticsListingDTO = {
-                        Id: logistic?.id,
-                        UpdateBy: logistic?.updateBy,
-                        CreatedDate: this.formatDate(logistic?.createdDate),
-                        UpdateDate: this.formatDate(logistic?.updateDate),
-                        LogisticsStatus: logistic?.orderStatus?.name,
-                        DistributionCompany: logistic?.orderDistribution?.distrubitionCompany,
-                        CollectionId: logistic?.collectionId,
-                        OrderNumber: logistic?.orderNumber,
-                        TotalItems: logistic?.totalItems,
-                    };
+                    logisticsListingDTO.orderStatusName = logisticsListingDTO?.orderStatus?.description;
+                    logisticsListingDTO.updateDate = this.formatDate(logisticsListingDTO?.updateDate);
+                    logisticsListingDTO.createdDate = this.formatDate(logisticsListingDTO?.createdDate);
 
+                    // new orders
+                    if (logisticsListingDTO?.orderStatusId === LogisticStatuses.OrderReadyForPackaging) {
 
-                    this.allOrders.push(logisticsListingDTO);
-
-                    //new orders
-                    if (logisticsListingDTO?.LogisticsStatus === ""
-                        || logisticsListingDTO?.LogisticsStatus === null
-                        || logisticsListingDTO?.LogisticsStatus.includes("Received")) {
-                        this.newOrders.push(logisticsListingDTO);
+                        this.readyForPackaging.push(logisticsListingDTO);
                     }
-                    //collected
-                    else if (logisticsListingDTO?.LogisticsStatus === LogisticStatuses.ClientCollected
-                        || logisticsListingDTO?.LogisticsStatus === LogisticStatuses.OrderCollected
-                        || logisticsListingDTO?.LogisticsStatus === LogisticStatuses.CourierCollected) {
+                    // collected
+
+                    else if (logisticsListingDTO?.orderStatusId === LogisticStatuses.ClientCollected
+                        || logisticsListingDTO?.orderStatusId === LogisticStatuses.OrderCollected
+                        || logisticsListingDTO?.orderStatusId === LogisticStatuses.CourierCollected) {
                         this.collectedOrders.push(logisticsListingDTO);
                     }
+
                     //ready for collection.
-                    else if (logisticsListingDTO?.LogisticsStatus === LogisticStatuses.OrderReadyForCollection) {
+                    else if (logisticsListingDTO?.orderStatusId === LogisticStatuses.OrderReadyForCollection) {
                         this.readyForCollection.push(logisticsListingDTO);
                     }
                     //processing logistics

@@ -1,5 +1,5 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LogisticsService} from "../../../@core/services/order.service";
 import {OrderModel} from "../../../@core/models/order.model";
 import {ClickEventArgs} from "@syncfusion/ej2-navigations";
@@ -30,11 +30,11 @@ import {DatePipe} from "@angular/common";
 export class LogisticsDetailComponent implements OnInit {
     // public logisticsDetailForm: FormGroup;
 
-
     editMode: boolean = true;
     formValidators = [Validators.required,];
     logisticsDetailForm: FormGroup = new FormGroup({});
     dialogTitle: string = "View";
+    selectedValue: string ='';
 
 
     toggleEdit() {
@@ -67,13 +67,6 @@ export class LogisticsDetailComponent implements OnInit {
                 private datePipe: DatePipe,
                 private orderService: LogisticsService) {
 
-        this.orderService.currentSelectedOrderObservable.subscribe({
-                next: logisticModel => {
-                    this.logisticsModel = logisticModel;
-                    console.log(logisticModel);
-                }
-            }
-        );
 
         this.distributionService.distributionSourceObservable.subscribe({
             next: data => {
@@ -84,12 +77,43 @@ export class LogisticsDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.initEmptyForm();
+        this.orderService.currentSelectedOrderObservable.subscribe({
+                next: logisticModel => {
+                    this.logisticsModel = logisticModel;
+                    this.logisticsDetailForm.setValue({
+                        logisticsStatusId: this.logisticsModel?.order?.orderStatus?.statusId
+
+                    });
+
+                    this.selectedValue = this.logisticsModel?.order.orderStatus?.description;
+
+                }
+            }
+        );
+
         this.initializeForm();
         this.initializeStatuses();
 
 
     }
 
+    initEmptyForm() {
+        this.logisticsDetailForm = new FormGroup({
+            'OrderNumber': new FormControl(null, [...this.formValidators]),
+            'shippingTotal': new FormControl(null, [...this.formValidators]),
+            'subTotal': new FormControl(null, [...this.formValidators]),
+            'taxTotal': new FormControl(null, [...this.formValidators]),
+            'deliveryTotal': new FormControl(null, [...this.formValidators]),
+            'logisticsStatusId': new FormControl(null, [...this.formValidators]),
+            'DistributionId': new FormControl(null, [...this.formValidators]),
+            'CollectionId': new FormControl(null, [...this.formValidators]),
+            'UpdateBy': new FormControl(null, [...this.formValidators]),
+            'DateCreated': new FormControl(null, [...this.formValidators]),
+            'TotalItems': new FormControl(null, [...this.formValidators]),
+            'UpdateDate': new FormControl(null, [...this.formValidators]),
+        });
+    }
 
     initializeForm() {
 // console.log(his.logisticsModel?.order?.orderStatus?.statusId)
@@ -108,7 +132,7 @@ export class LogisticsDetailComponent implements OnInit {
 
             subTotal: [{
                 value: this.logisticsModel?.order?.subTotal,
-                disabled:true
+                disabled: true
             }, [...this.formValidators]],
 
 
@@ -123,8 +147,8 @@ export class LogisticsDetailComponent implements OnInit {
             }, [...this.formValidators]],
 
             logisticsStatusId: [{
-                value: this.logisticsModel?.order?.orderStatus?.statusId,
-                disabled: false
+                value: this.logisticsModel?.order?.orderStatus?.description,
+                disabled: true
             }, [...this.formValidators]],
 
             DistributionId: [{
@@ -156,6 +180,7 @@ export class LogisticsDetailComponent implements OnInit {
                 value: this.logisticsModel?.updatedDate,
                 disabled: true
             }, [...this.formValidators]],
+
 
         });
 

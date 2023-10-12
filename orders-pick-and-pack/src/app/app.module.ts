@@ -20,9 +20,7 @@ import {VirtualizationService} from "@syncfusion/ej2-angular-lists";
 import {LogisticsModule} from "./pages/logistics/logistics.module";
 import {LoadingSpinnerComponent} from './components/components/loading-spinner/loading-spinner.component';
 import {LoginComponent} from './pages/login/login.component';
-
 import {DialogModule} from '@syncfusion/ej2-angular-popups';
-import {ScanItemComponent} from "./pages/logistics/scan.item/scan.item.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TextBoxModule} from "@syncfusion/ej2-angular-inputs";
 import {DatePipe} from '@angular/common';

@@ -27,6 +27,7 @@
 </div>
 
 <div class="header-container">
+  <p  class="h6 mt-2" (click)="showBranchDialog()"> {{selectedBranch.province}} ({{selectedBranch.id}})</p>
   <nb-actions size="small">
     <nb-action class="control-item" title="Home" icon="home-outline" (click)="home()"></nb-action>
     <nb-action class="control-item" title="Log Out" icon="log-out-outline" (click)="logOut()"></nb-action>

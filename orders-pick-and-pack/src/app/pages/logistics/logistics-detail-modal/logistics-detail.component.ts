@@ -38,7 +38,6 @@ export class LogisticsDetailComponent implements OnInit {
 
 
     toggleEdit() {
-
         this.editMode = !this.editMode;
         if (this.editMode) {
             this.dialogTitle = "Update";

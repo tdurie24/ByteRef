@@ -5,8 +5,6 @@ import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
-import { OrderDetailsComponent } from './logistics/order.details/order.details.component';
-
 
 @NgModule({
   imports: [
